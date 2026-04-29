@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -38,6 +37,9 @@ body{
 .screen{display:none;padding:30px 34px;max-width:1160px;}
 .screen.active{display:block;}
 
+.sync-indicator{position:fixed;top:12px;right:16px;font-size:11px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.85);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;z-index:50;backdrop-filter:blur(10px);display:none;}
+.sync-indicator.show{display:block;}
+
 .welcome{display:flex;flex-direction:column;align-items:center;text-align:center;margin:10px 0 28px;gap:8px;}
 .welcome-title{font-family:var(--fm);font-size:14px;line-height:1.7;letter-spacing:.04em;color:#5B3B86;}
 .welcome-date{font-size:14px;color:#8B6EA8;font-family:var(--fs);font-weight:800;}
@@ -56,18 +58,6 @@ body{
 .bnav-btn{background:none;border:none;color:var(--muted);font-family:var(--fd);font-size:11px;font-weight:800;letter-spacing:.02em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 10px;}
 .bnav-btn svg{width:19px;height:19px;}
 .bnav-btn.active{color:var(--pink-strong);}
-.hero{background:rgba(255,255,255,.78);border:1px solid var(--bd);border-radius:28px;padding:30px 34px;margin-bottom:18px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;box-shadow:var(--shadow);backdrop-filter:blur(16px);}
-.hero-date{font-family:var(--fm);font-size:9px;line-height:1.7;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
-.hero-amount{font-family:var(--fm);font-size:34px;font-weight:400;color:var(--pink-strong);line-height:1.35;letter-spacing:0;}
-.hero-name{font-size:14px;color:var(--muted);margin-top:10px;font-weight:700;}
-.hero-right{text-align:right;background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(233,213,255,.26));border:1px solid rgba(243,198,218,.7);border-radius:22px;padding:18px 20px;min-width:235px;}
-.hero-week-label{font-family:var(--fm);font-size:8px;line-height:1.6;letter-spacing:.05em;color:var(--muted);text-transform:uppercase;margin-bottom:9px;}
-.hero-week-spent{font-family:var(--fm);font-size:18px;line-height:1.45;font-weight:400;color:var(--lilac);}
-.hero-week-sub{font-size:13px;color:var(--muted);margin-top:6px;font-weight:700;}
-.prog-bg{height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:10px;width:190px;margin-left:auto;}
-.prog-fill{height:100%;border-radius:99px;}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 .card,.mama-card,.frozen-card,.fri-banner,.corte-banner{background:rgba(255,255,255,.82);border:1px solid var(--bd);border-radius:24px;padding:24px 24px;box-shadow:var(--shadow-soft);backdrop-filter:blur(14px);}
 .card-tag,.mama-tag,.frozen-tag,.fri-tag-txt,.form-label{font-family:var(--fm);font-size:8px;line-height:1.6;font-weight:400;letter-spacing:.05em;color:var(--pink-strong);text-transform:uppercase;margin-bottom:13px;}
 .card-badge{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;margin-bottom:12px;background:var(--lilac-soft)!important;color:var(--lilac)!important;}
@@ -111,6 +101,7 @@ body{
 .sel-btn.on-gasto{border-color:var(--pink);color:var(--pink-strong);background:rgba(251,207,232,.55);}
 .txt-inp{width:100%;background:#fff;border:1px solid var(--bd);border-radius:16px;padding:13px 15px;font-family:var(--fd);font-size:15px;color:var(--text);outline:none;}
 .txt-inp::placeholder{color:#D1A3B7;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 .donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
 .legend{display:flex;flex-direction:column;gap:10px;flex:1;}
 .leg-item{display:flex;align-items:center;gap:9px;font-size:14px;}
@@ -135,10 +126,12 @@ body{
 .chat-inp{flex:1;background:#fff;border:1px solid var(--bd);border-radius:16px;padding:13px 15px;font-family:var(--fd);font-size:15px;color:var(--text);outline:none;}
 .chat-inp::placeholder{color:#D1A3B7;}
 .chat-send{background:linear-gradient(135deg,var(--blue),var(--lilac));border:none;border-radius:16px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
-.typing span{display:inline-block;width:6px;height:6px;background:var(--muted);border-radius:50%;margin:0 2px;}
+.typing span{display:inline-block;width:6px;height:6px;background:var(--muted);border-radius:50%;margin:0 2px;animation:bounce 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:.2s;}.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
 .mama-tx{display:flex;flex-direction:column;gap:8px;margin-top:14px;max-height:210px;overflow-y:auto;}
 .mama-tx-item{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 12px;background:rgba(255,244,248,.8);border-radius:14px;gap:10px;}
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--pink-strong);color:#fff;padding:10px 22px;border-radius:999px;font-weight:900;font-size:14px;z-index:999;opacity:0;pointer-events:none;box-shadow:var(--shadow);}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--pink-strong);color:#fff;padding:10px 22px;border-radius:999px;font-weight:900;font-size:14px;z-index:999;opacity:0;pointer-events:none;box-shadow:var(--shadow);transition:opacity .3s;}
 .toast.show{opacity:1;}
 .modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(59,31,43,.25);z-index:100;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
 .modal-bg.open{display:flex;}
@@ -146,9 +139,11 @@ body{
 .modal-title{font-size:18px;font-weight:900;margin-bottom:18px;color:var(--text);}
 .modal-close{float:right;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;}
 .status-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;font-weight:900;font-size:13px;margin-top:10px;background:var(--lilac-soft);color:var(--lilac);}
-@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr;}.top-grid{grid-template-columns:1fr;}.sidebar{width:206px}.main{margin-left:206px;}}
-@media(max-width:640px){.sidebar{display:none;}.bottom-nav{display:block;}.main{margin-left:0;padding-bottom:76px;}.screen{padding:16px 14px;}.grid3,.grid2,.top-grid{grid-template-columns:1fr;}.welcome{margin-top:4px;margin-bottom:20px}.welcome-title{font-size:11px}.balance-card,.week-card{min-height:auto}.balance-card .big-n{font-size:26px}.week-card .big-n,.payment-card .big-n{font-size:20px}.week-top{flex-direction:column}.week-breakdown{grid-template-columns:1fr;}.hero{padding:24px;}.hero-amount{font-size:25px;}.prog-bg{width:100%;margin-left:0;}.hero-right{text-align:left;width:100%;}.fri-banner{flex-direction:column;}.fri-btns{width:100%;}.btn-pg,.btn-sk{flex:1;text-align:center;}.big-n{font-size:20px;}}
+@media(max-width:900px){.top-grid{grid-template-columns:1fr;}.sidebar{width:206px}.main{margin-left:206px;}}
+@media(max-width:640px){.sidebar{display:none;}.bottom-nav{display:block;}.main{margin-left:0;padding-bottom:76px;}.screen{padding:16px 14px;}.grid2,.top-grid{grid-template-columns:1fr;}.welcome{margin-top:4px;margin-bottom:20px}.welcome-title{font-size:11px}.balance-card,.week-card{min-height:auto}.balance-card .big-n{font-size:26px}.week-card .big-n,.payment-card .big-n{font-size:20px}.week-top{flex-direction:column}.week-breakdown{grid-template-columns:1fr;}.fri-banner{flex-direction:column;}.fri-btns{width:100%;}.btn-pg,.btn-sk{flex:1;text-align:center;}.big-n{font-size:20px;}}
 </style>
+
+<div class="sync-indicator" id="sync-indicator">guardando...</div>
 
 <!-- MODAL MAMA -->
 <div class="modal-bg" id="modal-mama">
@@ -197,42 +192,37 @@ body{
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA FINANCIERA
     </div>
     <div class="sb-bottom">
-      <div class="sb-row"><span class="sb-lbl">BBVA</span><span class="sb-val" id="sb-bbva" style="color:var(--ng)">$3,880</span></div>
-      <div class="sb-row"><span class="sb-lbl">Ciclo activo</span><span class="sb-val" id="sb-ciclo" style="color:var(--np)">$887.93</span></div>
-      <div class="sb-row"><span class="sb-lbl">Deuda mamá</span><span class="sb-val" id="sb-mama" style="color:var(--na)">$2,500</span></div>
+      <div class="sb-row"><span class="sb-lbl">BBVA</span><span class="sb-val" id="sb-bbva">$3,880</span></div>
+      <div class="sb-row"><span class="sb-lbl">Ciclo activo</span><span class="sb-val" id="sb-ciclo">$887.93</span></div>
+      <div class="sb-row"><span class="sb-lbl">Deuda mamá</span><span class="sb-val" id="sb-mama">$2,254</span></div>
     </div>
   </aside>
 
   <main class="main">
-
     <!-- HOME -->
     <div class="screen active" id="screen-home">
-
-      <!-- WELCOME -->
       <div class="welcome">
-        <div class="welcome-title">Buen día, Yamil ♡</div>
+        <div class="welcome-title" id="welcome-title">Buen día, Yamil ♡</div>
         <div class="welcome-date" id="hero-date">martes 28 de abril, 2026</div>
       </div>
 
-      <!-- BALANCE + WEEK -->
       <div class="top-grid">
         <div class="card balance-card">
           <div class="card-tag">BALANCE</div>
           <div class="big-n" id="hero-bbva" style="color:var(--pink)">$3,880</div>
           <div class="small-txt">BBVA débito</div>
         </div>
-
         <div class="card week-card">
           <div class="week-top">
             <div>
               <div class="card-tag">WEEK</div>
-              <div class="big-n" id="hero-spent" style="color:var(--pink)">$711</div>
+              <div class="big-n" id="hero-spent" style="color:var(--pink)">$0</div>
               <div class="small-txt">lunes a domingo · límite $1,000</div>
-              <div class="week-status-pill" id="week-status">⚠ Cuidado — $711 de $1,000</div>
+              <div class="week-status-pill" id="week-status">Cargando...</div>
             </div>
             <div style="min-width:210px;">
               <div class="week-limit">de $1,000 límite</div>
-              <div class="prog-bg" style="width:100%;margin-left:0;margin-top:14px;"><div class="prog-fill" id="hero-wbar" style="width:71%;background:var(--mustard)"></div></div>
+              <div style="height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:14px;width:100%;"><div id="hero-wbar" style="height:100%;border-radius:99px;width:0%;background:var(--blue);transition:width .4s;"></div></div>
             </div>
           </div>
           <div class="week-breakdown">
@@ -242,8 +232,7 @@ body{
         </div>
       </div>
 
-      <!-- FRIDAY BANNER -->
-      <div id="fri-banner" style="display:none" class="fri-banner">
+      <div id="fri-banner" style="display:none" class="fri-banner" style="margin-bottom:18px;">
         <div>
           <div class="fri-tag-txt">Viernes de cobro</div>
           <div class="fri-text" id="fri-text">Sugerencia: <b id="fri-amt">$0</b></div>
@@ -254,25 +243,21 @@ body{
         </div>
       </div>
 
-      <!-- CORTE BANNER -->
-      <div id="corte-banner" style="display:none" class="corte-banner">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--na);margin-bottom:8px;">CORTE PRÓXIMO — 21 DE ESTE MES</div>
-        <div style="font-size:13px;color:var(--text);margin-bottom:12px;">Tu ciclo está por cerrarse. Tienes <b style="font-family:var(--fm);color:var(--na)" id="corte-amt">$0</b> acumulado. Puedes cerrarlo manualmente cuando llegue el día 21.</div>
-        <button onclick="cerrarCiclo()" style="background:var(--na);color:#0a0a0f;border:none;border-radius:8px;padding:8px 16px;font-family:var(--fd);font-size:12px;font-weight:700;cursor:pointer;">Cerrar ciclo ahora</button>
+      <div id="corte-banner" style="display:none;margin-bottom:18px;" class="corte-banner">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--mustard-text);margin-bottom:8px;">CORTE PRÓXIMO — 21 DE ESTE MES</div>
+        <div style="font-size:13px;color:var(--text);margin-bottom:12px;">Tu ciclo está por cerrarse. Tienes <b style="font-family:var(--fm);color:var(--mustard-text)" id="corte-amt">$0</b> acumulado.</div>
+        <button onclick="cerrarCiclo()" style="background:var(--mustard-text);color:#fff;border:none;border-radius:12px;padding:10px 18px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;">Cerrar ciclo ahora</button>
       </div>
 
-      <!-- CICLOS BANAMEX -->
       <div class="grid2">
         <div class="card">
           <div class="card-tag">Ciclo activo Banamex</div>
-          <div class="card-badge" style="background:rgba(191,95,255,0.1);color:var(--np)" id="ciclo-badge-txt">21 abr → 21 may</div>
-          <div class="big-n" id="ciclo-gastado" style="color:var(--np)">$887.93</div>
+          <div class="card-badge" id="ciclo-badge-txt">21 abr → 21 may</div>
+          <div class="big-n" id="ciclo-gastado" style="color:var(--lilac)">$887.93</div>
           <div class="small-txt">gastado en el ciclo</div>
-          <div class="prog-bg" style="width:100%;margin-left:0;margin-top:10px;">
-            <div class="prog-fill" id="ciclo-bar" style="background:var(--np)"></div>
-          </div>
+          <div style="height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:10px;width:100%;"><div id="ciclo-bar" style="height:100%;border-radius:99px;background:var(--lilac);width:7%;"></div></div>
           <div class="v-box">
-            <div class="v-row"><span class="v-lbl">Sugerencia simbólica (÷3)</span><span class="v-val" style="color:var(--np)" id="ciclo-sug">$296</span></div>
+            <div class="v-row"><span class="v-lbl">Sugerencia simbólica (÷3)</span><span class="v-val" id="ciclo-sug">$296</span></div>
             <div class="v-row"><span class="v-lbl">Corte</span><span class="v-val" id="ciclo-corte-txt">21 mayo 2026</span></div>
             <div class="v-row"><span class="v-lbl">Pago siguiente</span><span class="v-val" id="ciclo-pago-txt">11 junio 2026</span></div>
           </div>
@@ -292,35 +277,32 @@ body{
         </div>
       </div>
 
-      <!-- FROZEN -->
-      <div id="frozen-section" style="display:none" class="frozen-card">
+      <div id="frozen-section" style="display:none" class="frozen-card" style="margin-bottom:18px;">
         <div class="frozen-tag">Deuda congelada — pagar antes del <span id="frozen-pay-date">11 jun</span></div>
         <div class="big-n" id="frozen-amt" style="color:var(--nr)">$0</div>
-        <div class="small-txt" style="margin-bottom:12px;">Quedan <span id="frozen-dias">0</span> días · Sugerido este viernes: <span style="color:var(--nr);font-family:var(--fm)" id="frozen-sug">$0</span></div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button onclick="go('register');presetCat('tarjeta');presetOrigen('bbva')" style="background:var(--nr);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:var(--fd);font-size:12px;font-weight:700;cursor:pointer;">Registrar pago</button>
-          <button onclick="liquidarCongelado()" style="background:none;border:1px solid rgba(255,77,77,0.4);color:var(--nr);border-radius:8px;padding:8px 14px;font-family:var(--fd);font-size:12px;font-weight:700;cursor:pointer;">Liquidar todo</button>
+        <div class="small-txt" style="margin-bottom:14px;">Quedan <span id="frozen-dias">0</span> días · Sugerido este viernes: <span style="color:var(--nr);font-family:var(--fm)" id="frozen-sug">$0</span></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button onclick="go('register');presetCat('tarjeta');presetOrigen('bbva')" class="btn-abono" style="background:var(--nr);">Registrar pago</button>
+          <button onclick="liquidarCongelado()" class="btn-gasto-m" style="border-color:var(--nr);color:var(--nr);">Liquidar todo</button>
         </div>
       </div>
 
-      <!-- MAMA -->
-      <div class="mama-card">
+      <div class="mama-card" style="margin-bottom:18px;">
         <div class="mama-tag">Deuda con mamá</div>
-        <div class="big-n" id="mama-deuda" style="color:var(--na)">$2,500</div>
-        <div class="small-txt">Sugerido este viernes: <span style="color:var(--na);font-family:var(--fm)" id="mama-sug">$0</span></div>
+        <div class="big-n" id="mama-deuda" style="color:var(--mustard-text)">$2,254</div>
+        <div class="small-txt">Sugerido este viernes: <span style="color:var(--mustard-text);font-family:var(--fm)" id="mama-sug">$0</span></div>
         <div class="mama-btns">
           <button class="btn-abono" onclick="openModal('abono')">Abonar</button>
           <button class="btn-gasto-m" onclick="openModal('gasto')">Ella pagó algo</button>
         </div>
         <div class="mama-tx" id="mama-tx-list"></div>
       </div>
-
     </div>
 
     <!-- REGISTER -->
     <div class="screen" id="screen-register">
-      <div style="font-size:18px;font-weight:800;margin-bottom:20px;">Nuevo registro</div>
-      <div style="max-width:540px;">
+      <div style="font-family:var(--fm);font-size:12px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;">REGISTRAR</div>
+      <div style="max-width:580px;">
         <div class="form-block">
           <label class="form-label">Monto</label>
           <input class="amount-inp" type="number" id="r-amount" placeholder="$0">
@@ -335,12 +317,12 @@ body{
         <div class="form-block">
           <label class="form-label">Categoría</label>
           <div class="btn-row" id="cat-grid">
-            <button class="sel-btn" onclick="selCat('comida')" data-c="comida">Comida</button>
-            <button class="sel-btn" onclick="selCat('transporte')" data-c="transporte">Uber/Didi</button>
-            <button class="sel-btn" onclick="selCat('oxxo')" data-c="oxxo">Oxxo/snacks</button>
-            <button class="sel-btn" onclick="selCat('tarjeta')" data-c="tarjeta">Pago tarjeta</button>
-            <button class="sel-btn" onclick="selCat('familia')" data-c="familia">Familia</button>
-            <button class="sel-btn" onclick="selCat('otro')" data-c="otro">Otro</button>
+            <button class="sel-btn" onclick="selCat('comida')" data-c="comida">🍕 Comida</button>
+            <button class="sel-btn" onclick="selCat('transporte')" data-c="transporte">🚗 Uber/Didi</button>
+            <button class="sel-btn" onclick="selCat('oxxo')" data-c="oxxo">🛒 Oxxo/snacks</button>
+            <button class="sel-btn" onclick="selCat('tarjeta')" data-c="tarjeta">💳 Pago tarjeta</button>
+            <button class="sel-btn" onclick="selCat('familia')" data-c="familia">👨‍👩‍👧 Familia</button>
+            <button class="sel-btn" onclick="selCat('otro')" data-c="otro">📦 Otro</button>
           </div>
         </div>
         <div class="form-block">
@@ -364,32 +346,32 @@ body{
 
     <!-- DASHBOARD -->
     <div class="screen" id="screen-dashboard">
-      <div style="font-size:18px;font-weight:800;margin-bottom:20px;">Análisis</div>
+      <div style="font-family:var(--fm);font-size:12px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;">ANÁLISIS</div>
       <div class="grid2">
         <div class="card">
           <div class="card-tag">En qué gastas</div>
           <div class="donut-wrap">
-            <svg width="100" height="100" viewBox="0 0 100 100" id="donut-svg" style="flex-shrink:0;">
-              <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="18"/>
-              <text x="50" y="54" text-anchor="middle" font-family="Space Mono" font-size="10" font-weight="700" fill="rgba(240,240,248,0.4)" id="donut-c">$0</text>
+            <svg width="110" height="110" viewBox="0 0 100 100" id="donut-svg" style="flex-shrink:0;">
+              <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(243,198,218,.4)" stroke-width="18"/>
+              <text x="50" y="54" text-anchor="middle" font-family="Press Start 2P" font-size="9" fill="#D1A3B7" id="donut-c">$0</text>
             </svg>
-            <div class="legend" id="donut-legend"><div style="font-size:12px;color:var(--muted)">Sin gastos</div></div>
+            <div class="legend" id="donut-legend"><div style="font-size:13px;color:var(--muted)">Sin gastos aún</div></div>
           </div>
         </div>
         <div class="card">
           <div class="card-tag">BBVA vs Crédito</div>
-          <div id="origen-break"><div style="font-size:12px;color:var(--muted)">Sin gastos</div></div>
+          <div id="origen-break"><div style="font-size:13px;color:var(--muted)">Sin gastos aún</div></div>
         </div>
       </div>
       <div class="card" style="margin-bottom:20px;">
         <div class="card-tag" style="margin-bottom:14px;">Últimos movimientos</div>
-        <div class="tx-list" id="tx-list"><div style="font-size:13px;color:var(--muted);text-align:center;padding:20px">No hay movimientos</div></div>
+        <div class="tx-list" id="tx-list"><div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">No hay movimientos</div></div>
       </div>
     </div>
 
     <!-- CHAT -->
     <div class="screen" id="screen-chat">
-      <div style="font-size:18px;font-weight:800;margin-bottom:20px;">IA Financiera <span style="font-size:11px;color:var(--ng);font-weight:700;margin-left:8px;">● EN LÍNEA</span></div>
+      <div style="font-family:var(--fm);font-size:12px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;">IA FINANCIERA <span style="font-family:var(--fd);font-size:11px;color:var(--lilac);font-weight:700;margin-left:8px;">● en línea</span></div>
       <div class="card">
         <div class="chat-chips">
           <button class="chip" onclick="sendChip('¿cuánto tengo en BBVA y cómo va mi semana?')">¿cómo voy?</button>
@@ -398,17 +380,16 @@ body{
           <button class="chip" onclick="sendChip('¿cómo va mi ciclo de Banamex?')">¿cómo va Banamex?</button>
         </div>
         <div class="chat-msgs" id="chat-msgs">
-          <div class="msg ai">Hola! Tus datos reales están cargados: BBVA $3,880, ciclo Banamex con $887.93 gastados, deuda con mamá $2,500. ¿Qué quieres saber?</div>
+          <div class="msg ai">Hola Yamil ♡ Tus datos están cargados desde la nube. ¿Qué quieres saber?</div>
         </div>
         <div class="chat-row">
           <input class="chat-inp" type="text" id="chat-inp" placeholder="Pregunta lo que quieras..." onkeydown="if(event.key==='Enter')sendChat()">
           <button class="chat-send" onclick="sendChat()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         </div>
       </div>
     </div>
-
   </main>
 </div>
 
@@ -423,45 +404,95 @@ body{
 <div class="toast" id="toast"></div>
 
 <script>
-const BBVA_INI=3880,LIM_CRED=13000,LIM_SEM=1000,COBRO=2005;
+// ─── UPSTASH CONFIG ──────────────────────────────────────────
+const KV_URL   = 'https://exotic-hamster-108982.upstash.io';
+const KV_TOKEN = 'gQAAAAAAAam2AAIgcDE3M2QyOWUyODI1MDE0Mjk0YjE3NmJiNzFhMGEyNzVmOQ';
+const KV_KEY   = 'finanzas_yamil_v1';
+
+async function kvGet(){
+  try{
+    const r=await fetch(`${KV_URL}/get/${KV_KEY}`,{headers:{Authorization:`Bearer ${KV_TOKEN}`}});
+    const d=await r.json();
+    return d.result?JSON.parse(d.result):null;
+  }catch(e){return null;}
+}
+async function kvSet(data){
+  try{
+    const si=document.getElementById('sync-indicator');
+    si.classList.add('show');
+    await fetch(`${KV_URL}/set/${KV_KEY}`,{
+      method:'POST',
+      headers:{Authorization:`Bearer ${KV_TOKEN}`,'Content-Type':'application/json'},
+      body:JSON.stringify(JSON.stringify(data))
+    });
+    setTimeout(()=>si.classList.remove('show'),1000);
+  }catch(e){console.error('KV save error',e);}
+}
+// ─────────────────────────────────────────────────────────────
+
+const LIM_CRED=13000,LIM_SEM=1000,COBRO=2005;
 const CAT_COLORS={comida:'#F472B6',transporte:'#93C5FD',oxxo:'#FDE68A',tarjeta:'#C084FC',familia:'#FBCFE8',otro:'#D1A3B7'};
 const CAT_NAMES={comida:'Comida',transporte:'Transporte',oxxo:'Oxxo/snacks',tarjeta:'Pago tarjeta',familia:'Familia',otro:'Otro'};
 const MONTHS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MONTHS_FULL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 
-let ST={
-  bbva:BBVA_INI,
+// Estado inicial — solo se usa si no hay datos en la nube
+const ST_DEFAULT={
+  bbva:3880,
   cicloActivo:887.93,
   cicloInicio:'2026-04-21',
   cicloCorte:'2026-05-21',
   cicloPago:'2026-06-11',
   pagoActual:0,
-  pagoActualOriginal:2858.93,
+  pagoActualOriginal:0,
   pagoActualCorte:'2026-04-21',
   pagoActualLimite:'2026-05-11',
   deudaCongelada:0,
   congeladaPagoDate:'',
-  mamaDeuda:2500,
-  mamaTx:[],
-  monitorMeta:2000,
-  monitorAhorro:0,
+  mamaDeuda:2254,
+  mamaTx:[
+    {tipo:'gasto',amt:650,nota:'lunes 13 — varios',fecha:'2026-04-13'},
+    {tipo:'gasto',amt:40,nota:'tienda 13 abril',fecha:'2026-04-13'},
+    {tipo:'gasto',amt:64,nota:'tienda/Aurrerá 21 abril',fecha:'2026-04-21'},
+    {tipo:'gasto',amt:1000,nota:'tarjeta de crédito',fecha:'2026-04-21'},
+    {tipo:'gasto',amt:500,nota:'27 abril',fecha:'2026-04-27'},
+  ],
   transactions:[
     {id:1,amount:67,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-22'},
     {id:2,amount:429,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-24'},
     {id:3,amount:215,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-26'},
   ],
-  selCat:null,selOrigen:'bbva',selTipo:'gasto',
-  modalTipo:'abono',
+  selCat:null,selOrigen:'bbva',selTipo:'gasto',modalTipo:'abono',
   chatHistory:[]
 };
 
-function loadST(){try{const s=localStorage.getItem('fin_v5');if(s)ST={...ST,...JSON.parse(s)};}catch(e){}}
-function saveST(){try{localStorage.setItem('fin_v5',JSON.stringify(ST));}catch(e){}}
+let ST={...ST_DEFAULT};
+
+async function loadST(){
+  const remote=await kvGet();
+  if(remote){
+    ST={...ST_DEFAULT,...remote};
+  }
+  // fallback localStorage
+  else{
+    try{const s=localStorage.getItem('fin_v5');if(s)ST={...ST_DEFAULT,...JSON.parse(s)};}catch(e){}
+  }
+  updateHome();
+}
+
+async function saveST(){
+  // guardar en KV (nube) y localStorage como backup
+  await kvSet(ST);
+  try{localStorage.setItem('fin_v5',JSON.stringify(ST));}catch(e){}
+}
 
 function go(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  ['snav-','bnav-'].forEach(p=>{document.querySelectorAll('[id^="'+p+'"]').forEach(b=>b.classList.remove('active'));const el=document.getElementById(p+name);if(el)el.classList.add('active');});
+  ['snav-','bnav-'].forEach(p=>{
+    document.querySelectorAll('[id^="'+p+'"]').forEach(b=>b.classList.remove('active'));
+    const el=document.getElementById(p+name);if(el)el.classList.add('active');
+  });
   document.getElementById('screen-'+name).classList.add('active');
   if(name==='dashboard')renderDash();
   if(name==='home')updateHome();
@@ -473,11 +504,10 @@ function presetOrigen(o){selOrigen(o);}
 function selOrigen(o){ST.selOrigen=o;['bbva','credito'].forEach(x=>{const el=document.getElementById('ob-'+x);if(el)el.className='sel-btn'+(o===x?' on-'+x:'');});}
 function selTipo(t){ST.selTipo=t;document.getElementById('tb-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');document.getElementById('tb-ingreso').className='sel-btn'+(t==='ingreso'?' on-abono':'');}
 function selModalTipo(t){ST.modalTipo=t;document.getElementById('mt-abono').className='sel-btn'+(t==='abono'?' on-abono':'');document.getElementById('mt-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');}
-
 function openModal(tipo){ST.modalTipo=tipo;selModalTipo(tipo);document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];document.getElementById('modal-mama').classList.add('open');}
 function closeModal(){document.getElementById('modal-mama').classList.remove('open');document.getElementById('mama-amount').value='';document.getElementById('mama-nota').value='';}
 
-function saveMama(){
+async function saveMama(){
   const amt=parseFloat(document.getElementById('mama-amount').value);
   const nota=document.getElementById('mama-nota').value||'Sin concepto';
   const fecha=document.getElementById('mama-fecha').value||new Date().toISOString().split('T')[0];
@@ -491,39 +521,31 @@ function saveMama(){
     ST.mamaDeuda+=amt;
     ST.mamaTx.unshift({tipo:'gasto',amt,nota,fecha});
   }
-  saveST();closeModal();showToast(ST.modalTipo==='abono'?'✓ Abono registrado':'✓ Gasto de mamá registrado');updateHome();
+  await saveST();closeModal();showToast(ST.modalTipo==='abono'?'✓ Abono registrado':'✓ Gasto de mamá registrado');updateHome();
 }
 
 function getWeekStart(){
-  const d=new Date();const day=d.getDay();
+  const d=new Date(),day=d.getDay();
   const mon=new Date(d);mon.setDate(d.getDate()-(day===0?6:day-1));mon.setHours(0,0,0,0);return mon;
 }
 function getWeeklySpent(){
   const ws=getWeekStart();
   return ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat!=='tarjeta'&&new Date(t.fecha+'T12:00:00')>=ws).reduce((s,t)=>s+t.amount,0);
 }
-
-function calcDisponibleReal(){
-  const compromisoTarjeta = ST.deudaCongelada > 0 ? ST.deudaCongelada : ST.cicloActivo;
-  return ST.bbva - (compromisoTarjeta * 0.5) - (ST.mamaDeuda * 0.3);
+function getWeeklyFijo(){
+  const ws=getWeekStart();
+  return ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat==='comida'&&new Date(t.fecha+'T12:00:00')>=ws).reduce((s,t)=>s+t.amount,0);
 }
-function getSemaforo(){
-  const ws=getWeeklySpent();
-  if(ws<700) return {color:'var(--blue)',text:'VAS BIEN',detail:'Tu semana está controlada.'};
-  if(ws<1000) return {color:'var(--mustard-text)',text:'CUIDADO',detail:'Vas cerca del límite semanal.'};
-  return {color:'var(--pink-strong)',text:'TE ESTÁS PASANDO',detail:'Baja gastos variables esta semana.'};
-}
-function getGastoTipo(){
-  let fijo=0,variable=0;
-  ST.transactions.forEach(t=>{if(t.tipo==='gasto'&&t.cat!=='tarjeta'){if(t.cat==='comida')fijo+=t.amount;else variable+=t.amount;}});
-  return {fijo,variable};
+function getSemaforo(ws){
+  if(ws<700)return{text:'VAS BIEN ✓',color:'#3B82F6',border:'#93C5FD',bg:'rgba(147,197,253,.18)'};
+  if(ws<1000)return{text:'⚠ CUIDADO',color:'#A45A00',border:'#F3B51B',bg:'rgba(253,230,138,.18)'};
+  return{text:'TE ESTÁS PASANDO',color:'var(--pink-strong)',border:'var(--pink)',bg:'rgba(251,207,232,.35)'};
 }
 function calcSugCiclo(){return Math.ceil(ST.cicloActivo/3);}
 function calcFridaysLeftMonth(){
-  const now=new Date();
-  const lastDay=new Date(now.getFullYear(),now.getMonth()+1,0);
+  const now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0);
   let f=0;const d=new Date(now);
-  while(d<=lastDay){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}
+  while(d<=last){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}
   return Math.max(1,f);
 }
 function calcSugMama(){return Math.ceil(ST.mamaDeuda/calcFridaysLeftMonth());}
@@ -536,7 +558,7 @@ function calcFridaysToFrozen(){
 }
 function calcSugFrozen(){return Math.ceil(ST.deudaCongelada/calcFridaysToFrozen());}
 
-function cerrarCiclo(){
+async function cerrarCiclo(){
   ST.pagoActual=ST.cicloActivo;
   ST.pagoActualOriginal=ST.cicloActivo;
   ST.pagoActualCorte=ST.cicloCorte;
@@ -550,16 +572,18 @@ function cerrarCiclo(){
   ST.cicloCorte=nc.toISOString().split('T')[0];
   ST.cicloPago=np.toISOString().split('T')[0];
   ST.cicloActivo=0;
-  saveST();showToast('✓ Ciclo cerrado');updateHome();
+  await saveST();showToast('✓ Ciclo cerrado');updateHome();
 }
-function liquidarCongelado(){
+
+async function liquidarCongelado(){
   if(ST.bbva<ST.deudaCongelada){showToast('BBVA insuficiente');return;}
   ST.bbva-=ST.deudaCongelada;
   ST.transactions.unshift({id:Date.now(),amount:ST.deudaCongelada,nota:'Liquidación deuda congelada',cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
   ST.deudaCongelada=0;ST.congeladaPagoDate='';
-  saveST();showToast('✓ Deuda liquidada');updateHome();
+  await saveST();showToast('✓ Deuda liquidada');updateHome();
 }
-function pagarSugFri(){
+
+async function pagarSugFri(){
   const sug=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
   if(ST.bbva<sug){showToast('Saldo insuficiente');return;}
   ST.bbva-=sug;
@@ -567,45 +591,51 @@ function pagarSugFri(){
   else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-sug);
   else ST.cicloActivo=Math.max(0,ST.cicloActivo-sug);
   ST.transactions.unshift({id:Date.now(),amount:sug,nota:'Pago viernes sugerido',cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
-  saveST();showToast('✓ Pago de $'+sug.toLocaleString('es-MX')+' registrado');updateHome();
+  await saveST();showToast('✓ Pago de $'+sug.toLocaleString('es-MX')+' registrado');updateHome();
   document.getElementById('fri-banner').style.display='none';
 }
 
 function updateHome(){
   const now=new Date();
   const ws=getWeeklySpent();
+  const wf=getWeeklyFijo();
+  const wv=Math.max(0,ws-wf);
   const pct=Math.min(100,(ws/LIM_SEM)*100);
-  const bar=document.getElementById('hero-wbar');
-  bar.style.width=pct+'%';
-  bar.style.background=pct>90?'var(--pink-strong)':pct>70?'#F3B51B':'var(--blue)';
+  const sem=getSemaforo(ws);
+
+  // Saludo según hora
+  const h=now.getHours();
+  const titulo=h<12?'Buen día, Yamil ♡':h<19?'Buenas tardes, Yamil ♡':'Buenas noches, Yamil ♡';
+  document.getElementById('welcome-title').textContent=titulo;
+  document.getElementById('hero-date').textContent=DAYS[now.getDay()]+' '+now.getDate()+' de '+MONTHS_FULL[now.getMonth()]+', '+now.getFullYear();
+
   document.getElementById('hero-bbva').textContent='$'+Math.round(ST.bbva).toLocaleString('es-MX');
   document.getElementById('hero-spent').textContent='$'+Math.round(ws).toLocaleString('es-MX');
-  document.getElementById('hero-date').textContent=DAYS[now.getDay()]+' '+now.getDate()+' de '+MONTHS_FULL[now.getMonth()]+', '+now.getFullYear();
-  const sem=getSemaforo();
-  const weekStatus=document.getElementById('week-status');
-  if(weekStatus){
-    weekStatus.textContent=(sem.text==='VAS BIEN'?'✓ Vas bien':sem.text==='CUIDADO'?'⚠ Cuidado':'✕ Te estás pasando')+' — $'+Math.round(ws).toLocaleString('es-MX')+' de $'+LIM_SEM.toLocaleString('es-MX');
-    weekStatus.style.color=sem.text==='VAS BIEN'?'#3B82F6':sem.text==='CUIDADO'?'#A45A00':'var(--pink-strong)';
-    weekStatus.style.borderColor=sem.text==='VAS BIEN'?'#93C5FD':sem.text==='CUIDADO'?'#F3B51B':'var(--pink-strong)';
-    weekStatus.style.background=sem.text==='VAS BIEN'?'rgba(147,197,253,.18)':sem.text==='CUIDADO'?'rgba(253,230,138,.18)':'rgba(251,207,232,.35)';
-  }
-  const gt=getGastoTipo();
-  const gf=document.getElementById('g-fijo'), gv=document.getElementById('g-var');
-  if(gf) gf.textContent='$'+Math.round(gt.fijo).toLocaleString('es-MX');
-  if(gv) gv.textContent='$'+Math.round(gt.variable).toLocaleString('es-MX');
   document.getElementById('sb-bbva').textContent='$'+Math.round(ST.bbva).toLocaleString('es-MX');
   document.getElementById('sb-ciclo').textContent='$'+ST.cicloActivo.toFixed(2);
   document.getElementById('sb-mama').textContent='$'+Math.round(ST.mamaDeuda).toLocaleString('es-MX');
 
-  const sug=calcSugCiclo();
-  document.getElementById('ciclo-gastado').textContent='$'+ST.cicloActivo.toFixed(2);
-  document.getElementById('ciclo-sug').textContent='$'+sug.toLocaleString('es-MX');
-  document.getElementById('ciclo-bar').style.width=Math.min(100,(ST.cicloActivo/LIM_CRED)*100)+'%';
+  const bar=document.getElementById('hero-wbar');
+  bar.style.width=pct+'%';
+  bar.style.background=pct>=100?'var(--pink-strong)':pct>=70?'#F3B51B':'var(--blue)';
+
+  const ws2=document.getElementById('week-status');
+  ws2.textContent=sem.text+' — $'+Math.round(ws).toLocaleString('es-MX')+' de $1,000';
+  ws2.style.color=sem.color;ws2.style.borderColor=sem.border;ws2.style.background=sem.bg;
+
+  document.getElementById('g-fijo').textContent='$'+Math.round(wf).toLocaleString('es-MX');
+  document.getElementById('g-var').textContent='$'+Math.round(wv).toLocaleString('es-MX');
+
+  // Ciclo activo
   const ci=new Date(ST.cicloInicio+'T12:00:00'),cc=new Date(ST.cicloCorte+'T12:00:00'),cp=new Date(ST.cicloPago+'T12:00:00');
   document.getElementById('ciclo-badge-txt').textContent='21 '+MONTHS[ci.getMonth()]+' → 21 '+MONTHS[cc.getMonth()];
+  document.getElementById('ciclo-gastado').textContent='$'+ST.cicloActivo.toFixed(2);
+  document.getElementById('ciclo-sug').textContent='$'+calcSugCiclo().toLocaleString('es-MX');
+  document.getElementById('ciclo-bar').style.width=Math.min(100,(ST.cicloActivo/LIM_CRED)*100)+'%';
   document.getElementById('ciclo-corte-txt').textContent='21 '+MONTHS[cc.getMonth()]+' '+cc.getFullYear();
   document.getElementById('ciclo-pago-txt').textContent='11 '+MONTHS[cp.getMonth()]+' '+cp.getFullYear();
-  const nc=new Date(cc.getFullYear(),cc.getMonth()+1,21),ncp=new Date(cc.getFullYear(),cc.getMonth()+2,11);
+
+  // Pago actual
   const pc=new Date((ST.pagoActualCorte||ST.cicloInicio)+'T12:00:00');
   const pl=new Date((ST.pagoActualLimite||ST.cicloPago)+'T12:00:00');
   const pagoPend=ST.pagoActual||0;
@@ -615,48 +645,48 @@ function updateHome(){
   document.getElementById('pago-limite-txt').textContent=pl.getDate()+' '+MONTHS[pl.getMonth()];
   document.getElementById('next-pago').textContent='11 '+MONTHS[cp.getMonth()];
   const pagoStatus=document.getElementById('pago-status');
-  if(pagoPend<=0){
-    pagoStatus.textContent='Al corriente';
-    pagoStatus.className='payment-status paid';
-    document.getElementById('pago-sub').textContent='pago liquidado del corte anterior';
-  } else {
-    pagoStatus.textContent='Pendiente';
-    pagoStatus.className='payment-status pending';
-    document.getElementById('pago-sub').textContent='pago para no generar intereses';
-  }
+  if(pagoPend<=0){pagoStatus.textContent='Al corriente';pagoStatus.className='payment-status paid';document.getElementById('pago-sub').textContent='pago liquidado del corte anterior';}
+  else{pagoStatus.textContent='Pendiente';pagoStatus.className='payment-status pending';document.getElementById('pago-sub').textContent='pago para no generar intereses';}
 
-  const frozenSec=document.getElementById('frozen-section');
+  // Frozen
+  const fs=document.getElementById('frozen-section');
   if(ST.deudaCongelada>0){
-    frozenSec.style.display='block';
+    fs.style.display='block';
     document.getElementById('frozen-amt').textContent='$'+ST.deudaCongelada.toFixed(2);
     const pd=new Date(ST.congeladaPagoDate+'T12:00:00');
     document.getElementById('frozen-pay-date').textContent='11 '+MONTHS[pd.getMonth()];
     document.getElementById('frozen-dias').textContent=Math.ceil((pd-now)/86400000);
     document.getElementById('frozen-sug').textContent='$'+calcSugFrozen().toLocaleString('es-MX');
-  } else frozenSec.style.display='none';
+  } else fs.style.display='none';
 
+  // Mamá
   document.getElementById('mama-deuda').textContent='$'+Math.round(ST.mamaDeuda).toLocaleString('es-MX');
   document.getElementById('mama-sug').textContent='$'+calcSugMama().toLocaleString('es-MX');
   const mtl=document.getElementById('mama-tx-list');
-  if(ST.mamaTx.length>0){
-    mtl.innerHTML=ST.mamaTx.slice(0,6).map(t=>`<div class="mama-tx-item"><span style="color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'}">${t.tipo==='abono'?'Abono':'Gasto'}</span><span style="color:var(--muted)">${t.nota}</span><span style="font-family:var(--fm);color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'}">${t.tipo==='abono'?'-':'+'}$${t.amt.toLocaleString('es-MX')}</span></div>`).join('');
-  } else mtl.innerHTML='<div style="font-size:11px;color:var(--muted);text-align:center;padding:8px">Sin movimientos aún</div>';
+  mtl.innerHTML=ST.mamaTx.length
+    ?ST.mamaTx.slice(0,6).map(t=>`<div class="mama-tx-item"><span style="color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};font-weight:800;">${t.tipo==='abono'?'Abono':'Gasto'}</span><span style="color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${t.nota}</span><span style="font-family:var(--fm);font-size:9px;color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};">${t.tipo==='abono'?'-':'+'}$${t.amt.toLocaleString('es-MX')}</span></div>`).join('')
+    :'<div style="font-size:12px;color:var(--muted);text-align:center;padding:10px;">Sin movimientos aún</div>';
 
+  // Friday banner — solo viernes
   const isFri=now.getDay()===5;
+  const friBanner=document.getElementById('fri-banner');
   if(isFri){
     const sugF=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
-    const label=ST.pagoActual>0?'Sugerencia pago Banamex:':(ST.deudaCongelada>0?'Sugerencia deuda congelada Banamex:':'Sugerencia simbólica Banamex:');
+    const label=ST.pagoActual>0?'Sugerencia pago Banamex:':(ST.deudaCongelada>0?'Sugerencia deuda congelada:':'Sugerencia simbólica Banamex:');
     document.getElementById('fri-text').innerHTML=label+' <b>$'+sugF.toLocaleString('es-MX')+'</b> · Mamá: <b>$'+calcSugMama().toLocaleString('es-MX')+'</b>';
-    document.getElementById('fri-banner').style.display='flex';
+    friBanner.style.display='flex';friBanner.style.marginBottom='18px';
+  } else {
+    friBanner.style.display='none';
   }
 
+  // Corte banner — solo 3 días antes del corte
   const diasCorte=Math.ceil((cc-now)/86400000);
-  const corteBanner=document.getElementById('corte-banner');
-  if(diasCorte<=3&&diasCorte>=0&&ST.cicloActivo>0){corteBanner.style.display='block';document.getElementById('corte-amt').textContent='$'+ST.cicloActivo.toFixed(2);}
-  else corteBanner.style.display='none';
+  const cb=document.getElementById('corte-banner');
+  if(diasCorte<=3&&diasCorte>=0&&ST.cicloActivo>0){cb.style.display='block';document.getElementById('corte-amt').textContent='$'+ST.cicloActivo.toFixed(2);}
+  else cb.style.display='none';
 }
 
-function saveTx(){
+async function saveTx(){
   const amt=parseFloat(document.getElementById('r-amount').value);
   const nota=document.getElementById('r-nota').value;
   const fecha=document.getElementById('r-fecha').value||new Date().toISOString().split('T')[0];
@@ -665,10 +695,18 @@ function saveTx(){
   if(!cat){showToast('Selecciona una categoría');return;}
   ST.transactions.unshift({id:Date.now(),amount:amt,nota,cat,origen,tipo,fecha});
   if(tipo==='gasto'){
-    if(origen==='bbva'){ST.bbva=Math.max(0,ST.bbva-amt);if(cat==='tarjeta'){if(ST.pagoActual>0)ST.pagoActual=Math.max(0,ST.pagoActual-amt);else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-amt);else ST.cicloActivo=Math.max(0,ST.cicloActivo-amt);}}
-    else if(origen==='credito')ST.cicloActivo+=amt;
-  } else {if(origen==='bbva')ST.bbva+=amt;}
-  saveST();
+    if(origen==='bbva'){
+      ST.bbva=Math.max(0,ST.bbva-amt);
+      if(cat==='tarjeta'){
+        if(ST.pagoActual>0)ST.pagoActual=Math.max(0,ST.pagoActual-amt);
+        else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-amt);
+        else ST.cicloActivo=Math.max(0,ST.cicloActivo-amt);
+      }
+    } else if(origen==='credito') ST.cicloActivo+=amt;
+  } else {
+    if(origen==='bbva')ST.bbva+=amt;
+  }
+  await saveST();
   document.getElementById('r-amount').value='';document.getElementById('r-nota').value='';
   ST.selCat=null;document.querySelectorAll('[data-c]').forEach(b=>b.classList.remove('on-cat'));
   selTipo('gasto');selOrigen('bbva');
@@ -690,30 +728,31 @@ function renderDash(){
       const pct=val/total,dash=pct*circ,gap=circ-dash;
       const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
       c.setAttribute('cx',50);c.setAttribute('cy',50);c.setAttribute('r',r);c.setAttribute('fill','none');
-      c.setAttribute('stroke',CAT_COLORS[cat]||'#888');c.setAttribute('stroke-width','18');
+      c.setAttribute('stroke',CAT_COLORS[cat]||'#D1A3B7');c.setAttribute('stroke-width','18');
       c.setAttribute('stroke-dasharray',dash+' '+gap);c.setAttribute('stroke-dashoffset',-off*circ);
       c.setAttribute('transform','rotate(-90 50 50)');c.classList.add('dp');
       svg.insertBefore(c,svg.lastElementChild);off+=pct;
       const item=document.createElement('div');item.className='leg-item';
-      item.innerHTML=`<div class="leg-dot" style="background:${CAT_COLORS[cat]||'#888'}"></div><span class="leg-lbl">${CAT_NAMES[cat]||cat}</span><span class="leg-val">$${Math.round(val)}</span>`;
+      item.innerHTML=`<div class="leg-dot" style="background:${CAT_COLORS[cat]||'#D1A3B7'}"></div><span class="leg-lbl">${CAT_NAMES[cat]||cat}</span><span class="leg-val">$${Math.round(val)}</span>`;
       legend.appendChild(item);
     });
-  } else legend.innerHTML='<div style="font-size:12px;color:var(--muted)">Sin gastos</div>';
+  } else legend.innerHTML='<div style="font-size:13px;color:var(--muted)">Sin gastos aún</div>';
 
   const byO={bbva:0,credito:0};
   ST.transactions.filter(t=>t.tipo==='gasto').forEach(t=>{byO[t.origen]=(byO[t.origen]||0)+t.amount;});
   const totalO=byO.bbva+byO.credito;
   const ob=document.getElementById('origen-break');
-  ob.innerHTML=totalO>0?`<div style="display:flex;flex-direction:column;gap:12px;">
-    <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--muted)">BBVA Débito</span><span style="font-family:var(--fm);color:var(--ng)">$${Math.round(byO.bbva).toLocaleString('es-MX')}</span></div><div class="prog-bg" style="width:100%;margin:0;"><div class="prog-fill" style="width:${Math.round((byO.bbva/totalO)*100)}%;background:var(--ng)"></div></div></div>
-    <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--muted)">Banamex Crédito</span><span style="font-family:var(--fm);color:var(--np)">$${Math.round(byO.credito).toLocaleString('es-MX')}</span></div><div class="prog-bg" style="width:100%;margin:0;"><div class="prog-fill" style="width:${Math.round((byO.credito/totalO)*100)}%;background:var(--np)"></div></div></div>
-  </div>`:'<div style="font-size:12px;color:var(--muted)">Sin gastos</div>';
+  ob.innerHTML=totalO>0?`<div style="display:flex;flex-direction:column;gap:14px;">
+    <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--muted);font-weight:700;">BBVA Débito</span><span style="font-family:var(--fm);font-size:9px;color:var(--ng);">$${Math.round(byO.bbva).toLocaleString('es-MX')}</span></div><div style="height:7px;background:rgba(243,198,218,.4);border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;width:${Math.round((byO.bbva/totalO)*100)}%;background:var(--ng);"></div></div></div>
+    <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--muted);font-weight:700;">Banamex Crédito</span><span style="font-family:var(--fm);font-size:9px;color:var(--np);">$${Math.round(byO.credito).toLocaleString('es-MX')}</span></div><div style="height:7px;background:rgba(243,198,218,.4);border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;width:${Math.round((byO.credito/totalO)*100)}%;background:var(--np);"></div></div></div>
+  </div>`:'<div style="font-size:13px;color:var(--muted)">Sin gastos aún</div>';
 
   const txList=document.getElementById('tx-list');
   const recent=ST.transactions.slice(0,12);
   const oCol={bbva:'var(--ng)',credito:'var(--np)'};
   const oLabel={bbva:'BBVA',credito:'Banamex'};
-  txList.innerHTML=recent.length?recent.map(t=>`<div class="tx-item"><div><div class="tx-cat">${CAT_NAMES[t.cat]||t.cat}${t.nota?' · <span style="color:var(--muted);font-weight:400;font-size:11px">'+t.nota+'</span>':''}</div><div class="tx-meta">${t.fecha}</div></div><div class="tx-right"><div class="tx-amt" style="color:${t.tipo==='ingreso'?'var(--ng)':'var(--nr)'}">${t.tipo==='ingreso'?'+':'-'}$${t.amount.toLocaleString('es-MX')}</div><div class="tx-origen-lbl" style="color:${oCol[t.origen]||'var(--muted)'}">${oLabel[t.origen]||''}</div></div></div>`).join(''):'<div style="font-size:13px;color:var(--muted);text-align:center;padding:20px">No hay movimientos</div>';
+  txList.innerHTML=recent.length?recent.map(t=>`<div class="tx-item"><div><div class="tx-cat">${CAT_NAMES[t.cat]||t.cat}${t.nota?' · <span style="color:var(--muted);font-weight:600;font-size:13px;">'+t.nota+'</span>':''}</div><div class="tx-meta">${t.fecha}</div></div><div class="tx-right"><div class="tx-amt" style="color:${t.tipo==='ingreso'?'var(--ng)':'var(--nr)'}">${t.tipo==='ingreso'?'+':'-'}$${t.amount.toLocaleString('es-MX')}</div><div class="tx-origen-lbl" style="color:${oCol[t.origen]||'var(--muted)'}">${oLabel[t.origen]||''}</div></div></div>`).join('')
+    :'<div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">No hay movimientos</div>';
 }
 
 async function sendChat(){
@@ -724,14 +763,16 @@ async function sendChat(){
   typing.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   document.getElementById('chat-msgs').appendChild(typing);scrollChat();
   const ws=getWeeklySpent();
-  const ctx=`Eres el asistente financiero de Angel Yamil. Datos reales:
+  const sem=getSemaforo(ws);
+  const ctx=`Eres el asistente financiero de Angel Yamil. Datos reales actualizados:
 - BBVA: $${ST.bbva.toFixed(2)}
-- Ciclo activo Banamex (${ST.cicloInicio} al ${ST.cicloCorte}): $${ST.cicloActivo.toFixed(2)} gastado · sugerencia simbólica ÷3: $${calcSugCiclo()}
-- Deuda congelada Banamex: $${ST.deudaCongelada.toFixed(2)}${ST.deudaCongelada>0?' pagar antes '+ST.congeladaPagoDate+' sugerido: $'+calcSugFrozen():''}
-- Deuda con mamá: $${ST.mamaDeuda.toFixed(2)} · sugerido este viernes: $${calcSugMama()}
-- Gastado esta semana (lun-dom): $${Math.round(ws)}
-- Semáforo: ${getSemaforo().text}
-- Cobro semanal: ~$2,005 (nómina Urbantect)
+- Ciclo activo Banamex (${ST.cicloInicio} al ${ST.cicloCorte}): $${ST.cicloActivo.toFixed(2)} gastado · sugerencia ÷3: $${calcSugCiclo()}
+- Pago pendiente Banamex: $${(ST.pagoActual||0).toFixed(2)} · vence ${ST.pagoActualLimite||'N/A'}
+- Deuda congelada: $${ST.deudaCongelada.toFixed(2)}${ST.deudaCongelada>0?' sugerido: $'+calcSugFrozen():''}
+- Deuda mamá: $${ST.mamaDeuda.toFixed(2)} · sugerido viernes: $${calcSugMama()}
+- Gastado esta semana (lun-dom): $${Math.round(ws)} · fijo(comida): $${Math.round(getWeeklyFijo())} · variable: $${Math.round(Math.max(0,ws-getWeeklyFijo()))}
+- Semáforo: ${sem.text}
+- Cobro semanal: ~$2,005 (nómina Urbantect, jueves/viernes)
 - Últimos gastos: ${ST.transactions.slice(0,5).map(t=>(CAT_NAMES[t.cat]||t.cat)+' $'+t.amount+' ('+t.origen+')').join(', ')||'ninguno'}
 Responde en español, directo, máximo 3 oraciones. Usa los números reales.`;
   try{
@@ -741,15 +782,15 @@ Responde en español, directo, máximo 3 oraciones. Usa los números reales.`;
     ST.chatHistory.push({role:'user',content:msg},{role:'assistant',content:reply});
     if(ST.chatHistory.length>20)ST.chatHistory=ST.chatHistory.slice(-20);
     typing.remove();addMsg(reply,'ai');
-  }catch(e){typing.remove();addMsg('Error de conexión.','ai');}
+  }catch(e){typing.remove();addMsg('Error de conexión, intenta de nuevo.','ai');}
 }
 function sendChip(t){document.getElementById('chat-inp').value=t;sendChat();}
 function addMsg(t,r){const d=document.createElement('div');d.className='msg '+r;d.textContent=t;document.getElementById('chat-msgs').appendChild(d);scrollChat();}
 function scrollChat(){const m=document.getElementById('chat-msgs');m.scrollTop=m.scrollHeight;}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
 
-loadST();
+// Inicializar
 document.getElementById('r-fecha').value=new Date().toISOString().split('T')[0];
 document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];
-updateHome();
+loadST();
 </script>
