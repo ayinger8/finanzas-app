@@ -14,10 +14,7 @@
   --ng:var(--pink-strong);--nc:var(--blue);--np:var(--lilac);--na:var(--mustard);--nr:var(--danger);
 }
 body{
-  background:
-    radial-gradient(circle at 20% 10%, rgba(233,213,255,.95) 0, rgba(233,213,255,0) 34%),
-    radial-gradient(circle at 90% 0%, rgba(219,234,254,.95) 0, rgba(219,234,254,0) 32%),
-    linear-gradient(135deg,#FFF4F8 0%,#FDF2F8 44%,#EEF6FF 100%);
+  background:radial-gradient(circle at 20% 10%,rgba(233,213,255,.95) 0,rgba(233,213,255,0) 34%),radial-gradient(circle at 90% 0%,rgba(219,234,254,.95) 0,rgba(219,234,254,0) 32%),linear-gradient(135deg,#FFF4F8 0%,#FDF2F8 44%,#EEF6FF 100%);
   color:var(--text);font-family:var(--fd);min-height:100vh;font-size:15px;
 }
 .layout{display:flex;min-height:100vh;}
@@ -36,39 +33,19 @@ body{
 .main{margin-left:218px;flex:1;min-height:100vh;}
 .screen{display:none;padding:30px 34px;max-width:1160px;}
 .screen.active{display:block;}
-
-.sync-indicator{position:fixed;top:12px;right:16px;font-size:11px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.85);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;z-index:50;backdrop-filter:blur(10px);display:none;}
-.sync-indicator.show{display:block;}
-
-.welcome{display:flex;flex-direction:column;align-items:center;text-align:center;margin:10px 0 28px;gap:8px;}
-.welcome-title{font-family:var(--fm);font-size:14px;line-height:1.7;letter-spacing:.04em;color:#5B3B86;}
-.welcome-date{font-size:14px;color:#8B6EA8;font-family:var(--fs);font-weight:800;}
-.top-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
-.balance-card,.week-card{min-height:230px;position:relative;overflow:hidden;}
-.week-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px;}
-.week-limit{font-family:var(--fs);font-size:14px;font-weight:800;color:#7B6399;white-space:nowrap;}
-.week-status-pill{display:inline-flex;align-items:center;border-radius:999px;border:1px solid #F3B51B;background:rgba(253,230,138,.18);color:#A45A00;padding:8px 12px;font-size:13px;font-weight:900;margin-top:12px;}
-.week-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
-.week-break-card{background:linear-gradient(135deg,rgba(253,242,248,.85),rgba(255,255,255,.82));border:1px solid rgba(243,198,218,.52);border-radius:16px;padding:14px 16px;}
-.week-break-card .v-lbl{display:block;margin-bottom:8px;color:#6F5790;font-size:13px;font-weight:800;}
-.week-break-card .v-val{font-family:var(--fm);font-size:12px;color:#3B1F2B;}
-
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.9);border-top:1px solid var(--bd);z-index:10;backdrop-filter:blur(18px);}
 .bnav-inner{display:flex;justify-content:space-around;padding:9px 0 14px;}
-.bnav-btn{background:none;border:none;color:var(--muted);font-family:var(--fd);font-size:11px;font-weight:800;letter-spacing:.02em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 10px;}
+.bnav-btn{background:none;border:none;color:var(--muted);font-family:var(--fd);font-size:10px;font-weight:800;letter-spacing:.02em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 8px;}
 .bnav-btn svg{width:19px;height:19px;}
 .bnav-btn.active{color:var(--pink-strong);}
-.card,.mama-card,.frozen-card,.fri-banner,.corte-banner{background:rgba(255,255,255,.82);border:1px solid var(--bd);border-radius:24px;padding:24px 24px;box-shadow:var(--shadow-soft);backdrop-filter:blur(14px);}
-.card-tag,.mama-tag,.frozen-tag,.fri-tag-txt,.form-label{font-family:var(--fm);font-size:8px;line-height:1.6;font-weight:400;letter-spacing:.05em;color:var(--pink-strong);text-transform:uppercase;margin-bottom:13px;}
+.card,.mama-card,.frozen-card,.fri-banner,.corte-banner,.msi-card{background:rgba(255,255,255,.82);border:1px solid var(--bd);border-radius:24px;padding:24px;box-shadow:var(--shadow-soft);backdrop-filter:blur(14px);}
+.card-tag,.mama-tag,.frozen-tag,.fri-tag-txt,.form-label,.msi-tag{font-family:var(--fm);font-size:8px;line-height:1.6;font-weight:400;letter-spacing:.05em;color:var(--pink-strong);text-transform:uppercase;margin-bottom:13px;}
 .card-badge{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;margin-bottom:12px;background:var(--lilac-soft)!important;color:var(--lilac)!important;}
 .big-n{font-family:var(--fm);font-size:20px;font-weight:400;line-height:1.45;margin-bottom:7px;color:var(--pink-strong);}
-.balance-card .big-n{font-size:34px;line-height:1.35;margin-top:16px;margin-bottom:12px;}
-.week-card .big-n{font-size:24px;}
 .payment-card .big-n{font-size:26px;}
 .payment-status{display:inline-flex;align-items:center;border-radius:999px;padding:7px 12px;font-weight:900;font-size:13px;margin-top:8px;background:rgba(219,234,254,.72);color:#3B82F6;}
 .payment-status.paid{background:rgba(251,207,232,.62);color:var(--pink-strong);}
 .payment-status.pending{background:rgba(253,230,138,.35);color:var(--mustard-text);}
-.med-n{font-family:var(--fm);font-size:16px;font-weight:400;line-height:1.45;margin-bottom:5px;}
 .small-txt{font-size:14px;color:var(--muted);font-weight:650;line-height:1.55;}
 .divider{border:none;border-top:1px solid rgba(243,198,218,.75);margin:16px 0;}
 .v-box{background:linear-gradient(135deg,rgba(255,244,248,.85),rgba(219,234,254,.25));border:1px solid rgba(243,198,218,.75);border-radius:18px;padding:15px;margin-top:14px;}
@@ -80,14 +57,16 @@ body{
 .mama-btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
 .btn-abono,.btn-pg,.save-btn{background:linear-gradient(135deg,var(--pink),var(--pink-strong));color:#fff;border:none;border-radius:16px;padding:12px 18px;font-family:var(--fd);font-size:14px;font-weight:900;cursor:pointer;letter-spacing:.01em;box-shadow:0 8px 18px rgba(219,39,119,.16);}
 .btn-gasto-m,.btn-sk,.sel-btn,.chip{background:#fff;border:1px solid var(--bd);color:var(--muted);border-radius:16px;padding:11px 15px;font-family:var(--fd);font-size:14px;font-weight:800;cursor:pointer;}
+.btn-lilac{background:linear-gradient(135deg,var(--lilac),#9B6FE0);color:#fff;border:none;border-radius:14px;padding:10px 16px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;}
+.btn-sm{padding:8px 14px;font-size:13px;border-radius:12px;}
 .frozen-card{border-color:rgba(219,39,119,.26);}
 .frozen-tag{color:var(--pink-strong);}
-.fri-banner{background:rgba(255,255,255,.86);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.fri-banner{background:rgba(255,255,255,.86);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
 .fri-tag-txt{color:var(--lilac);}
 .fri-text{font-size:15px;color:var(--text);line-height:1.7;font-weight:700;}
 .fri-text b{color:var(--pink-strong);font-family:var(--fm);font-size:10px;}
 .fri-btns{display:flex;gap:10px;flex-shrink:0;}
-.corte-banner{border-color:rgba(253,230,138,.95);}
+.corte-banner{border-color:rgba(253,230,138,.95);margin-bottom:18px;}
 .form-block{margin-bottom:18px;}
 .amount-inp{width:100%;background:#fff;border:1px solid var(--bd);border-radius:18px;padding:16px 18px;font-family:var(--fm);font-size:18px;line-height:1.5;font-weight:400;color:var(--pink-strong);outline:none;}
 .amount-inp:focus,.txt-inp:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(244,114,182,.13);}
@@ -95,19 +74,57 @@ body{
 .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
 .sel-btn.on-bbva{border-color:var(--blue);color:#3B82F6;background:rgba(219,234,254,.65);}
 .sel-btn.on-credito{border-color:var(--lilac);color:var(--lilac);background:rgba(233,213,255,.62);}
-.sel-btn.on-mama{border-color:var(--mustard);color:var(--mustard-text);background:rgba(253,230,138,.35);}
 .sel-btn.on-cat{border-color:var(--pink);color:var(--pink-strong);background:rgba(251,207,232,.45);}
 .sel-btn.on-abono{border-color:var(--lilac);color:var(--lilac);background:rgba(233,213,255,.55);}
 .sel-btn.on-gasto{border-color:var(--pink);color:var(--pink-strong);background:rgba(251,207,232,.55);}
 .txt-inp{width:100%;background:#fff;border:1px solid var(--bd);border-radius:16px;padding:13px 15px;font-family:var(--fd);font-size:15px;color:var(--text);outline:none;}
 .txt-inp::placeholder{color:#D1A3B7;}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.top-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+
+/* HOME */
+.welcome{display:flex;flex-direction:column;align-items:center;text-align:center;margin:10px 0 28px;gap:8px;}
+.welcome-title{font-family:var(--fm);font-size:14px;line-height:1.7;letter-spacing:.04em;color:#5B3B86;}
+.welcome-date{font-size:14px;color:#8B6EA8;font-family:var(--fs);font-weight:800;}
+.balance-card{min-height:auto;}
+.balance-card .big-n{font-size:34px;line-height:1.35;margin-top:16px;margin-bottom:12px;}
+.week-card .big-n{font-size:24px;}
+.week-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.week-pill{display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--bd);background:rgba(255,244,248,.8);color:var(--muted);padding:7px 12px;font-size:13px;font-weight:800;margin-top:12px;}
+
+/* MSI */
+.msi-card{border-color:rgba(192,132,252,.35);margin-bottom:16px;}
+.msi-tag{color:#7E22CE;}
+.msi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:20px;}
+.msi-item{background:rgba(255,255,255,.9);border:1px solid rgba(192,132,252,.3);border-radius:20px;padding:20px;box-shadow:var(--shadow-soft);}
+.msi-nombre{font-family:var(--fm);font-size:9px;color:#7E22CE;letter-spacing:.04em;margin-bottom:12px;}
+.msi-total{font-family:var(--fm);font-size:20px;color:var(--lilac);margin-bottom:4px;}
+.msi-progress{height:6px;background:rgba(192,132,252,.2);border-radius:99px;overflow:hidden;margin:12px 0;}
+.msi-progress-fill{height:100%;border-radius:99px;background:var(--lilac);}
+.msi-btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.msi-inactive{opacity:.5;}
+
+/* ANÁLISIS */
+.stat-box{background:rgba(255,255,255,.82);border:1px solid var(--bd);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow-soft);}
+.stat-label{font-family:var(--fm);font-size:7px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;}
+.stat-val{font-family:var(--fm);font-size:16px;color:var(--pink-strong);line-height:1.4;}
+.stat-sub{font-size:12px;color:var(--muted);margin-top:4px;}
 .donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
 .legend{display:flex;flex-direction:column;gap:10px;flex:1;}
 .leg-item{display:flex;align-items:center;gap:9px;font-size:14px;}
 .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .leg-lbl{color:var(--muted);flex:1;font-weight:700;}
 .leg-val{font-family:var(--fm);font-size:9px;font-weight:400;line-height:1.5;}
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-item{display:flex;align-items:center;gap:12px;}
+.bar-label{font-size:12px;color:var(--muted);font-weight:700;width:90px;flex-shrink:0;text-align:right;}
+.bar-bg{flex:1;height:10px;background:rgba(243,198,218,.3);border-radius:99px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:99px;}
+.bar-val{font-family:var(--fm);font-size:8px;color:var(--text);width:60px;text-align:right;flex-shrink:0;}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.filter-btn{background:#fff;border:1px solid var(--bd);color:var(--muted);border-radius:999px;padding:6px 14px;font-family:var(--fd);font-size:13px;font-weight:700;cursor:pointer;}
+.filter-btn.active{background:var(--pink-soft);border-color:var(--pink);color:var(--pink-strong);}
 .tx-list{display:flex;flex-direction:column;gap:10px;}
 .tx-item{background:#fff;border:1px solid rgba(243,198,218,.75);border-radius:18px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 16px rgba(157,107,128,.05);}
 .tx-cat{font-size:15px;font-weight:800;line-height:1.45;}
@@ -115,6 +132,8 @@ body{
 .tx-right{text-align:right;}
 .tx-amt{font-family:var(--fm);font-size:10px;line-height:1.5;font-weight:400;}
 .tx-origen-lbl{font-size:11px;margin-top:4px;font-weight:800;}
+
+/* CHAT */
 .chat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
 .chip{border-radius:999px;padding:8px 13px;font-size:13px;}
 .chip:hover{color:var(--pink-strong);border-color:var(--pink);}
@@ -135,20 +154,22 @@ body{
 .toast.show{opacity:1;}
 .modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(59,31,43,.25);z-index:100;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
 .modal-bg.open{display:flex;}
-.modal{background:#fff;border:1px solid var(--bd);border-radius:26px;padding:26px;width:360px;max-width:90vw;box-shadow:var(--shadow);}
+.modal{background:#fff;border:1px solid var(--bd);border-radius:26px;padding:26px;width:400px;max-width:92vw;box-shadow:var(--shadow);max-height:90vh;overflow-y:auto;}
 .modal-title{font-size:18px;font-weight:900;margin-bottom:18px;color:var(--text);}
 .modal-close{float:right;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;}
-.status-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;font-weight:900;font-size:13px;margin-top:10px;background:var(--lilac-soft);color:var(--lilac);}
-@media(max-width:900px){.top-grid{grid-template-columns:1fr;}.sidebar{width:206px}.main{margin-left:206px;}}
-@media(max-width:640px){.sidebar{display:none;}.bottom-nav{display:block;}.main{margin-left:0;padding-bottom:76px;}.screen{padding:16px 14px;}.grid2,.top-grid{grid-template-columns:1fr;}.welcome{margin-top:4px;margin-bottom:20px}.welcome-title{font-size:11px}.balance-card,.week-card{min-height:auto}.balance-card .big-n{font-size:26px}.week-card .big-n,.payment-card .big-n{font-size:20px}.week-top{flex-direction:column}.week-breakdown{grid-template-columns:1fr;}.fri-banner{flex-direction:column;}.fri-btns{width:100%;}.btn-pg,.btn-sk{flex:1;text-align:center;}.big-n{font-size:20px;}}
+.sync-indicator{position:fixed;top:12px;right:16px;font-size:11px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.9);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;z-index:50;display:none;}
+.sync-indicator.show{display:block;}
+@media(max-width:900px){.top-grid,.grid2,.grid3{grid-template-columns:1fr;}.sidebar{width:200px}.main{margin-left:200px;}.msi-grid{grid-template-columns:1fr;}}
+@media(max-width:640px){.sidebar{display:none;}.bottom-nav{display:block;}.main{margin-left:0;padding-bottom:76px;}.screen{padding:16px 14px;}.welcome-title{font-size:11px;}.balance-card .big-n{font-size:26px;}.fri-banner{flex-direction:column;}.fri-btns{width:100%;}.btn-pg,.btn-sk{flex:1;text-align:center;}}
+.page-title{font-family:var(--fm);font-size:11px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;}
 </style>
 
 <div class="sync-indicator" id="sync-indicator">guardando...</div>
 
-<!-- MODAL MAMA -->
+<!-- MODAL MAMÁ -->
 <div class="modal-bg" id="modal-mama">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal('modal-mama')">✕</button>
     <div class="modal-title" id="modal-title">Registrar movimiento mamá</div>
     <div class="form-block">
       <label class="form-label">Tipo</label>
@@ -157,128 +178,140 @@ body{
         <button class="sel-btn" id="mt-gasto" onclick="selModalTipo('gasto')">Gasto (ella pagó)</button>
       </div>
     </div>
-    <div class="form-block">
-      <label class="form-label">Monto</label>
-      <input class="amount-inp" type="number" id="mama-amount" placeholder="$0" style="font-size:22px;padding:10px 14px;">
-    </div>
-    <div class="form-block">
-      <label class="form-label">Concepto</label>
-      <input class="txt-inp" type="text" id="mama-nota" placeholder="Ej: super, préstamo...">
-    </div>
-    <div class="form-block">
-      <label class="form-label">Fecha</label>
-      <input class="txt-inp" type="date" id="mama-fecha">
-    </div>
+    <div class="form-block"><label class="form-label">Monto</label><input class="amount-inp" type="number" id="mama-amount" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block"><label class="form-label">Concepto</label><input class="txt-inp" type="text" id="mama-nota" placeholder="Ej: super, préstamo..."></div>
+    <div class="form-block"><label class="form-label">Fecha</label><input class="txt-inp" type="date" id="mama-fecha"></div>
     <button class="save-btn" onclick="saveMama()">GUARDAR</button>
+  </div>
+</div>
+
+<!-- MODAL MSI -->
+<div class="modal-bg" id="modal-msi">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-msi')">✕</button>
+    <div class="modal-title">Nueva compra a meses</div>
+    <div class="form-block"><label class="form-label">Nombre del producto</label><input class="txt-inp" type="text" id="msi-nombre" placeholder="Ej: Monitor gamer, Celular..."></div>
+    <div class="form-block"><label class="form-label">Monto total</label><input class="amount-inp" type="number" id="msi-total" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block"><label class="form-label">Número de meses</label>
+      <div class="btn-row" id="msi-meses-btns">
+        <button class="sel-btn" onclick="selMsiMeses(3)" data-m="3">3 meses</button>
+        <button class="sel-btn" onclick="selMsiMeses(6)" data-m="6">6 meses</button>
+        <button class="sel-btn" onclick="selMsiMeses(9)" data-m="9">9 meses</button>
+        <button class="sel-btn" onclick="selMsiMeses(12)" data-m="12">12 meses</button>
+        <button class="sel-btn" onclick="selMsiMeses(18)" data-m="18">18 meses</button>
+      </div>
+    </div>
+    <div class="form-block"><label class="form-label">Fecha primer cobro</label><input class="txt-inp" type="date" id="msi-fecha"></div>
+    <div id="msi-preview" style="display:none;background:var(--lilac-soft);border-radius:14px;padding:14px;margin-bottom:18px;">
+      <div style="font-family:var(--fm);font-size:7px;color:#7E22CE;margin-bottom:8px;letter-spacing:.06em;">RESUMEN</div>
+      <div style="font-size:14px;color:var(--text);font-weight:700;">Mensualidad: <span id="msi-prev-mens" style="color:var(--lilac);font-family:var(--fm);font-size:11px;">$0</span></div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px;">Equivale a <span id="msi-prev-sem">$0</span>/semana aprox.</div>
+    </div>
+    <button class="save-btn" onclick="saveMsi()" style="background:linear-gradient(135deg,var(--lilac),#9B6FE0);">AGREGAR MSI</button>
+  </div>
+</div>
+
+<!-- MODAL ABONAR MSI -->
+<div class="modal-bg" id="modal-msi-abono">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-msi-abono')">✕</button>
+    <div class="modal-title" id="msi-abono-title">Abonar extra</div>
+    <div class="form-block"><label class="form-label">Monto extra</label><input class="amount-inp" type="number" id="msi-abono-amt" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <button class="save-btn" onclick="saveMsiAbono()">ABONAR</button>
   </div>
 </div>
 
 <div class="layout">
   <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-t">FINANZAS</div>
-      <div class="logo-s">Angel Yamil</div>
-    </div>
-    <div class="nav-item active" onclick="go('home')" id="snav-home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>INICIO
-    </div>
-    <div class="nav-item" onclick="go('register')" id="snav-register">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>REGISTRAR
-    </div>
-    <div class="nav-item" onclick="go('dashboard')" id="snav-dashboard">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>ANÁLISIS
-    </div>
-    <div class="nav-item" onclick="go('chat')" id="snav-chat">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA FINANCIERA
-    </div>
+    <div class="logo"><div class="logo-t">FINANZAS</div><div class="logo-s">Angel Yamil</div></div>
+    <div class="nav-item active" onclick="go('home')" id="snav-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>INICIO</div>
+    <div class="nav-item" onclick="go('register')" id="snav-register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>REGISTRAR</div>
+    <div class="nav-item" onclick="go('msi')" id="snav-msi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>MSI</div>
+    <div class="nav-item" onclick="go('dashboard')" id="snav-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>ANÁLISIS</div>
+    <div class="nav-item" onclick="go('chat')" id="snav-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA</div>
     <div class="sb-bottom">
-      <div class="sb-row"><span class="sb-lbl">BBVA</span><span class="sb-val" id="sb-bbva">$3,880</span></div>
-      <div class="sb-row"><span class="sb-lbl">Ciclo activo</span><span class="sb-val" id="sb-ciclo">$887.93</span></div>
-      <div class="sb-row"><span class="sb-lbl">Deuda mamá</span><span class="sb-val" id="sb-mama">$2,254</span></div>
+      <div class="sb-row"><span class="sb-lbl">BBVA</span><span class="sb-val" id="sb-bbva">$0</span></div>
+      <div class="sb-row"><span class="sb-lbl">Ciclo activo</span><span class="sb-val" id="sb-ciclo">$0</span></div>
+      <div class="sb-row"><span class="sb-lbl">Deuda mamá</span><span class="sb-val" id="sb-mama">$0</span></div>
     </div>
   </aside>
 
   <main class="main">
+
     <!-- HOME -->
     <div class="screen active" id="screen-home">
       <div class="welcome">
         <div class="welcome-title" id="welcome-title">Buen día, Yamil ♡</div>
-        <div class="welcome-date" id="hero-date">martes 28 de abril, 2026</div>
+        <div class="welcome-date" id="hero-date"></div>
       </div>
 
-      <div class="top-grid">
-        <div class="card balance-card">
-          <div class="card-tag">BALANCE</div>
-          <div class="big-n" id="hero-bbva" style="color:var(--pink)">$3,880</div>
-          <div class="small-txt">BBVA débito</div>
-        </div>
-        <div class="card week-card">
-          <div class="week-top">
-            <div>
-              <div class="card-tag">WEEK</div>
-              <div class="big-n" id="hero-spent" style="color:var(--pink)">$0</div>
-              <div class="small-txt">lunes a domingo · límite $1,000</div>
-              <div class="week-status-pill" id="week-status">Cargando...</div>
-            </div>
-            <div style="min-width:210px;">
-              <div class="week-limit">de $1,000 límite</div>
-              <div style="height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:14px;width:100%;"><div id="hero-wbar" style="height:100%;border-radius:99px;width:0%;background:var(--blue);transition:width .4s;"></div></div>
-            </div>
-          </div>
-          <div class="week-breakdown">
-            <div class="week-break-card"><span class="v-lbl">Fijo (comida)</span><span class="v-val" id="g-fijo">$0</span></div>
-            <div class="week-break-card"><span class="v-lbl">Variable</span><span class="v-val" id="g-var">$0</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="fri-banner" style="display:none" class="fri-banner" style="margin-bottom:18px;">
-        <div>
-          <div class="fri-tag-txt">Viernes de cobro</div>
-          <div class="fri-text" id="fri-text">Sugerencia: <b id="fri-amt">$0</b></div>
-        </div>
+      <div id="fri-banner" style="display:none" class="fri-banner">
+        <div><div class="fri-tag-txt">Viernes de cobro</div><div class="fri-text" id="fri-text">Sugerencia: <b id="fri-amt">$0</b></div></div>
         <div class="fri-btns">
           <button class="btn-pg" onclick="pagarSugFri()">Pagar sugerido</button>
           <button class="btn-sk" onclick="document.getElementById('fri-banner').style.display='none'">Ahora no</button>
         </div>
       </div>
 
-      <div id="corte-banner" style="display:none;margin-bottom:18px;" class="corte-banner">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--mustard-text);margin-bottom:8px;">CORTE PRÓXIMO — 21 DE ESTE MES</div>
-        <div style="font-size:13px;color:var(--text);margin-bottom:12px;">Tu ciclo está por cerrarse. Tienes <b style="font-family:var(--fm);color:var(--mustard-text)" id="corte-amt">$0</b> acumulado.</div>
+      <div id="corte-banner" style="display:none" class="corte-banner">
+        <div style="font-family:var(--fm);font-size:8px;color:var(--mustard-text);letter-spacing:.06em;margin-bottom:8px;">CORTE PRÓXIMO</div>
+        <div style="font-size:14px;color:var(--text);margin-bottom:12px;">Tu ciclo está por cerrarse con <b style="font-family:var(--fm);color:var(--mustard-text)" id="corte-amt">$0</b> acumulado.</div>
         <button onclick="cerrarCiclo()" style="background:var(--mustard-text);color:#fff;border:none;border-radius:12px;padding:10px 18px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;">Cerrar ciclo ahora</button>
       </div>
 
+      <!-- BALANCE + WEEK -->
+      <div class="top-grid">
+        <div class="card balance-card">
+          <div class="card-tag">BALANCE</div>
+          <div class="big-n" id="hero-bbva" style="color:var(--pink)">$0</div>
+          <div class="small-txt">BBVA débito</div>
+        </div>
+        <div class="card">
+          <div class="card-tag">WEEK</div>
+          <div class="week-top">
+            <div>
+              <div class="big-n" id="hero-spent" style="color:var(--lilac);font-size:24px;">$0</div>
+              <div class="small-txt">lunes a domingo</div>
+              <div class="week-pill" id="week-status">cargando...</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:8px;width:120px;margin-left:auto;"><div id="hero-wbar" style="height:100%;border-radius:99px;width:0%;background:var(--blue);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CICLOS BANAMEX -->
       <div class="grid2">
         <div class="card">
           <div class="card-tag">Ciclo activo Banamex</div>
           <div class="card-badge" id="ciclo-badge-txt">21 abr → 21 may</div>
-          <div class="big-n" id="ciclo-gastado" style="color:var(--lilac)">$887.93</div>
+          <div class="big-n" id="ciclo-gastado" style="color:var(--lilac)">$0</div>
           <div class="small-txt">gastado en el ciclo</div>
-          <div style="height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:10px;width:100%;"><div id="ciclo-bar" style="height:100%;border-radius:99px;background:var(--lilac);width:7%;"></div></div>
+          <div style="height:6px;background:rgba(192,132,252,.2);border-radius:99px;overflow:hidden;margin-top:10px;"><div id="ciclo-bar" style="height:100%;border-radius:99px;background:var(--lilac);width:0%;"></div></div>
           <div class="v-box">
-            <div class="v-row"><span class="v-lbl">Sugerencia simbólica (÷3)</span><span class="v-val" id="ciclo-sug">$296</span></div>
-            <div class="v-row"><span class="v-lbl">Corte</span><span class="v-val" id="ciclo-corte-txt">21 mayo 2026</span></div>
-            <div class="v-row"><span class="v-lbl">Pago siguiente</span><span class="v-val" id="ciclo-pago-txt">11 junio 2026</span></div>
+            <div class="v-row"><span class="v-lbl">Sugerencia (÷3)</span><span class="v-val" id="ciclo-sug">$0</span></div>
+            <div class="v-row"><span class="v-lbl">Corte</span><span class="v-val" id="ciclo-corte-txt">—</span></div>
+            <div class="v-row"><span class="v-lbl">Pago siguiente</span><span class="v-val" id="ciclo-pago-txt">—</span></div>
           </div>
         </div>
-
         <div class="card payment-card">
           <div class="card-tag">Pago actual Banamex</div>
-          <div class="card-badge" id="pago-badge">vence 11 mayo</div>
+          <div class="card-badge" id="pago-badge">vence —</div>
           <div class="big-n" id="pago-actual" style="color:var(--blue)">$0.00</div>
-          <div class="small-txt" id="pago-sub">pago liquidado del corte anterior</div>
+          <div class="small-txt" id="pago-sub">—</div>
           <div class="payment-status paid" id="pago-status">Al corriente</div>
           <div class="v-box" style="margin-top:14px;">
-            <div class="v-row"><span class="v-lbl">Corte anterior</span><span class="v-val" id="pago-corte-txt">21 abril</span></div>
-            <div class="v-row"><span class="v-lbl">Fecha límite</span><span class="v-val" id="pago-limite-txt">11 mayo</span></div>
-            <div class="v-row"><span class="v-lbl">Próximo pago</span><span class="v-val" id="next-pago">11 junio</span></div>
+            <div class="v-row"><span class="v-lbl">Corte anterior</span><span class="v-val" id="pago-corte-txt">—</span></div>
+            <div class="v-row"><span class="v-lbl">Fecha límite</span><span class="v-val" id="pago-limite-txt">—</span></div>
+            <div class="v-row"><span class="v-lbl">Próximo pago</span><span class="v-val" id="next-pago">—</span></div>
           </div>
         </div>
       </div>
 
+      <!-- FROZEN -->
       <div id="frozen-section" style="display:none" class="frozen-card" style="margin-bottom:18px;">
-        <div class="frozen-tag">Deuda congelada — pagar antes del <span id="frozen-pay-date">11 jun</span></div>
+        <div class="frozen-tag">Deuda congelada — pagar antes del <span id="frozen-pay-date">—</span></div>
         <div class="big-n" id="frozen-amt" style="color:var(--nr)">$0</div>
         <div class="small-txt" style="margin-bottom:14px;">Quedan <span id="frozen-dias">0</span> días · Sugerido este viernes: <span style="color:var(--nr);font-family:var(--fm)" id="frozen-sug">$0</span></div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -287,13 +320,14 @@ body{
         </div>
       </div>
 
+      <!-- MAMÁ -->
       <div class="mama-card" style="margin-bottom:18px;">
         <div class="mama-tag">Deuda con mamá</div>
-        <div class="big-n" id="mama-deuda" style="color:var(--mustard-text)">$2,254</div>
+        <div class="big-n" id="mama-deuda" style="color:var(--mustard-text)">$0</div>
         <div class="small-txt">Sugerido este viernes: <span style="color:var(--mustard-text);font-family:var(--fm)" id="mama-sug">$0</span></div>
         <div class="mama-btns">
-          <button class="btn-abono" onclick="openModal('abono')">Abonar</button>
-          <button class="btn-gasto-m" onclick="openModal('gasto')">Ella pagó algo</button>
+          <button class="btn-abono" onclick="openModal('modal-mama','abono')">Abonar</button>
+          <button class="btn-gasto-m" onclick="openModal('modal-mama','gasto')">Ella pagó algo</button>
         </div>
         <div class="mama-tx" id="mama-tx-list"></div>
       </div>
@@ -301,77 +335,102 @@ body{
 
     <!-- REGISTER -->
     <div class="screen" id="screen-register">
-      <div style="font-family:var(--fm);font-size:12px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;">REGISTRAR</div>
+      <div class="page-title">REGISTRAR</div>
       <div style="max-width:580px;">
-        <div class="form-block">
-          <label class="form-label">Monto</label>
-          <input class="amount-inp" type="number" id="r-amount" placeholder="$0">
-        </div>
+        <div class="form-block"><label class="form-label">Monto</label><input class="amount-inp" type="number" id="r-amount" placeholder="$0"></div>
         <div class="form-block">
           <label class="form-label">¿Con qué pagaste?</label>
-          <div class="btn-row">
-            <button class="sel-btn on-bbva" id="ob-bbva" onclick="selOrigen('bbva')">BBVA Débito</button>
-            <button class="sel-btn" id="ob-credito" onclick="selOrigen('credito')">Banamex Crédito</button>
-          </div>
+          <div class="btn-row"><button class="sel-btn on-bbva" id="ob-bbva" onclick="selOrigen('bbva')">BBVA Débito</button><button class="sel-btn" id="ob-credito" onclick="selOrigen('credito')">Banamex Crédito</button></div>
         </div>
         <div class="form-block">
           <label class="form-label">Categoría</label>
           <div class="btn-row" id="cat-grid">
             <button class="sel-btn" onclick="selCat('comida')" data-c="comida">🍕 Comida</button>
-            <button class="sel-btn" onclick="selCat('transporte')" data-c="transporte">🚗 Uber/Didi</button>
+            <button class="sel-btn" onclick="selCat('transporte')" data-c="transporte">🚗 Transporte</button>
             <button class="sel-btn" onclick="selCat('oxxo')" data-c="oxxo">🛒 Oxxo/snacks</button>
             <button class="sel-btn" onclick="selCat('tarjeta')" data-c="tarjeta">💳 Pago tarjeta</button>
             <button class="sel-btn" onclick="selCat('familia')" data-c="familia">👨‍👩‍👧 Familia</button>
             <button class="sel-btn" onclick="selCat('otro')" data-c="otro">📦 Otro</button>
           </div>
         </div>
-        <div class="form-block">
-          <label class="form-label">Nota (opcional)</label>
-          <input class="txt-inp" type="text" id="r-nota" placeholder="Ej: comida del trabajo">
-        </div>
-        <div class="form-block">
-          <label class="form-label">Fecha</label>
-          <input class="txt-inp" type="date" id="r-fecha">
-        </div>
+        <div class="form-block"><label class="form-label">Nota (opcional)</label><input class="txt-inp" type="text" id="r-nota" placeholder="Ej: comida del trabajo"></div>
+        <div class="form-block"><label class="form-label">Fecha</label><input class="txt-inp" type="date" id="r-fecha"></div>
         <div class="form-block">
           <label class="form-label">Tipo</label>
-          <div class="btn-row">
-            <button class="sel-btn on-gasto" id="tb-gasto" onclick="selTipo('gasto')">Gasto</button>
-            <button class="sel-btn" id="tb-ingreso" onclick="selTipo('ingreso')">Ingreso / cobro</button>
-          </div>
+          <div class="btn-row"><button class="sel-btn on-gasto" id="tb-gasto" onclick="selTipo('gasto')">Gasto</button><button class="sel-btn" id="tb-ingreso" onclick="selTipo('ingreso')">Ingreso / cobro</button></div>
         </div>
         <button class="save-btn" onclick="saveTx()">GUARDAR REGISTRO</button>
       </div>
     </div>
 
+    <!-- MSI -->
+    <div class="screen" id="screen-msi">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+        <div class="page-title" style="margin-bottom:0;">MESES SIN INTERESES</div>
+        <button class="btn-lilac" onclick="document.getElementById('modal-msi').classList.add('open')">+ Nueva compra MSI</button>
+      </div>
+      <div id="msi-list" class="msi-grid"></div>
+      <div id="msi-empty" style="display:none;text-align:center;padding:40px;color:var(--muted);">
+        <div style="font-family:var(--fm);font-size:9px;margin-bottom:12px;">SIN COMPRAS MSI</div>
+        <div style="font-size:14px;">Agrega tu primera compra a meses sin intereses.</div>
+      </div>
+    </div>
+
     <!-- DASHBOARD -->
     <div class="screen" id="screen-dashboard">
-      <div style="font-family:var(--fm);font-size:12px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;">ANÁLISIS</div>
+      <div class="page-title">ANÁLISIS</div>
+
+      <!-- Resumen stats -->
+      <div class="grid3" style="margin-bottom:20px;" id="stats-grid"></div>
+
       <div class="grid2">
+        <!-- Donut categorías -->
         <div class="card">
-          <div class="card-tag">En qué gastas</div>
+          <div class="card-tag">Categorías</div>
           <div class="donut-wrap">
             <svg width="110" height="110" viewBox="0 0 100 100" id="donut-svg" style="flex-shrink:0;">
               <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(243,198,218,.4)" stroke-width="18"/>
               <text x="50" y="54" text-anchor="middle" font-family="Press Start 2P" font-size="9" fill="#D1A3B7" id="donut-c">$0</text>
             </svg>
-            <div class="legend" id="donut-legend"><div style="font-size:13px;color:var(--muted)">Sin gastos aún</div></div>
+            <div class="legend" id="donut-legend"><div style="font-size:13px;color:var(--muted)">Sin gastos</div></div>
           </div>
         </div>
+
+        <!-- Fijo vs Variable -->
         <div class="card">
-          <div class="card-tag">BBVA vs Crédito</div>
-          <div id="origen-break"><div style="font-size:13px;color:var(--muted)">Sin gastos aún</div></div>
+          <div class="card-tag">Fijo vs Variable</div>
+          <div id="fijo-var-chart" class="bar-chart"></div>
         </div>
       </div>
+
+      <!-- Barras por día -->
       <div class="card" style="margin-bottom:20px;">
-        <div class="card-tag" style="margin-bottom:14px;">Últimos movimientos</div>
+        <div class="card-tag">Gasto por día (semana actual)</div>
+        <div id="day-chart" class="bar-chart" style="gap:12px;"></div>
+      </div>
+
+      <!-- BBVA vs Crédito -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-tag">BBVA vs Crédito</div>
+        <div id="origen-break"><div style="font-size:13px;color:var(--muted)">Sin gastos</div></div>
+      </div>
+
+      <!-- Lista con filtros -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-tag" style="margin-bottom:14px;">Movimientos</div>
+        <div class="filter-row" id="filter-cat-row"></div>
+        <div class="filter-row" id="filter-origen-row">
+          <button class="filter-btn active" onclick="setFilterOrigen('todos')" data-fo="todos">Todos</button>
+          <button class="filter-btn" onclick="setFilterOrigen('bbva')" data-fo="bbva">BBVA</button>
+          <button class="filter-btn" onclick="setFilterOrigen('credito')" data-fo="credito">Banamex</button>
+        </div>
         <div class="tx-list" id="tx-list"><div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">No hay movimientos</div></div>
       </div>
     </div>
 
     <!-- CHAT -->
     <div class="screen" id="screen-chat">
-      <div style="font-family:var(--fm);font-size:12px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;">IA FINANCIERA <span style="font-family:var(--fd);font-size:11px;color:var(--lilac);font-weight:700;margin-left:8px;">● en línea</span></div>
+      <div class="page-title">IA FINANCIERA <span style="font-family:var(--fd);font-size:11px;color:var(--lilac);font-weight:700;margin-left:8px;">● en línea</span></div>
       <div class="card">
         <div class="chat-chips">
           <button class="chip" onclick="sendChip('¿cuánto tengo en BBVA y cómo va mi semana?')">¿cómo voy?</button>
@@ -380,16 +439,15 @@ body{
           <button class="chip" onclick="sendChip('¿cómo va mi ciclo de Banamex?')">¿cómo va Banamex?</button>
         </div>
         <div class="chat-msgs" id="chat-msgs">
-          <div class="msg ai">Hola Yamil ♡ Tus datos están cargados desde la nube. ¿Qué quieres saber?</div>
+          <div class="msg ai">Hola Yamil ♡ Tus datos están cargados. ¿Qué quieres saber?</div>
         </div>
         <div class="chat-row">
           <input class="chat-inp" type="text" id="chat-inp" placeholder="Pregunta lo que quieras..." onkeydown="if(event.key==='Enter')sendChat()">
-          <button class="chat-send" onclick="sendChat()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
+          <button class="chat-send" onclick="sendChat()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
         </div>
       </div>
     </div>
+
   </main>
 </div>
 
@@ -397,6 +455,7 @@ body{
   <div class="bnav-inner">
     <button class="bnav-btn active" onclick="go('home')" id="bnav-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>INICIO</button>
     <button class="bnav-btn" onclick="go('register')" id="bnav-register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>REGISTRAR</button>
+    <button class="bnav-btn" onclick="go('msi')" id="bnav-msi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>MSI</button>
     <button class="bnav-btn" onclick="go('dashboard')" id="bnav-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>ANÁLISIS</button>
     <button class="bnav-btn" onclick="go('chat')" id="bnav-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA</button>
   </div>
@@ -404,28 +463,18 @@ body{
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── UPSTASH CONFIG ──────────────────────────────────────────
-const KV_URL   = 'https://exotic-hamster-108982.upstash.io';
-const KV_TOKEN = 'gQAAAAAAAam2AAIgcDE3M2QyOWUyODI1MDE0Mjk0YjE3NmJiNzFhMGEyNzVmOQ';
-const KV_KEY   = 'finanzas_yamil_v1';
-
+// ─── UPSTASH ─────────────────────────────────────────────────
+const KV_URL='https://exotic-hamster-108982.upstash.io';
+const KV_TOKEN='gQAAAAAAAam2AAIgcDE3M2QyOWUyODI1MDE0Mjk0YjE3NmJiNzFhMGEyNzVmOQ';
+const KV_KEY='finanzas_yamil_v1';
 async function kvGet(){
-  try{
-    const r=await fetch(`${KV_URL}/get/${KV_KEY}`,{headers:{Authorization:`Bearer ${KV_TOKEN}`}});
-    const d=await r.json();
-    return d.result?JSON.parse(d.result):null;
-  }catch(e){return null;}
+  try{const r=await fetch(`${KV_URL}/get/${KV_KEY}`,{headers:{Authorization:`Bearer ${KV_TOKEN}`}});const d=await r.json();return d.result?JSON.parse(d.result):null;}catch(e){return null;}
 }
 async function kvSet(data){
   try{
-    const si=document.getElementById('sync-indicator');
-    si.classList.add('show');
-    await fetch(`${KV_URL}/set/${KV_KEY}`,{
-      method:'POST',
-      headers:{Authorization:`Bearer ${KV_TOKEN}`,'Content-Type':'application/json'},
-      body:JSON.stringify(JSON.stringify(data))
-    });
-    setTimeout(()=>si.classList.remove('show'),1000);
+    const si=document.getElementById('sync-indicator');si.classList.add('show');
+    await fetch(`${KV_URL}/set/${KV_KEY}`,{method:'POST',headers:{Authorization:`Bearer ${KV_TOKEN}`,'Content-Type':'application/json'},body:JSON.stringify(JSON.stringify(data))});
+    setTimeout(()=>si.classList.remove('show'),1200);
   }catch(e){console.error('KV save error',e);}
 }
 // ─────────────────────────────────────────────────────────────
@@ -436,20 +485,12 @@ const CAT_NAMES={comida:'Comida',transporte:'Transporte',oxxo:'Oxxo/snacks',tarj
 const MONTHS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MONTHS_FULL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const DAYS_SHORT=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 
-// Estado inicial — solo se usa si no hay datos en la nube
 const ST_DEFAULT={
-  bbva:3880,
-  cicloActivo:887.93,
-  cicloInicio:'2026-04-21',
-  cicloCorte:'2026-05-21',
-  cicloPago:'2026-06-11',
-  pagoActual:0,
-  pagoActualOriginal:0,
-  pagoActualCorte:'2026-04-21',
-  pagoActualLimite:'2026-05-11',
-  deudaCongelada:0,
-  congeladaPagoDate:'',
+  bbva:3880,cicloActivo:887.93,cicloInicio:'2026-04-21',cicloCorte:'2026-05-21',cicloPago:'2026-06-11',
+  pagoActual:0,pagoActualOriginal:0,pagoActualCorte:'2026-04-21',pagoActualLimite:'2026-05-11',
+  deudaCongelada:0,congeladaPagoDate:'',
   mamaDeuda:2254,
   mamaTx:[
     {tipo:'gasto',amt:650,nota:'lunes 13 — varios',fecha:'2026-04-13'},
@@ -458,12 +499,15 @@ const ST_DEFAULT={
     {tipo:'gasto',amt:1000,nota:'tarjeta de crédito',fecha:'2026-04-21'},
     {tipo:'gasto',amt:500,nota:'27 abril',fecha:'2026-04-27'},
   ],
+  msiCompras:[],
   transactions:[
     {id:1,amount:67,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-22'},
     {id:2,amount:429,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-24'},
     {id:3,amount:215,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-26'},
   ],
   selCat:null,selOrigen:'bbva',selTipo:'gasto',modalTipo:'abono',
+  msiMesesSel:null,msiAbonoId:null,
+  filterCat:'todos',filterOrigen:'todos',
   chatHistory:[]
 };
 
@@ -471,31 +515,27 @@ let ST={...ST_DEFAULT};
 
 async function loadST(){
   const remote=await kvGet();
-  if(remote){
+  if(remote&&typeof remote==='object'&&remote.bbva!==undefined){
     ST={...ST_DEFAULT,...remote};
-  }
-  // fallback localStorage
-  else{
-    try{const s=localStorage.getItem('fin_v5');if(s)ST={...ST_DEFAULT,...JSON.parse(s)};}catch(e){}
+    if(!ST.msiCompras)ST.msiCompras=[];
+  } else {
+    try{const s=localStorage.getItem('fin_v5');if(s){const p=JSON.parse(s);if(p&&p.bbva!==undefined){ST={...ST_DEFAULT,...p};if(!ST.msiCompras)ST.msiCompras=[];}}}catch(e){}
   }
   updateHome();
 }
 
 async function saveST(){
-  // guardar en KV (nube) y localStorage como backup
   await kvSet(ST);
   try{localStorage.setItem('fin_v5',JSON.stringify(ST));}catch(e){}
 }
 
 function go(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  ['snav-','bnav-'].forEach(p=>{
-    document.querySelectorAll('[id^="'+p+'"]').forEach(b=>b.classList.remove('active'));
-    const el=document.getElementById(p+name);if(el)el.classList.add('active');
-  });
+  ['snav-','bnav-'].forEach(p=>{document.querySelectorAll('[id^="'+p+'"]').forEach(b=>b.classList.remove('active'));const el=document.getElementById(p+name);if(el)el.classList.add('active');});
   document.getElementById('screen-'+name).classList.add('active');
   if(name==='dashboard')renderDash();
   if(name==='home')updateHome();
+  if(name==='msi')renderMsi();
 }
 
 function selCat(c){ST.selCat=c;document.querySelectorAll('[data-c]').forEach(b=>b.classList.toggle('on-cat',b.dataset.c===c));}
@@ -504,77 +544,44 @@ function presetOrigen(o){selOrigen(o);}
 function selOrigen(o){ST.selOrigen=o;['bbva','credito'].forEach(x=>{const el=document.getElementById('ob-'+x);if(el)el.className='sel-btn'+(o===x?' on-'+x:'');});}
 function selTipo(t){ST.selTipo=t;document.getElementById('tb-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');document.getElementById('tb-ingreso').className='sel-btn'+(t==='ingreso'?' on-abono':'');}
 function selModalTipo(t){ST.modalTipo=t;document.getElementById('mt-abono').className='sel-btn'+(t==='abono'?' on-abono':'');document.getElementById('mt-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');}
-function openModal(tipo){ST.modalTipo=tipo;selModalTipo(tipo);document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];document.getElementById('modal-mama').classList.add('open');}
-function closeModal(){document.getElementById('modal-mama').classList.remove('open');document.getElementById('mama-amount').value='';document.getElementById('mama-nota').value='';}
-
-async function saveMama(){
-  const amt=parseFloat(document.getElementById('mama-amount').value);
-  const nota=document.getElementById('mama-nota').value||'Sin concepto';
-  const fecha=document.getElementById('mama-fecha').value||new Date().toISOString().split('T')[0];
-  if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
-  if(ST.modalTipo==='abono'){
-    ST.mamaDeuda=Math.max(0,ST.mamaDeuda-amt);
-    ST.bbva=Math.max(0,ST.bbva-amt);
-    ST.mamaTx.unshift({tipo:'abono',amt,nota,fecha});
-    ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono mamá: '+nota,cat:'familia',origen:'bbva',tipo:'gasto',fecha});
-  } else {
-    ST.mamaDeuda+=amt;
-    ST.mamaTx.unshift({tipo:'gasto',amt,nota,fecha});
-  }
-  await saveST();closeModal();showToast(ST.modalTipo==='abono'?'✓ Abono registrado':'✓ Gasto de mamá registrado');updateHome();
+function selMsiMeses(m){
+  ST.msiMesesSel=m;
+  document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on-cat',parseInt(b.dataset.m)===m));
+  const total=parseFloat(document.getElementById('msi-total').value)||0;
+  if(total>0){const mens=Math.ceil(total/m);document.getElementById('msi-prev-mens').textContent='$'+mens.toLocaleString('es-MX');document.getElementById('msi-prev-sem').textContent='$'+Math.ceil(mens/4).toLocaleString('es-MX');document.getElementById('msi-preview').style.display='block';}
 }
 
-function getWeekStart(){
-  const d=new Date(),day=d.getDay();
-  const mon=new Date(d);mon.setDate(d.getDate()-(day===0?6:day-1));mon.setHours(0,0,0,0);return mon;
+function openModal(id,tipo){
+  if(id==='modal-mama'){ST.modalTipo=tipo;selModalTipo(tipo);document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];}
+  document.getElementById(id).classList.add('open');
 }
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  if(id==='modal-mama'){document.getElementById('mama-amount').value='';document.getElementById('mama-nota').value='';}
+  if(id==='modal-msi'){document.getElementById('msi-nombre').value='';document.getElementById('msi-total').value='';ST.msiMesesSel=null;document.querySelectorAll('[data-m]').forEach(b=>b.classList.remove('on-cat'));document.getElementById('msi-preview').style.display='none';}
+  if(id==='modal-msi-abono'){document.getElementById('msi-abono-amt').value='';}
+}
+
+function getWeekStart(){const d=new Date(),day=d.getDay();const mon=new Date(d);mon.setDate(d.getDate()-(day===0?6:day-1));mon.setHours(0,0,0,0);return mon;}
 function getWeeklySpent(){
   const ws=getWeekStart();
   return ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat!=='tarjeta'&&new Date(t.fecha+'T12:00:00')>=ws).reduce((s,t)=>s+t.amount,0);
 }
-function getWeeklyFijo(){
-  const ws=getWeekStart();
-  return ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat==='comida'&&new Date(t.fecha+'T12:00:00')>=ws).reduce((s,t)=>s+t.amount,0);
-}
-function getSemaforo(ws){
-  if(ws<700)return{text:'VAS BIEN ✓',color:'#3B82F6',border:'#93C5FD',bg:'rgba(147,197,253,.18)'};
-  if(ws<1000)return{text:'⚠ CUIDADO',color:'#A45A00',border:'#F3B51B',bg:'rgba(253,230,138,.18)'};
-  return{text:'TE ESTÁS PASANDO',color:'var(--pink-strong)',border:'var(--pink)',bg:'rgba(251,207,232,.35)'};
-}
 function calcSugCiclo(){return Math.ceil(ST.cicloActivo/3);}
-function calcFridaysLeftMonth(){
-  const now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0);
-  let f=0;const d=new Date(now);
-  while(d<=last){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}
-  return Math.max(1,f);
-}
+function calcFridaysLeftMonth(){const now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0);let f=0;const d=new Date(now);while(d<=last){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}return Math.max(1,f);}
 function calcSugMama(){return Math.ceil(ST.mamaDeuda/calcFridaysLeftMonth());}
-function calcFridaysToFrozen(){
-  if(!ST.congeladaPagoDate)return 1;
-  const now=new Date(),pay=new Date(ST.congeladaPagoDate+'T12:00:00');
-  let f=0;const d=new Date(now);
-  while(d<=pay){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}
-  return Math.max(1,f);
-}
+function calcFridaysToFrozen(){if(!ST.congeladaPagoDate)return 1;const now=new Date(),pay=new Date(ST.congeladaPagoDate+'T12:00:00');let f=0;const d=new Date(now);while(d<=pay){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}return Math.max(1,f);}
 function calcSugFrozen(){return Math.ceil(ST.deudaCongelada/calcFridaysToFrozen());}
 
 async function cerrarCiclo(){
-  ST.pagoActual=ST.cicloActivo;
-  ST.pagoActualOriginal=ST.cicloActivo;
-  ST.pagoActualCorte=ST.cicloCorte;
+  ST.pagoActual=ST.cicloActivo;ST.pagoActualOriginal=ST.cicloActivo;ST.pagoActualCorte=ST.cicloCorte;
   const corte=new Date(ST.cicloCorte+'T12:00:00');
   const pago=new Date(corte.getFullYear(),corte.getMonth()+1,11);
-  ST.pagoActualLimite=pago.toISOString().split('T')[0];
-  ST.congeladaPagoDate=pago.toISOString().split('T')[0];
-  const nc=new Date(corte.getFullYear(),corte.getMonth()+1,21);
-  const np=new Date(corte.getFullYear(),corte.getMonth()+2,11);
-  ST.cicloInicio=ST.cicloCorte;
-  ST.cicloCorte=nc.toISOString().split('T')[0];
-  ST.cicloPago=np.toISOString().split('T')[0];
-  ST.cicloActivo=0;
+  ST.pagoActualLimite=pago.toISOString().split('T')[0];ST.congeladaPagoDate=pago.toISOString().split('T')[0];
+  const nc=new Date(corte.getFullYear(),corte.getMonth()+1,21),np=new Date(corte.getFullYear(),corte.getMonth()+2,11);
+  ST.cicloInicio=ST.cicloCorte;ST.cicloCorte=nc.toISOString().split('T')[0];ST.cicloPago=np.toISOString().split('T')[0];ST.cicloActivo=0;
   await saveST();showToast('✓ Ciclo cerrado');updateHome();
 }
-
 async function liquidarCongelado(){
   if(ST.bbva<ST.deudaCongelada){showToast('BBVA insuficiente');return;}
   ST.bbva-=ST.deudaCongelada;
@@ -582,7 +589,6 @@ async function liquidarCongelado(){
   ST.deudaCongelada=0;ST.congeladaPagoDate='';
   await saveST();showToast('✓ Deuda liquidada');updateHome();
 }
-
 async function pagarSugFri(){
   const sug=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
   if(ST.bbva<sug){showToast('Saldo insuficiente');return;}
@@ -591,42 +597,105 @@ async function pagarSugFri(){
   else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-sug);
   else ST.cicloActivo=Math.max(0,ST.cicloActivo-sug);
   ST.transactions.unshift({id:Date.now(),amount:sug,nota:'Pago viernes sugerido',cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
-  await saveST();showToast('✓ Pago de $'+sug.toLocaleString('es-MX')+' registrado');updateHome();
-  document.getElementById('fri-banner').style.display='none';
+  await saveST();showToast('✓ Pago registrado');updateHome();document.getElementById('fri-banner').style.display='none';
+}
+
+async function saveMama(){
+  const amt=parseFloat(document.getElementById('mama-amount').value);
+  const nota=document.getElementById('mama-nota').value||'Sin concepto';
+  const fecha=document.getElementById('mama-fecha').value||new Date().toISOString().split('T')[0];
+  if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
+  if(ST.modalTipo==='abono'){ST.mamaDeuda=Math.max(0,ST.mamaDeuda-amt);ST.bbva=Math.max(0,ST.bbva-amt);ST.mamaTx.unshift({tipo:'abono',amt,nota,fecha});ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono mamá: '+nota,cat:'familia',origen:'bbva',tipo:'gasto',fecha});}
+  else{ST.mamaDeuda+=amt;ST.mamaTx.unshift({tipo:'gasto',amt,nota,fecha});}
+  await saveST();closeModal('modal-mama');showToast(ST.modalTipo==='abono'?'✓ Abono registrado':'✓ Gasto de mamá registrado');updateHome();
+}
+
+async function saveMsi(){
+  const nombre=document.getElementById('msi-nombre').value.trim();
+  const total=parseFloat(document.getElementById('msi-total').value);
+  const meses=ST.msiMesesSel;
+  const fecha=document.getElementById('msi-fecha').value||new Date().toISOString().split('T')[0];
+  if(!nombre){showToast('Ingresa el nombre del producto');return;}
+  if(!total||total<=0){showToast('Ingresa el monto total');return;}
+  if(!meses){showToast('Selecciona el número de meses');return;}
+  const mensualidad=Math.ceil(total/meses);
+  ST.msiCompras.push({id:Date.now(),nombre,total,meses,mensualidad,fechaInicio:fecha,mesesPagados:0,pagadoTotal:0,activo:true});
+  await saveST();closeModal('modal-msi');showToast('✓ MSI agregado');renderMsi();
+}
+
+async function aplicarMensualidad(id){
+  const msi=ST.msiCompras.find(m=>m.id===id);if(!msi||!msi.activo)return;
+  ST.pagoActual+=msi.mensualidad;
+  msi.mesesPagados+=1;msi.pagadoTotal+=msi.mensualidad;
+  if(msi.mesesPagados>=msi.meses)msi.activo=false;
+  await saveST();showToast('✓ Mensualidad aplicada');renderMsi();updateHome();
+}
+
+function openMsiAbono(id){
+  ST.msiAbonoId=id;
+  const msi=ST.msiCompras.find(m=>m.id===id);
+  document.getElementById('msi-abono-title').textContent='Abonar extra — '+msi.nombre;
+  document.getElementById('modal-msi-abono').classList.add('open');
+}
+
+async function saveMsiAbono(){
+  const amt=parseFloat(document.getElementById('msi-abono-amt').value);
+  if(!amt||amt<=0){showToast('Ingresa un monto');return;}
+  const msi=ST.msiCompras.find(m=>m.id===ST.msiAbonoId);if(!msi)return;
+  msi.pagadoTotal+=amt;ST.bbva=Math.max(0,ST.bbva-amt);
+  ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono extra MSI: '+msi.nombre,cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
+  await saveST();closeModal('modal-msi-abono');showToast('✓ Abono registrado');renderMsi();
+}
+
+function renderMsi(){
+  const list=document.getElementById('msi-list');
+  const empty=document.getElementById('msi-empty');
+  const activos=ST.msiCompras.filter(m=>m.activo);
+  const inactivos=ST.msiCompras.filter(m=>!m.activo);
+  const todos=[...activos,...inactivos];
+  if(!todos.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=todos.map(m=>{
+    const deuda=Math.max(0,m.total-m.pagadoTotal);
+    const restantes=m.meses-m.mesesPagados;
+    const pct=Math.round((m.pagadoTotal/m.total)*100);
+    return `<div class="msi-item${m.activo?'':' msi-inactive'}">
+      <div class="msi-nombre">${m.nombre}</div>
+      <div class="msi-total">$${m.total.toLocaleString('es-MX')}</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Deuda restante: <span style="color:var(--lilac);font-weight:800;">$${deuda.toLocaleString('es-MX')}</span></div>
+      <div class="msi-progress"><div class="msi-progress-fill" style="width:${pct}%"></div></div>
+      <div class="v-box">
+        <div class="v-row"><span class="v-lbl">Mes actual</span><span class="v-val">${m.mesesPagados+1} de ${m.meses}</span></div>
+        <div class="v-row"><span class="v-lbl">Mensualidad</span><span class="v-val">$${m.mensualidad.toLocaleString('es-MX')}</span></div>
+        <div class="v-row"><span class="v-lbl">Equiv. semanal</span><span class="v-val">$${Math.ceil(m.mensualidad/4).toLocaleString('es-MX')}</span></div>
+        <div class="v-row"><span class="v-lbl">Meses restantes</span><span class="v-val">${restantes}</span></div>
+        <div class="v-row"><span class="v-lbl">Primer cobro</span><span class="v-val">${m.fechaInicio}</span></div>
+      </div>
+      ${m.activo?`<div class="msi-btns">
+        <button class="btn-lilac btn-sm" onclick="aplicarMensualidad(${m.id})">Aplicar mensualidad</button>
+        <button class="btn-gasto-m btn-sm" onclick="openMsiAbono(${m.id})">Abonar extra</button>
+      </div>`:'<div style="font-family:var(--fm);font-size:8px;color:var(--muted);margin-top:12px;letter-spacing:.04em;">COMPLETADO</div>'}
+    </div>`;
+  }).join('');
 }
 
 function updateHome(){
   const now=new Date();
   const ws=getWeeklySpent();
-  const wf=getWeeklyFijo();
-  const wv=Math.max(0,ws-wf);
   const pct=Math.min(100,(ws/LIM_SEM)*100);
-  const sem=getSemaforo(ws);
-
-  // Saludo según hora
   const h=now.getHours();
-  const titulo=h<12?'Buen día, Yamil ♡':h<19?'Buenas tardes, Yamil ♡':'Buenas noches, Yamil ♡';
-  document.getElementById('welcome-title').textContent=titulo;
+  document.getElementById('welcome-title').textContent=h<12?'Buen día, Yamil ♡':h<19?'Buenas tardes, Yamil ♡':'Buenas noches, Yamil ♡';
   document.getElementById('hero-date').textContent=DAYS[now.getDay()]+' '+now.getDate()+' de '+MONTHS_FULL[now.getMonth()]+', '+now.getFullYear();
-
   document.getElementById('hero-bbva').textContent='$'+Math.round(ST.bbva).toLocaleString('es-MX');
   document.getElementById('hero-spent').textContent='$'+Math.round(ws).toLocaleString('es-MX');
   document.getElementById('sb-bbva').textContent='$'+Math.round(ST.bbva).toLocaleString('es-MX');
   document.getElementById('sb-ciclo').textContent='$'+ST.cicloActivo.toFixed(2);
   document.getElementById('sb-mama').textContent='$'+Math.round(ST.mamaDeuda).toLocaleString('es-MX');
-
   const bar=document.getElementById('hero-wbar');
-  bar.style.width=pct+'%';
-  bar.style.background=pct>=100?'var(--pink-strong)':pct>=70?'#F3B51B':'var(--blue)';
-
-  const ws2=document.getElementById('week-status');
-  ws2.textContent=sem.text+' — $'+Math.round(ws).toLocaleString('es-MX')+' de $1,000';
-  ws2.style.color=sem.color;ws2.style.borderColor=sem.border;ws2.style.background=sem.bg;
-
-  document.getElementById('g-fijo').textContent='$'+Math.round(wf).toLocaleString('es-MX');
-  document.getElementById('g-var').textContent='$'+Math.round(wv).toLocaleString('es-MX');
-
-  // Ciclo activo
+  bar.style.width=pct+'%';bar.style.background=pct>=100?'var(--pink-strong)':pct>=70?'#F3B51B':'var(--blue)';
+  const wp=document.getElementById('week-status');
+  wp.textContent='$'+Math.round(ws).toLocaleString('es-MX')+' de $1,000';
+  wp.style.borderColor=pct>=100?'var(--pink-strong)':pct>=70?'#F3B51B':'var(--bd)';
   const ci=new Date(ST.cicloInicio+'T12:00:00'),cc=new Date(ST.cicloCorte+'T12:00:00'),cp=new Date(ST.cicloPago+'T12:00:00');
   document.getElementById('ciclo-badge-txt').textContent='21 '+MONTHS[ci.getMonth()]+' → 21 '+MONTHS[cc.getMonth()];
   document.getElementById('ciclo-gastado').textContent='$'+ST.cicloActivo.toFixed(2);
@@ -634,21 +703,16 @@ function updateHome(){
   document.getElementById('ciclo-bar').style.width=Math.min(100,(ST.cicloActivo/LIM_CRED)*100)+'%';
   document.getElementById('ciclo-corte-txt').textContent='21 '+MONTHS[cc.getMonth()]+' '+cc.getFullYear();
   document.getElementById('ciclo-pago-txt').textContent='11 '+MONTHS[cp.getMonth()]+' '+cp.getFullYear();
-
-  // Pago actual
-  const pc=new Date((ST.pagoActualCorte||ST.cicloInicio)+'T12:00:00');
-  const pl=new Date((ST.pagoActualLimite||ST.cicloPago)+'T12:00:00');
+  const pc=new Date((ST.pagoActualCorte||ST.cicloInicio)+'T12:00:00'),pl=new Date((ST.pagoActualLimite||ST.cicloPago)+'T12:00:00');
   const pagoPend=ST.pagoActual||0;
   document.getElementById('pago-actual').textContent='$'+pagoPend.toFixed(2);
   document.getElementById('pago-badge').textContent='vence '+pl.getDate()+' '+MONTHS[pl.getMonth()];
   document.getElementById('pago-corte-txt').textContent=pc.getDate()+' '+MONTHS[pc.getMonth()];
   document.getElementById('pago-limite-txt').textContent=pl.getDate()+' '+MONTHS[pl.getMonth()];
   document.getElementById('next-pago').textContent='11 '+MONTHS[cp.getMonth()];
-  const pagoStatus=document.getElementById('pago-status');
-  if(pagoPend<=0){pagoStatus.textContent='Al corriente';pagoStatus.className='payment-status paid';document.getElementById('pago-sub').textContent='pago liquidado del corte anterior';}
-  else{pagoStatus.textContent='Pendiente';pagoStatus.className='payment-status pending';document.getElementById('pago-sub').textContent='pago para no generar intereses';}
-
-  // Frozen
+  const ps=document.getElementById('pago-status');
+  if(pagoPend<=0){ps.textContent='Al corriente';ps.className='payment-status paid';document.getElementById('pago-sub').textContent='pago liquidado del corte anterior';}
+  else{ps.textContent='Pendiente';ps.className='payment-status pending';document.getElementById('pago-sub').textContent='$'+pagoPend.toFixed(2)+' para no generar intereses';}
   const fs=document.getElementById('frozen-section');
   if(ST.deudaCongelada>0){
     fs.style.display='block';
@@ -658,28 +722,17 @@ function updateHome(){
     document.getElementById('frozen-dias').textContent=Math.ceil((pd-now)/86400000);
     document.getElementById('frozen-sug').textContent='$'+calcSugFrozen().toLocaleString('es-MX');
   } else fs.style.display='none';
-
-  // Mamá
   document.getElementById('mama-deuda').textContent='$'+Math.round(ST.mamaDeuda).toLocaleString('es-MX');
   document.getElementById('mama-sug').textContent='$'+calcSugMama().toLocaleString('es-MX');
   const mtl=document.getElementById('mama-tx-list');
-  mtl.innerHTML=ST.mamaTx.length
-    ?ST.mamaTx.slice(0,6).map(t=>`<div class="mama-tx-item"><span style="color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};font-weight:800;">${t.tipo==='abono'?'Abono':'Gasto'}</span><span style="color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${t.nota}</span><span style="font-family:var(--fm);font-size:9px;color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};">${t.tipo==='abono'?'-':'+'}$${t.amt.toLocaleString('es-MX')}</span></div>`).join('')
-    :'<div style="font-size:12px;color:var(--muted);text-align:center;padding:10px;">Sin movimientos aún</div>';
-
-  // Friday banner — solo viernes
+  mtl.innerHTML=ST.mamaTx.length?ST.mamaTx.slice(0,6).map(t=>`<div class="mama-tx-item"><span style="color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};font-weight:800;">${t.tipo==='abono'?'Abono':'Gasto'}</span><span style="color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${t.nota}</span><span style="font-family:var(--fm);font-size:9px;color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};">${t.tipo==='abono'?'-':'+'}$${t.amt.toLocaleString('es-MX')}</span></div>`).join(''):'<div style="font-size:12px;color:var(--muted);text-align:center;padding:10px;">Sin movimientos aún</div>';
   const isFri=now.getDay()===5;
   const friBanner=document.getElementById('fri-banner');
   if(isFri){
     const sugF=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
-    const label=ST.pagoActual>0?'Sugerencia pago Banamex:':(ST.deudaCongelada>0?'Sugerencia deuda congelada:':'Sugerencia simbólica Banamex:');
-    document.getElementById('fri-text').innerHTML=label+' <b>$'+sugF.toLocaleString('es-MX')+'</b> · Mamá: <b>$'+calcSugMama().toLocaleString('es-MX')+'</b>';
-    friBanner.style.display='flex';friBanner.style.marginBottom='18px';
-  } else {
-    friBanner.style.display='none';
-  }
-
-  // Corte banner — solo 3 días antes del corte
+    document.getElementById('fri-text').innerHTML='Banamex: <b>$'+sugF.toLocaleString('es-MX')+'</b> · Mamá: <b>$'+calcSugMama().toLocaleString('es-MX')+'</b>';
+    friBanner.style.display='flex';
+  } else friBanner.style.display='none';
   const diasCorte=Math.ceil((cc-now)/86400000);
   const cb=document.getElementById('corte-banner');
   if(diasCorte<=3&&diasCorte>=0&&ST.cicloActivo>0){cb.style.display='block';document.getElementById('corte-amt').textContent='$'+ST.cicloActivo.toFixed(2);}
@@ -695,17 +748,9 @@ async function saveTx(){
   if(!cat){showToast('Selecciona una categoría');return;}
   ST.transactions.unshift({id:Date.now(),amount:amt,nota,cat,origen,tipo,fecha});
   if(tipo==='gasto'){
-    if(origen==='bbva'){
-      ST.bbva=Math.max(0,ST.bbva-amt);
-      if(cat==='tarjeta'){
-        if(ST.pagoActual>0)ST.pagoActual=Math.max(0,ST.pagoActual-amt);
-        else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-amt);
-        else ST.cicloActivo=Math.max(0,ST.cicloActivo-amt);
-      }
-    } else if(origen==='credito') ST.cicloActivo+=amt;
-  } else {
-    if(origen==='bbva')ST.bbva+=amt;
-  }
+    if(origen==='bbva'){ST.bbva=Math.max(0,ST.bbva-amt);if(cat==='tarjeta'){if(ST.pagoActual>0)ST.pagoActual=Math.max(0,ST.pagoActual-amt);else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-amt);else ST.cicloActivo=Math.max(0,ST.cicloActivo-amt);}}
+    else if(origen==='credito')ST.cicloActivo+=amt;
+  } else {if(origen==='bbva')ST.bbva+=amt;}
   await saveST();
   document.getElementById('r-amount').value='';document.getElementById('r-nota').value='';
   ST.selCat=null;document.querySelectorAll('[data-c]').forEach(b=>b.classList.remove('on-cat'));
@@ -713,19 +758,52 @@ async function saveTx(){
   showToast('✓ Registrado');updateHome();setTimeout(()=>go('home'),700);
 }
 
+function setFilterCat(cat){
+  ST.filterCat=cat;
+  document.querySelectorAll('[data-fc]').forEach(b=>b.classList.toggle('active',b.dataset.fc===cat));
+  renderTxList();
+}
+function setFilterOrigen(o){
+  ST.filterOrigen=o;
+  document.querySelectorAll('[data-fo]').forEach(b=>b.classList.toggle('active',b.dataset.fo===o));
+  renderTxList();
+}
+
+function renderTxList(){
+  let txs=ST.transactions;
+  if(ST.filterCat&&ST.filterCat!=='todos')txs=txs.filter(t=>t.cat===ST.filterCat);
+  if(ST.filterOrigen&&ST.filterOrigen!=='todos')txs=txs.filter(t=>t.origen===ST.filterOrigen);
+  const oCol={bbva:'var(--ng)',credito:'var(--np)'};
+  const oLabel={bbva:'BBVA',credito:'Banamex'};
+  const txList=document.getElementById('tx-list');
+  txList.innerHTML=txs.length?txs.slice(0,30).map(t=>`<div class="tx-item"><div><div class="tx-cat">${CAT_NAMES[t.cat]||t.cat}${t.nota?' · <span style="color:var(--muted);font-weight:600;font-size:13px;">'+t.nota+'</span>':''}</div><div class="tx-meta">${t.fecha}</div></div><div class="tx-right"><div class="tx-amt" style="color:${t.tipo==='ingreso'?'var(--ng)':'var(--nr)'}">${t.tipo==='ingreso'?'+':'-'}$${t.amount.toLocaleString('es-MX')}</div><div class="tx-origen-lbl" style="color:${oCol[t.origen]||'var(--muted)'}">${oLabel[t.origen]||''}</div></div></div>`).join(''):'<div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">Sin movimientos</div>';
+}
+
 function renderDash(){
   const gastos=ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat!=='tarjeta');
+  const total=gastos.reduce((s,t)=>s+t.amount,0);
+  const tix=gastos.length?Math.round(total/gastos.length):0;
+  const ws=getWeekStart();
+  const semanas=new Set(gastos.map(t=>{const d=new Date(t.fecha+'T12:00:00');const day=d.getDay();const m=new Date(d);m.setDate(d.getDate()-(day===0?6:day-1));return m.toISOString().split('T')[0];})).size||1;
+  const promSem=Math.round(total/semanas);
+  const sg=document.getElementById('stats-grid');
+  sg.innerHTML=`
+    <div class="stat-box"><div class="stat-label">TOTAL GASTADO</div><div class="stat-val">$${Math.round(total).toLocaleString('es-MX')}</div><div class="stat-sub">${gastos.length} transacciones</div></div>
+    <div class="stat-box"><div class="stat-label">PROMEDIO SEMANAL</div><div class="stat-val">$${promSem.toLocaleString('es-MX')}</div><div class="stat-sub">por semana</div></div>
+    <div class="stat-box"><div class="stat-label">TICKET PROMEDIO</div><div class="stat-val">$${tix.toLocaleString('es-MX')}</div><div class="stat-sub">por transacción</div></div>`;
+
+  // Donut
   const bycat={};gastos.forEach(t=>{bycat[t.cat]=(bycat[t.cat]||0)+t.amount;});
-  const total=Object.values(bycat).reduce((s,v)=>s+v,0);
+  const totalCat=Object.values(bycat).reduce((s,v)=>s+v,0);
   const svg=document.getElementById('donut-svg');
-  document.getElementById('donut-c').textContent='$'+Math.round(total);
+  document.getElementById('donut-c').textContent='$'+Math.round(totalCat);
   svg.querySelectorAll('.dp').forEach(p=>p.remove());
   const legend=document.getElementById('donut-legend');legend.innerHTML='';
-  if(total>0){
+  if(totalCat>0){
     const cats=Object.entries(bycat).sort((a,b)=>b[1]-a[1]);
     const r=35,circ=2*Math.PI*r;let off=0;
     cats.forEach(([cat,val])=>{
-      const pct=val/total,dash=pct*circ,gap=circ-dash;
+      const pct=val/totalCat,dash=pct*circ,gap=circ-dash;
       const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
       c.setAttribute('cx',50);c.setAttribute('cy',50);c.setAttribute('r',r);c.setAttribute('fill','none');
       c.setAttribute('stroke',CAT_COLORS[cat]||'#D1A3B7');c.setAttribute('stroke-width','18');
@@ -736,23 +814,45 @@ function renderDash(){
       item.innerHTML=`<div class="leg-dot" style="background:${CAT_COLORS[cat]||'#D1A3B7'}"></div><span class="leg-lbl">${CAT_NAMES[cat]||cat}</span><span class="leg-val">$${Math.round(val)}</span>`;
       legend.appendChild(item);
     });
-  } else legend.innerHTML='<div style="font-size:13px;color:var(--muted)">Sin gastos aún</div>';
+  } else legend.innerHTML='<div style="font-size:13px;color:var(--muted)">Sin gastos</div>';
 
+  // Fijo vs Variable
+  const fijo=gastos.filter(t=>t.cat==='comida').reduce((s,t)=>s+t.amount,0);
+  const variable=gastos.filter(t=>t.cat!=='comida').reduce((s,t)=>s+t.amount,0);
+  const maxFV=Math.max(fijo,variable,1);
+  document.getElementById('fijo-var-chart').innerHTML=`
+    <div class="bar-item"><span class="bar-label">Fijo (comida)</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((fijo/maxFV)*100)}%;background:var(--pink);"></div></div><span class="bar-val">$${Math.round(fijo).toLocaleString('es-MX')}</span></div>
+    <div class="bar-item"><span class="bar-label">Variable</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((variable/maxFV)*100)}%;background:var(--lilac);"></div></div><span class="bar-val">$${Math.round(variable).toLocaleString('es-MX')}</span></div>`;
+
+  // Gasto por día semana actual
+  const dayTotals=[0,0,0,0,0,0,0];
+  const wsDate=getWeekStart();
+  ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat!=='tarjeta'&&new Date(t.fecha+'T12:00:00')>=wsDate).forEach(t=>{
+    const d=new Date(t.fecha+'T12:00:00');const day=d.getDay();const idx=day===0?6:day-1;dayTotals[idx]+=t.amount;
+  });
+  const maxDay=Math.max(...dayTotals,1);
+  const dayLabels=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+  document.getElementById('day-chart').innerHTML=dayLabels.map((lbl,i)=>`
+    <div class="bar-item"><span class="bar-label">${lbl}</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((dayTotals[i]/maxDay)*100)}%;background:${i===new Date().getDay()-1||( new Date().getDay()===0&&i===6)?'var(--pink)':'var(--blue)'}"></div></div><span class="bar-val">${dayTotals[i]>0?'$'+Math.round(dayTotals[i]).toLocaleString('es-MX'):''}</span></div>`).join('');
+
+  // BBVA vs Crédito
   const byO={bbva:0,credito:0};
   ST.transactions.filter(t=>t.tipo==='gasto').forEach(t=>{byO[t.origen]=(byO[t.origen]||0)+t.amount;});
   const totalO=byO.bbva+byO.credito;
   const ob=document.getElementById('origen-break');
-  ob.innerHTML=totalO>0?`<div style="display:flex;flex-direction:column;gap:14px;">
-    <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--muted);font-weight:700;">BBVA Débito</span><span style="font-family:var(--fm);font-size:9px;color:var(--ng);">$${Math.round(byO.bbva).toLocaleString('es-MX')}</span></div><div style="height:7px;background:rgba(243,198,218,.4);border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;width:${Math.round((byO.bbva/totalO)*100)}%;background:var(--ng);"></div></div></div>
-    <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--muted);font-weight:700;">Banamex Crédito</span><span style="font-family:var(--fm);font-size:9px;color:var(--np);">$${Math.round(byO.credito).toLocaleString('es-MX')}</span></div><div style="height:7px;background:rgba(243,198,218,.4);border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;width:${Math.round((byO.credito/totalO)*100)}%;background:var(--np);"></div></div></div>
-  </div>`:'<div style="font-size:13px;color:var(--muted)">Sin gastos aún</div>';
+  if(totalO>0){
+    const maxO=Math.max(byO.bbva,byO.credito,1);
+    ob.innerHTML=`<div class="bar-chart">
+      <div class="bar-item"><span class="bar-label">BBVA Débito</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.bbva/maxO)*100)}%;background:var(--ng);"></div></div><span class="bar-val">$${Math.round(byO.bbva).toLocaleString('es-MX')}</span></div>
+      <div class="bar-item"><span class="bar-label">Banamex Cred.</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.credito/maxO)*100)}%;background:var(--np);"></div></div><span class="bar-val">$${Math.round(byO.credito).toLocaleString('es-MX')}</span></div>
+    </div>`;
+  } else ob.innerHTML='<div style="font-size:13px;color:var(--muted)">Sin gastos</div>';
 
-  const txList=document.getElementById('tx-list');
-  const recent=ST.transactions.slice(0,12);
-  const oCol={bbva:'var(--ng)',credito:'var(--np)'};
-  const oLabel={bbva:'BBVA',credito:'Banamex'};
-  txList.innerHTML=recent.length?recent.map(t=>`<div class="tx-item"><div><div class="tx-cat">${CAT_NAMES[t.cat]||t.cat}${t.nota?' · <span style="color:var(--muted);font-weight:600;font-size:13px;">'+t.nota+'</span>':''}</div><div class="tx-meta">${t.fecha}</div></div><div class="tx-right"><div class="tx-amt" style="color:${t.tipo==='ingreso'?'var(--ng)':'var(--nr)'}">${t.tipo==='ingreso'?'+':'-'}$${t.amount.toLocaleString('es-MX')}</div><div class="tx-origen-lbl" style="color:${oCol[t.origen]||'var(--muted)'}">${oLabel[t.origen]||''}</div></div></div>`).join('')
-    :'<div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">No hay movimientos</div>';
+  // Filtros de categoría
+  const cats=['todos',...Object.keys(CAT_NAMES)];
+  document.getElementById('filter-cat-row').innerHTML=cats.map(c=>`<button class="filter-btn${ST.filterCat===c?' active':''}" onclick="setFilterCat('${c}')" data-fc="${c}">${c==='todos'?'Todos':CAT_NAMES[c]}</button>`).join('');
+  document.querySelectorAll('[data-fo]').forEach(b=>b.classList.toggle('active',b.dataset.fo===(ST.filterOrigen||'todos')));
+  renderTxList();
 }
 
 async function sendChat(){
@@ -763,16 +863,16 @@ async function sendChat(){
   typing.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   document.getElementById('chat-msgs').appendChild(typing);scrollChat();
   const ws=getWeeklySpent();
-  const sem=getSemaforo(ws);
-  const ctx=`Eres el asistente financiero de Angel Yamil. Datos reales actualizados:
+  const msiActivos=ST.msiCompras.filter(m=>m.activo).map(m=>`${m.nombre} $${m.mensualidad}/mes (${m.mesesPagados+1}/${m.meses})`).join(', ')||'ninguno';
+  const ctx=`Eres el asistente financiero de Angel Yamil. Datos reales:
 - BBVA: $${ST.bbva.toFixed(2)}
 - Ciclo activo Banamex (${ST.cicloInicio} al ${ST.cicloCorte}): $${ST.cicloActivo.toFixed(2)} gastado · sugerencia ÷3: $${calcSugCiclo()}
-- Pago pendiente Banamex: $${(ST.pagoActual||0).toFixed(2)} · vence ${ST.pagoActualLimite||'N/A'}
-- Deuda congelada: $${ST.deudaCongelada.toFixed(2)}${ST.deudaCongelada>0?' sugerido: $'+calcSugFrozen():''}
+- Pago pendiente Banamex: $${(ST.pagoActual||0).toFixed(2)}
+- Deuda congelada: $${ST.deudaCongelada.toFixed(2)}
 - Deuda mamá: $${ST.mamaDeuda.toFixed(2)} · sugerido viernes: $${calcSugMama()}
-- Gastado esta semana (lun-dom): $${Math.round(ws)} · fijo(comida): $${Math.round(getWeeklyFijo())} · variable: $${Math.round(Math.max(0,ws-getWeeklyFijo()))}
-- Semáforo: ${sem.text}
-- Cobro semanal: ~$2,005 (nómina Urbantect, jueves/viernes)
+- Gastado esta semana: $${Math.round(ws)}
+- MSI activos: ${msiActivos}
+- Cobro semanal: ~$2,005
 - Últimos gastos: ${ST.transactions.slice(0,5).map(t=>(CAT_NAMES[t.cat]||t.cat)+' $'+t.amount+' ('+t.origen+')').join(', ')||'ninguno'}
 Responde en español, directo, máximo 3 oraciones. Usa los números reales.`;
   try{
@@ -782,15 +882,15 @@ Responde en español, directo, máximo 3 oraciones. Usa los números reales.`;
     ST.chatHistory.push({role:'user',content:msg},{role:'assistant',content:reply});
     if(ST.chatHistory.length>20)ST.chatHistory=ST.chatHistory.slice(-20);
     typing.remove();addMsg(reply,'ai');
-  }catch(e){typing.remove();addMsg('Error de conexión, intenta de nuevo.','ai');}
+  }catch(e){typing.remove();addMsg('Error de conexión.','ai');}
 }
 function sendChip(t){document.getElementById('chat-inp').value=t;sendChat();}
 function addMsg(t,r){const d=document.createElement('div');d.className='msg '+r;d.textContent=t;document.getElementById('chat-msgs').appendChild(d);scrollChat();}
 function scrollChat(){const m=document.getElementById('chat-msgs');m.scrollTop=m.scrollHeight;}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
 
-// Inicializar
 document.getElementById('r-fecha').value=new Date().toISOString().split('T')[0];
 document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];
+document.getElementById('msi-fecha').value=new Date().toISOString().split('T')[0];
 loadST();
 </script>
