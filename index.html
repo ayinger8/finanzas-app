@@ -473,7 +473,7 @@ async function kvGet(){
 async function kvSet(data){
   try{
     const si=document.getElementById('sync-indicator');si.classList.add('show');
-    await fetch(`${KV_URL}/set/${KV_KEY}`,{method:'POST',headers:{Authorization:`Bearer ${KV_TOKEN}`,'Content-Type':'application/json'},body:JSON.stringify(JSON.stringify(data))});
+    await fetch(`${KV_URL}/set/${KV_KEY}`,{method:'POST',headers:{Authorization:`Bearer ${KV_TOKEN}`,'Content-Type':'application/json'},body:JSON.stringify(data)});
     setTimeout(()=>si.classList.remove('show'),1200);
   }catch(e){console.error('KV save error',e);}
 }
