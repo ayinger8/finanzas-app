@@ -1038,9 +1038,10 @@ function pedirConfirm(){
 
 async function confirmSave(){
   if(!pendingTx)return;
-  closeModal('modal-confirm');
-  await ejecutarSaveTx(pendingTx);
+  const tx={...pendingTx};
   pendingTx=null;
+  document.getElementById('modal-confirm').classList.remove('open');
+  await ejecutarSaveTx(tx);
 }
 
 async function ejecutarSaveTx({amt,nota,cat,origen,tipo,fecha}){
