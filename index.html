@@ -6,6 +6,7 @@
   --lilac:#C084FC;--lilac-soft:#E9D5FF;
   --blue:#93C5FD;--blue-soft:#DBEAFE;
   --mustard:#FDE68A;--mustard-text:#92400E;
+  --green:#4ADE80;--green-soft:#DCFCE7;--green-text:#166534;
   --danger:#BE185D;
   --bg:#FFF4F8;--bg2:#FFFFFF;--bd:#F3C6DA;--muted:#9D6B80;--text:#3B1F2B;
   --shadow:0 18px 45px rgba(157,107,128,0.12);
@@ -58,6 +59,7 @@ body{
 .btn-abono,.btn-pg,.save-btn{background:linear-gradient(135deg,var(--pink),var(--pink-strong));color:#fff;border:none;border-radius:16px;padding:12px 18px;font-family:var(--fd);font-size:14px;font-weight:900;cursor:pointer;letter-spacing:.01em;box-shadow:0 8px 18px rgba(219,39,119,.16);}
 .btn-gasto-m,.btn-sk,.sel-btn,.chip{background:#fff;border:1px solid var(--bd);color:var(--muted);border-radius:16px;padding:11px 15px;font-family:var(--fd);font-size:14px;font-weight:800;cursor:pointer;}
 .btn-lilac{background:linear-gradient(135deg,var(--lilac),#9B6FE0);color:#fff;border:none;border-radius:14px;padding:10px 16px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;}
+.btn-green{background:linear-gradient(135deg,var(--green),#16a34a);color:#fff;border:none;border-radius:14px;padding:10px 16px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;}
 .btn-sm{padding:8px 14px;font-size:13px;border-radius:12px;}
 .frozen-card{border-color:rgba(219,39,119,.26);}
 .frozen-tag{color:var(--pink-strong);}
@@ -74,6 +76,7 @@ body{
 .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
 .sel-btn.on-bbva{border-color:var(--blue);color:#3B82F6;background:rgba(219,234,254,.65);}
 .sel-btn.on-credito{border-color:var(--lilac);color:var(--lilac);background:rgba(233,213,255,.62);}
+.sel-btn.on-efectivo{border-color:var(--green);color:var(--green-text);background:rgba(220,252,231,.65);}
 .sel-btn.on-cat{border-color:var(--pink);color:var(--pink-strong);background:rgba(251,207,232,.45);}
 .sel-btn.on-abono{border-color:var(--lilac);color:var(--lilac);background:rgba(233,213,255,.55);}
 .sel-btn.on-gasto{border-color:var(--pink);color:var(--pink-strong);background:rgba(251,207,232,.55);}
@@ -81,7 +84,8 @@ body{
 .txt-inp::placeholder{color:#D1A3B7;}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
-.top-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;}
+.top-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:18px;}
 
 /* HOME */
 .welcome{display:flex;flex-direction:column;align-items:center;text-align:center;margin:10px 0 28px;gap:8px;}
@@ -92,6 +96,8 @@ body{
 .week-card .big-n{font-size:24px;}
 .week-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
 .week-pill{display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--bd);background:rgba(255,244,248,.8);color:var(--muted);padding:7px 12px;font-size:13px;font-weight:800;margin-top:12px;}
+.efectivo-card .big-n{font-size:28px;color:var(--green-text)!important;}
+.efectivo-tag{color:var(--green-text)!important;}
 
 /* MSI */
 .msi-card{border-color:rgba(192,132,252,.35);margin-bottom:16px;}
@@ -104,6 +110,18 @@ body{
 .msi-progress-fill{height:100%;border-radius:99px;background:var(--lilac);}
 .msi-btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
 .msi-inactive{opacity:.5;}
+
+/* AMIGOS */
+.friend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:20px;}
+.friend-item{background:rgba(255,255,255,.9);border:1px solid rgba(243,198,218,.5);border-radius:20px;padding:20px;box-shadow:var(--shadow-soft);}
+.friend-name{font-family:var(--fm);font-size:9px;color:var(--pink-strong);letter-spacing:.04em;margin-bottom:8px;}
+.friend-bal{font-family:var(--fm);font-size:22px;margin-bottom:4px;}
+.friend-bal.favor{color:var(--green-text);}
+.friend-bal.contra{color:var(--danger);}
+.friend-bal.cero{color:var(--muted);}
+.friend-status{font-size:13px;font-weight:700;margin-bottom:12px;}
+.friend-tx{display:flex;flex-direction:column;gap:6px;margin:10px 0;max-height:160px;overflow-y:auto;}
+.friend-tx-item{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:7px 10px;background:rgba(255,244,248,.8);border-radius:12px;gap:8px;}
 
 /* ANÁLISIS */
 .stat-box{background:rgba(255,255,255,.82);border:1px solid var(--bd);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow-soft);}
@@ -127,11 +145,19 @@ body{
 .filter-btn.active{background:var(--pink-soft);border-color:var(--pink);color:var(--pink-strong);}
 .tx-list{display:flex;flex-direction:column;gap:10px;}
 .tx-item{background:#fff;border:1px solid rgba(243,198,218,.75);border-radius:18px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 16px rgba(157,107,128,.05);}
+.tx-item:hover .tx-actions{opacity:1;}
 .tx-cat{font-size:15px;font-weight:800;line-height:1.45;}
 .tx-meta{font-size:12px;color:var(--muted);margin-top:3px;font-weight:700;}
-.tx-right{text-align:right;}
-.tx-amt{font-family:var(--fm);font-size:10px;line-height:1.5;font-weight:400;}
-.tx-origen-lbl{font-size:11px;margin-top:4px;font-weight:800;}
+.tx-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.tx-amt{font-family:var(--fm);font-size:12px;line-height:1.5;font-weight:400;}
+/* método de pago badge - grande y claro */
+.tx-origen-badge{display:inline-flex;align-items:center;gap:5px;border-radius:10px;padding:5px 10px;font-size:12px;font-weight:900;margin-top:2px;}
+.tx-origen-badge.bbva{background:rgba(219,234,254,.8);color:#1d4ed8;border:1px solid rgba(147,197,253,.6);}
+.tx-origen-badge.credito{background:rgba(233,213,255,.8);color:#7e22ce;border:1px solid rgba(192,132,252,.6);}
+.tx-origen-badge.efectivo{background:rgba(220,252,231,.8);color:#166534;border:1px solid rgba(74,222,128,.6);}
+.tx-actions{display:flex;gap:6px;margin-top:6px;opacity:1;transition:opacity .2s;}
+.btn-edit{background:rgba(219,234,254,.7);border:1px solid var(--blue);color:#1d4ed8;border-radius:10px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer;}
+.btn-del{background:rgba(251,207,232,.7);border:1px solid rgba(219,39,119,.3);color:var(--danger);border-radius:10px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer;}
 
 /* CHAT */
 .chat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
@@ -154,13 +180,28 @@ body{
 .toast.show{opacity:1;}
 .modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(59,31,43,.25);z-index:100;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
 .modal-bg.open{display:flex;}
-.modal{background:#fff;border:1px solid var(--bd);border-radius:26px;padding:26px;width:400px;max-width:92vw;box-shadow:var(--shadow);max-height:90vh;overflow-y:auto;}
+.modal{background:#fff;border:1px solid var(--bd);border-radius:26px;padding:26px;width:420px;max-width:92vw;box-shadow:var(--shadow);max-height:90vh;overflow-y:auto;}
 .modal-title{font-size:18px;font-weight:900;margin-bottom:18px;color:var(--text);}
 .modal-close{float:right;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;}
 .sync-indicator{position:fixed;top:12px;right:16px;font-size:11px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.9);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;z-index:50;display:none;}
 .sync-indicator.show{display:block;}
-@media(max-width:900px){.top-grid,.grid2,.grid3{grid-template-columns:1fr;}.sidebar{width:200px}.main{margin-left:200px;}.msi-grid{grid-template-columns:1fr;}}
-@media(max-width:640px){.sidebar{display:none;}.bottom-nav{display:block;}.main{margin-left:0;padding-bottom:76px;}.screen{padding:16px 14px;}.welcome-title{font-size:11px;}.balance-card .big-n{font-size:26px;}.fri-banner{flex-direction:column;}.fri-btns{width:100%;}.btn-pg,.btn-sk{flex:1;text-align:center;}}
+
+/* Fecha rápida */
+.fecha-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.fecha-btn{background:#fff;border:1px solid var(--bd);color:var(--muted);border-radius:12px;padding:9px 16px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;}
+.fecha-btn.active{border-color:var(--pink);color:var(--pink-strong);background:rgba(251,207,232,.45);}
+.fecha-custom{margin-top:8px;display:none;}
+.fecha-custom.show{display:block;}
+
+/* Confirmación modal */
+.confirm-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(243,198,218,.4);font-size:14px;}
+.confirm-row:last-of-type{border:none;}
+.confirm-lbl{color:var(--muted);font-weight:700;}
+.confirm-val{font-weight:900;color:var(--text);}
+.confirm-amount{font-family:var(--fm);font-size:22px;color:var(--pink-strong);text-align:center;padding:16px 0;}
+
+@media(max-width:900px){.top-grid,.grid2,.grid3,.grid4{grid-template-columns:1fr;}.sidebar{width:200px}.main{margin-left:200px;}.msi-grid,.friend-grid{grid-template-columns:1fr;}}
+@media(max-width:640px){.sidebar{display:none;}.bottom-nav{display:block;}.main{margin-left:0;padding-bottom:76px;}.screen{padding:16px 14px;}.welcome-title{font-size:11px;}.balance-card .big-n{font-size:26px;}.fri-banner{flex-direction:column;}.fri-btns{width:100%;}.btn-pg,.btn-sk{flex:1;text-align:center;}.top-grid{grid-template-columns:1fr 1fr;}}
 .page-title{font-family:var(--fm);font-size:11px;color:var(--pink-strong);margin-bottom:22px;letter-spacing:.04em;}
 </style>
 
@@ -191,7 +232,7 @@ body{
     <button class="modal-close" onclick="closeModal('modal-msi')">✕</button>
     <div class="modal-title">Nueva compra a meses</div>
     <div class="form-block"><label class="form-label">Nombre del producto</label><input class="txt-inp" type="text" id="msi-nombre" placeholder="Ej: Monitor gamer, Celular..."></div>
-    <div class="form-block"><label class="form-label">Monto total</label><input class="amount-inp" type="number" id="msi-total" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block"><label class="form-label">Monto total</label><input class="amount-inp" type="number" id="msi-total" placeholder="$0" style="font-size:20px;padding:12px 14px;" oninput="updateMsiPreview()"></div>
     <div class="form-block"><label class="form-label">Número de meses</label>
       <div class="btn-row" id="msi-meses-btns">
         <button class="sel-btn" onclick="selMsiMeses(3)" data-m="3">3 meses</button>
@@ -201,11 +242,11 @@ body{
         <button class="sel-btn" onclick="selMsiMeses(18)" data-m="18">18 meses</button>
       </div>
     </div>
-    <div class="form-block"><label class="form-label">Fecha primer cobro</label><input class="txt-inp" type="date" id="msi-fecha"></div>
     <div id="msi-preview" style="display:none;background:var(--lilac-soft);border-radius:14px;padding:14px;margin-bottom:18px;">
-      <div style="font-family:var(--fm);font-size:7px;color:#7E22CE;margin-bottom:8px;letter-spacing:.06em;">RESUMEN</div>
+      <div style="font-family:var(--fm);font-size:7px;color:#7E22CE;margin-bottom:8px;letter-spacing:.06em;">RESUMEN INTELIGENTE</div>
       <div style="font-size:14px;color:var(--text);font-weight:700;">Mensualidad: <span id="msi-prev-mens" style="color:var(--lilac);font-family:var(--fm);font-size:11px;">$0</span></div>
       <div style="font-size:13px;color:var(--muted);margin-top:4px;">Equivale a <span id="msi-prev-sem">$0</span>/semana aprox.</div>
+      <div style="font-size:13px;color:#7E22CE;margin-top:8px;font-weight:700;" id="msi-ciclo-info">Se cargará al ciclo actual</div>
     </div>
     <button class="save-btn" onclick="saveMsi()" style="background:linear-gradient(135deg,var(--lilac),#9B6FE0);">AGREGAR MSI</button>
   </div>
@@ -221,16 +262,122 @@ body{
   </div>
 </div>
 
+<!-- MODAL AMIGO NUEVO -->
+<div class="modal-bg" id="modal-amigo">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-amigo')">✕</button>
+    <div class="modal-title">Agregar amigo</div>
+    <div class="form-block"><label class="form-label">Nombre</label><input class="txt-inp" type="text" id="amigo-nombre" placeholder="Ej: Carlos, Sofi..."></div>
+    <button class="save-btn" onclick="saveAmigo()">AGREGAR</button>
+  </div>
+</div>
+
+<!-- MODAL MOVIMIENTO AMIGO -->
+<div class="modal-bg" id="modal-amigo-mov">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-amigo-mov')">✕</button>
+    <div class="modal-title" id="amigo-mov-title">Registrar movimiento</div>
+    <div class="form-block">
+      <label class="form-label">¿Quién pagó?</label>
+      <div class="btn-row">
+        <button class="sel-btn on-abono" id="amov-yo" onclick="selAmigoMovTipo('yo')">Yo pagué (me deben)</button>
+        <button class="sel-btn" id="amov-el" onclick="selAmigoMovTipo('ellos')">Ellos pagaron (les debo)</button>
+      </div>
+    </div>
+    <div class="form-block"><label class="form-label">Monto</label><input class="amount-inp" type="number" id="amigo-mov-amt" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block"><label class="form-label">Concepto</label><input class="txt-inp" type="text" id="amigo-mov-nota" placeholder="Ej: antro, cena, Uber..."></div>
+    <div class="form-block">
+      <label class="form-label">¿Con qué pagaste?</label>
+      <div class="btn-row">
+        <button class="sel-btn on-bbva" id="amov-bbva" onclick="selAmigoOrigen('bbva')">💳 BBVA</button>
+        <button class="sel-btn" id="amov-cred" onclick="selAmigoOrigen('credito')">💜 Banamex</button>
+        <button class="sel-btn" id="amov-ef" onclick="selAmigoOrigen('efectivo')">💵 Efectivo</button>
+      </div>
+    </div>
+    <div class="form-block"><label class="form-label">Fecha</label><input class="txt-inp" type="date" id="amigo-mov-fecha"></div>
+    <button class="save-btn" onclick="saveAmigoMov()">GUARDAR</button>
+  </div>
+</div>
+
+<!-- MODAL SALDAR AMIGO -->
+<div class="modal-bg" id="modal-amigo-saldar">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-amigo-saldar')">✕</button>
+    <div class="modal-title" id="amigo-saldar-title">Saldar cuenta</div>
+    <div class="form-block"><label class="form-label">Monto a saldar</label><input class="amount-inp" type="number" id="amigo-saldar-amt" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block">
+      <label class="form-label">Método</label>
+      <div class="btn-row">
+        <button class="sel-btn on-bbva" id="asal-bbva" onclick="selSaldarOrigen('bbva')">💳 BBVA</button>
+        <button class="sel-btn" id="asal-cred" onclick="selSaldarOrigen('credito')">💜 Banamex</button>
+        <button class="sel-btn" id="asal-ef" onclick="selSaldarOrigen('efectivo')">💵 Efectivo</button>
+      </div>
+    </div>
+    <button class="save-btn" onclick="saveSaldar()">SALDAR</button>
+  </div>
+</div>
+
+<!-- MODAL AGREGAR EFECTIVO MANUAL -->
+<div class="modal-bg" id="modal-efectivo">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-efectivo')">✕</button>
+    <div class="modal-title">Agregar efectivo</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px;font-weight:700;">Para cuando recibes efectivo que no viene de tu BBVA (cobro, préstamo pagado, etc.)</div>
+    <div class="form-block"><label class="form-label">Monto</label><input class="amount-inp" type="number" id="ef-amt" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block"><label class="form-label">Concepto</label><input class="txt-inp" type="text" id="ef-nota" placeholder="Ej: cobro de Carlos, préstamo pagado..."></div>
+    <button class="save-btn" style="background:linear-gradient(135deg,var(--green),#16a34a);" onclick="saveEfectivoManual()">AGREGAR</button>
+  </div>
+</div>
+
+<!-- MODAL CONFIRMACIÓN -->
+<div class="modal-bg" id="modal-confirm">
+  <div class="modal">
+    <div class="modal-title">¿Confirmas este registro?</div>
+    <div class="confirm-amount" id="confirm-amount">$0</div>
+    <div id="confirm-details"></div>
+    <div style="display:flex;gap:10px;margin-top:20px;">
+      <button class="btn-gasto-m" style="flex:1;" onclick="closeModal('modal-confirm')">Corregir</button>
+      <button class="save-btn" style="flex:1;" id="confirm-ok-btn" onclick="confirmSave()">Confirmar ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR TX -->
+<div class="modal-bg" id="modal-edit-tx">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-edit-tx')">✕</button>
+    <div class="modal-title">Editar registro</div>
+    <input type="hidden" id="edit-tx-id">
+    <div class="form-block"><label class="form-label">Monto</label><input class="amount-inp" type="number" id="edit-amt" placeholder="$0" style="font-size:20px;padding:12px 14px;"></div>
+    <div class="form-block">
+      <label class="form-label">¿Con qué pagaste?</label>
+      <div class="btn-row">
+        <button class="sel-btn" id="eob-bbva" onclick="selEditOrigen('bbva')">💳 BBVA</button>
+        <button class="sel-btn" id="eob-credito" onclick="selEditOrigen('credito')">💜 Banamex</button>
+        <button class="sel-btn" id="eob-efectivo" onclick="selEditOrigen('efectivo')">💵 Efectivo</button>
+      </div>
+    </div>
+    <div class="form-block">
+      <label class="form-label">Categoría</label>
+      <div class="btn-row" id="edit-cat-grid"></div>
+    </div>
+    <div class="form-block"><label class="form-label">Nota</label><input class="txt-inp" type="text" id="edit-nota" placeholder="Nota opcional"></div>
+    <button class="save-btn" onclick="saveEditTx()">GUARDAR CAMBIOS</button>
+  </div>
+</div>
+
 <div class="layout">
   <aside class="sidebar">
     <div class="logo"><div class="logo-t">FINANZAS</div><div class="logo-s">Angel Yamil</div></div>
     <div class="nav-item active" onclick="go('home')" id="snav-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>INICIO</div>
     <div class="nav-item" onclick="go('register')" id="snav-register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>REGISTRAR</div>
     <div class="nav-item" onclick="go('msi')" id="snav-msi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>MSI</div>
+    <div class="nav-item" onclick="go('amigos')" id="snav-amigos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>AMIGOS</div>
     <div class="nav-item" onclick="go('dashboard')" id="snav-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>ANÁLISIS</div>
     <div class="nav-item" onclick="go('chat')" id="snav-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA</div>
     <div class="sb-bottom">
       <div class="sb-row"><span class="sb-lbl">BBVA</span><span class="sb-val" id="sb-bbva">$0</span></div>
+      <div class="sb-row"><span class="sb-lbl">Efectivo</span><span class="sb-val" id="sb-efectivo" style="color:var(--green-text)!important;">$0</span></div>
       <div class="sb-row"><span class="sb-lbl">Ciclo activo</span><span class="sb-val" id="sb-ciclo">$0</span></div>
       <div class="sb-row"><span class="sb-lbl">Deuda mamá</span><span class="sb-val" id="sb-mama">$0</span></div>
     </div>
@@ -245,10 +392,15 @@ body{
         <div class="welcome-date" id="hero-date"></div>
       </div>
 
+      <!-- VIERNES BANNER -->
       <div id="fri-banner" style="display:none" class="fri-banner">
-        <div><div class="fri-tag-txt">Viernes de cobro</div><div class="fri-text" id="fri-text">Sugerencia: <b id="fri-amt">$0</b></div></div>
+        <div>
+          <div class="fri-tag-txt">🎉 ¡Viernes de cobro, Yamil!</div>
+          <div class="fri-text" id="fri-text">Sugerencia de pago</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px;font-weight:700;" id="fri-sub">Te recomendamos pagar esto hoy para estar al día</div>
+        </div>
         <div class="fri-btns">
-          <button class="btn-pg" onclick="pagarSugFri()">Pagar sugerido</button>
+          <button class="btn-pg" onclick="abrirPagoViernes()">💳 Ir a pagar</button>
           <button class="btn-sk" onclick="document.getElementById('fri-banner').style.display='none'">Ahora no</button>
         </div>
       </div>
@@ -259,23 +411,28 @@ body{
         <button onclick="cerrarCiclo()" style="background:var(--mustard-text);color:#fff;border:none;border-radius:12px;padding:10px 18px;font-family:var(--fd);font-size:13px;font-weight:800;cursor:pointer;">Cerrar ciclo ahora</button>
       </div>
 
-      <!-- BALANCE + WEEK -->
+      <!-- BALANCE + WEEK + EFECTIVO -->
       <div class="top-grid">
         <div class="card balance-card">
           <div class="card-tag">BALANCE</div>
           <div class="big-n" id="hero-bbva" style="color:var(--pink)">$0</div>
           <div class="small-txt">BBVA débito</div>
         </div>
+        <div class="card efectivo-card">
+          <div class="card-tag efectivo-tag">💵 EFECTIVO</div>
+          <div class="big-n efectivo-n" id="hero-efectivo">$0</div>
+          <div class="small-txt">disponible en cash</div>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+            <button class="btn-sm" style="background:rgba(220,252,231,.7);border:1px solid var(--green);color:var(--green-text);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:800;cursor:pointer;" onclick="openModal('modal-efectivo')">+ Agregar</button>
+          </div>
+        </div>
         <div class="card">
-          <div class="card-tag">WEEK</div>
+          <div class="card-tag">SEMANA</div>
           <div class="week-top">
             <div>
-              <div class="big-n" id="hero-spent" style="color:var(--lilac);font-size:24px;">$0</div>
-              <div class="small-txt">lunes a domingo</div>
-              <div class="week-pill" id="week-status">cargando...</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="height:7px;background:rgba(243,198,218,.45);border-radius:99px;overflow:hidden;margin-top:8px;width:120px;margin-left:auto;"><div id="hero-wbar" style="height:100%;border-radius:99px;width:0%;background:var(--blue);"></div></div>
+              <div class="big-n" id="hero-spent" style="color:var(--lilac);font-size:22px;">$0</div>
+              <div class="small-txt">lunes a hoy</div>
+              <div class="week-pill" id="week-status">esta semana</div>
             </div>
           </div>
         </div>
@@ -337,11 +494,31 @@ body{
     <div class="screen" id="screen-register">
       <div class="page-title">REGISTRAR</div>
       <div style="max-width:580px;">
+
+        <!-- FECHA PRIMERO -->
+        <div class="form-block">
+          <label class="form-label">¿Cuándo fue?</label>
+          <div class="fecha-btns">
+            <button class="fecha-btn active" id="fb-hoy" onclick="selFecha('hoy')">Hoy</button>
+            <button class="fecha-btn" id="fb-ayer" onclick="selFecha('ayer')">Ayer</button>
+            <button class="fecha-btn" id="fb-custom" onclick="selFecha('custom')">Otra fecha</button>
+          </div>
+          <div class="fecha-custom" id="fecha-custom-wrap">
+            <input class="txt-inp" type="date" id="r-fecha">
+          </div>
+        </div>
+
         <div class="form-block"><label class="form-label">Monto</label><input class="amount-inp" type="number" id="r-amount" placeholder="$0"></div>
+
         <div class="form-block">
           <label class="form-label">¿Con qué pagaste?</label>
-          <div class="btn-row"><button class="sel-btn on-bbva" id="ob-bbva" onclick="selOrigen('bbva')">BBVA Débito</button><button class="sel-btn" id="ob-credito" onclick="selOrigen('credito')">Banamex Crédito</button></div>
+          <div class="btn-row">
+            <button class="sel-btn on-bbva" id="ob-bbva" onclick="selOrigen('bbva')">💳 BBVA Débito</button>
+            <button class="sel-btn" id="ob-credito" onclick="selOrigen('credito')">💜 Banamex Crédito</button>
+            <button class="sel-btn" id="ob-efectivo" onclick="selOrigen('efectivo')">💵 Efectivo</button>
+          </div>
         </div>
+
         <div class="form-block">
           <label class="form-label">Categoría</label>
           <div class="btn-row" id="cat-grid">
@@ -350,16 +527,31 @@ body{
             <button class="sel-btn" onclick="selCat('oxxo')" data-c="oxxo">🛒 Oxxo/snacks</button>
             <button class="sel-btn" onclick="selCat('tarjeta')" data-c="tarjeta">💳 Pago tarjeta</button>
             <button class="sel-btn" onclick="selCat('familia')" data-c="familia">👨‍👩‍👧 Familia</button>
+            <button class="sel-btn" onclick="selCat('retiro')" data-c="retiro">🏧 Retiro ATM</button>
+            <button class="sel-btn" onclick="selCat('servicios')" data-c="servicios">📱 Servicios</button>
+            <button class="sel-btn" onclick="selCat('salud')" data-c="salud">🏥 Salud</button>
+            <button class="sel-btn" onclick="selCat('ropa')" data-c="ropa">👕 Ropa/personal</button>
+            <button class="sel-btn" onclick="selCat('ocio')" data-c="ocio">🎉 Ocio/salidas</button>
+            <button class="sel-btn" onclick="selCat('regalos')" data-c="regalos">🎁 Regalos</button>
+            <button class="sel-btn" onclick="selCat('hogar')" data-c="hogar">🛠️ Hogar</button>
+            <button class="sel-btn" onclick="selCat('viajes')" data-c="viajes">✈️ Viajes</button>
+            <button class="sel-btn" onclick="selCat('prestamo')" data-c="prestamo">💸 Pago préstamo</button>
             <button class="sel-btn" onclick="selCat('otro')" data-c="otro">📦 Otro</button>
           </div>
         </div>
+
         <div class="form-block"><label class="form-label">Nota (opcional)</label><input class="txt-inp" type="text" id="r-nota" placeholder="Ej: comida del trabajo"></div>
-        <div class="form-block"><label class="form-label">Fecha</label><input class="txt-inp" type="date" id="r-fecha"></div>
+
         <div class="form-block">
           <label class="form-label">Tipo</label>
-          <div class="btn-row"><button class="sel-btn on-gasto" id="tb-gasto" onclick="selTipo('gasto')">Gasto</button><button class="sel-btn" id="tb-ingreso" onclick="selTipo('ingreso')">Ingreso / cobro</button></div>
+          <div class="btn-row">
+            <button class="sel-btn on-gasto" id="tb-gasto" onclick="selTipo('gasto')">Gasto</button>
+            <button class="sel-btn" id="tb-ingreso" onclick="selTipo('ingreso')">💰 Nómina / ingreso</button>
+            <button class="sel-btn" id="tb-prestamo-rec" onclick="selTipo('prestamo_rec')">🤝 Préstamo recibido</button>
+          </div>
         </div>
-        <button class="save-btn" onclick="saveTx()">GUARDAR REGISTRO</button>
+
+        <button class="save-btn" onclick="pedirConfirm()">GUARDAR REGISTRO</button>
       </div>
     </div>
 
@@ -369,6 +561,7 @@ body{
         <div class="page-title" style="margin-bottom:0;">MESES SIN INTERESES</div>
         <button class="btn-lilac" onclick="document.getElementById('modal-msi').classList.add('open')">+ Nueva compra MSI</button>
       </div>
+      <div id="msi-ciclo-info-banner" style="display:none;background:rgba(233,213,255,.5);border:1px solid rgba(192,132,252,.4);border-radius:16px;padding:14px 18px;margin-bottom:18px;font-size:14px;color:#7e22ce;font-weight:700;"></div>
       <div id="msi-list" class="msi-grid"></div>
       <div id="msi-empty" style="display:none;text-align:center;padding:40px;color:var(--muted);">
         <div style="font-family:var(--fm);font-size:9px;margin-bottom:12px;">SIN COMPRAS MSI</div>
@@ -376,15 +569,24 @@ body{
       </div>
     </div>
 
+    <!-- AMIGOS -->
+    <div class="screen" id="screen-amigos">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+        <div class="page-title" style="margin-bottom:0;">DEUDAS CON AMIGOS</div>
+        <button class="btn-lilac" onclick="document.getElementById('modal-amigo').classList.add('open')">+ Agregar amigo</button>
+      </div>
+      <div id="amigos-list" class="friend-grid"></div>
+      <div id="amigos-empty" style="display:none;text-align:center;padding:40px;color:var(--muted);">
+        <div style="font-family:var(--fm);font-size:9px;margin-bottom:12px;">SIN AMIGOS REGISTRADOS</div>
+        <div style="font-size:14px;">Agrega a alguien para llevar nota de quién debe a quién.</div>
+      </div>
+    </div>
+
     <!-- DASHBOARD -->
     <div class="screen" id="screen-dashboard">
       <div class="page-title">ANÁLISIS</div>
-
-      <!-- Resumen stats -->
       <div class="grid3" style="margin-bottom:20px;" id="stats-grid"></div>
-
       <div class="grid2">
-        <!-- Donut categorías -->
         <div class="card">
           <div class="card-tag">Categorías</div>
           <div class="donut-wrap">
@@ -395,27 +597,19 @@ body{
             <div class="legend" id="donut-legend"><div style="font-size:13px;color:var(--muted)">Sin gastos</div></div>
           </div>
         </div>
-
-        <!-- Fijo vs Variable -->
         <div class="card">
           <div class="card-tag">Fijo vs Variable</div>
           <div id="fijo-var-chart" class="bar-chart"></div>
         </div>
       </div>
-
-      <!-- Barras por día -->
       <div class="card" style="margin-bottom:20px;">
         <div class="card-tag">Gasto por día (semana actual)</div>
         <div id="day-chart" class="bar-chart" style="gap:12px;"></div>
       </div>
-
-      <!-- BBVA vs Crédito -->
       <div class="card" style="margin-bottom:20px;">
-        <div class="card-tag">BBVA vs Crédito</div>
+        <div class="card-tag">Por método de pago</div>
         <div id="origen-break"><div style="font-size:13px;color:var(--muted)">Sin gastos</div></div>
       </div>
-
-      <!-- Lista con filtros -->
       <div class="card" style="margin-bottom:20px;">
         <div class="card-tag" style="margin-bottom:14px;">Movimientos</div>
         <div class="filter-row" id="filter-cat-row"></div>
@@ -423,22 +617,20 @@ body{
           <button class="filter-btn active" onclick="setFilterTime('todos')" data-ft="todos">Todos</button>
           <button class="filter-btn" onclick="setFilterTime('hoy')" data-ft="hoy">Hoy</button>
           <button class="filter-btn" onclick="setFilterTime('semana')" data-ft="semana">Semana</button>
+          <button class="filter-btn" onclick="setFilterTime('ciclo')" data-ft="ciclo">Ciclo Banamex</button>
           <button class="filter-btn" onclick="setFilterTime('mes')" data-ft="mes">Mes</button>
         </div>
         <div class="filter-row" id="filter-origen-row">
           <button class="filter-btn active" onclick="setFilterOrigen('todos')" data-fo="todos">Todos</button>
-          <button class="filter-btn" onclick="setFilterOrigen('bbva')" data-fo="bbva">BBVA</button>
-          <button class="filter-btn" onclick="setFilterOrigen('credito')" data-fo="credito">Banamex</button>
+          <button class="filter-btn" onclick="setFilterOrigen('bbva')" data-fo="bbva">💳 BBVA</button>
+          <button class="filter-btn" onclick="setFilterOrigen('credito')" data-fo="credito">💜 Banamex</button>
+          <button class="filter-btn" onclick="setFilterOrigen('efectivo')" data-fo="efectivo">💵 Efectivo</button>
         </div>
         <div class="tx-list" id="tx-list"><div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">No hay movimientos</div></div>
       </div>
-
-      <!-- Backup -->
       <div class="card" style="margin-bottom:20px;">
         <div class="card-tag">Backup</div>
-        <div class="small-txt" style="margin-bottom:14px;">
-          Descarga una copia de seguridad de tus datos o restaura una anterior.
-        </div>
+        <div class="small-txt" style="margin-bottom:14px;">Descarga una copia de seguridad de tus datos o restaura una anterior.</div>
         <div class="btn-row">
           <button class="btn-pg" onclick="downloadBackup()">Descargar backup</button>
           <button class="btn-sk" onclick="triggerRestoreBackup()">Restaurar backup</button>
@@ -456,6 +648,7 @@ body{
           <button class="chip" onclick="sendChip('¿cuánto debería abonarle a mi mamá este viernes?')">¿cuánto a mamá?</button>
           <button class="chip" onclick="sendChip('¿en qué he gastado más este ciclo?')">¿en qué gasté más?</button>
           <button class="chip" onclick="sendChip('¿cómo va mi ciclo de Banamex?')">¿cómo va Banamex?</button>
+          <button class="chip" onclick="sendChip('¿cuánto efectivo tengo y cómo lo he usado?')">¿mi efectivo?</button>
         </div>
         <div class="chat-msgs" id="chat-msgs">
           <div class="msg ai">Hola Yamil ♡ Tus datos están cargados. ¿Qué quieres saber?</div>
@@ -473,8 +666,9 @@ body{
 <nav class="bottom-nav">
   <div class="bnav-inner">
     <button class="bnav-btn active" onclick="go('home')" id="bnav-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>INICIO</button>
-    <button class="bnav-btn" onclick="go('register')" id="bnav-register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>REGISTRAR</button>
+    <button class="bnav-btn" onclick="go('register')" id="bnav-register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>+</button>
     <button class="bnav-btn" onclick="go('msi')" id="bnav-msi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>MSI</button>
+    <button class="bnav-btn" onclick="go('amigos')" id="bnav-amigos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>AMIGOS</button>
     <button class="bnav-btn" onclick="go('dashboard')" id="bnav-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>ANÁLISIS</button>
     <button class="bnav-btn" onclick="go('chat')" id="bnav-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA</button>
   </div>
@@ -498,16 +692,17 @@ async function kvSet(data){
 }
 // ─────────────────────────────────────────────────────────────
 
-const LIM_CRED=13000,LIM_SEM=1000,COBRO=2005;
-const CAT_COLORS={comida:'#F472B6',transporte:'#93C5FD',oxxo:'#FDE68A',tarjeta:'#C084FC',familia:'#FBCFE8',otro:'#D1A3B7'};
-const CAT_NAMES={comida:'Comida',transporte:'Transporte',oxxo:'Oxxo/snacks',tarjeta:'Pago tarjeta',familia:'Familia',otro:'Otro'};
+const LIM_CRED=13000,COBRO=2005;
+const CAT_COLORS={comida:'#F472B6',transporte:'#93C5FD',oxxo:'#FDE68A',tarjeta:'#C084FC',familia:'#FBCFE8',retiro:'#6EE7B7',servicios:'#7DD3FC',salud:'#FCA5A5',ropa:'#DDD6FE',ocio:'#FCD34D',regalos:'#F9A8D4',hogar:'#A5B4FC',viajes:'#67E8F9',prestamo:'#FDA4AF',otro:'#D1A3B7',nomina:'#86EFAC',prestamo_rec:'#A7F3D0'};
+const CAT_NAMES={comida:'Comida',transporte:'Transporte',oxxo:'Oxxo/snacks',tarjeta:'Pago tarjeta',familia:'Familia',retiro:'Retiro ATM',servicios:'Servicios',salud:'Salud',ropa:'Ropa/personal',ocio:'Ocio/salidas',regalos:'Regalos',hogar:'Hogar',viajes:'Viajes',prestamo:'Pago préstamo',otro:'Otro',nomina:'Nómina',prestamo_rec:'Préstamo recibido'};
+const CAT_ICONS={comida:'🍕',transporte:'🚗',oxxo:'🛒',tarjeta:'💳',familia:'👨‍👩‍👧',retiro:'🏧',servicios:'📱',salud:'🏥',ropa:'👕',ocio:'🎉',regalos:'🎁',hogar:'🛠️',viajes:'✈️',prestamo:'💸',otro:'📦',nomina:'💰',prestamo_rec:'🤝'};
+const ORIGEN_LABELS={bbva:'BBVA Débito',credito:'Banamex',efectivo:'Efectivo'};
 const MONTHS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const MONTHS_FULL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-const DAYS_SHORT=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 
 const ST_DEFAULT={
-  bbva:3880,cicloActivo:887.93,cicloInicio:'2026-04-21',cicloCorte:'2026-05-21',cicloPago:'2026-06-11',
+  bbva:3880,efectivo:0,cicloActivo:887.93,cicloInicio:'2026-04-21',cicloCorte:'2026-05-21',cicloPago:'2026-06-11',
   pagoActual:0,pagoActualOriginal:0,pagoActualCorte:'2026-04-21',pagoActualLimite:'2026-05-11',
   deudaCongelada:0,congeladaPagoDate:'',
   mamaDeuda:2254,
@@ -519,26 +714,32 @@ const ST_DEFAULT={
     {tipo:'gasto',amt:500,nota:'27 abril',fecha:'2026-04-27'},
   ],
   msiCompras:[],
+  amigos:[],
   transactions:[
-    {id:1,amount:67,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-22'},
-    {id:2,amount:429,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-24'},
-    {id:3,amount:215,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-26'},
+    {id:1,amount:67,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-22',impact:{cicloActivo:67}},
+    {id:2,amount:429,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-24',impact:{cicloActivo:429}},
+    {id:3,amount:215,nota:'comida',cat:'comida',origen:'credito',tipo:'gasto',fecha:'2026-04-26',impact:{cicloActivo:215}},
   ],
-  selCat:null,selOrigen:'bbva',selTipo:'gasto',modalTipo:'abono',
+  selCat:null,selOrigen:'bbva',selTipo:'gasto',selFecha:'hoy',
+  modalTipo:'abono',amigoMovTipo:'yo',amigoOrigen:'bbva',amigoSaldarOrigen:'bbva',amigoMovId:null,amigoSaldarId:null,
+  editOrigen:'bbva',
   msiMesesSel:null,msiAbonoId:null,
   filterCat:'todos',filterOrigen:'todos',filterTime:'todos',
   chatHistory:[]
 };
 
 let ST={...ST_DEFAULT};
+let pendingTx=null;
 
 async function loadST(){
   const remote=await kvGet();
   if(remote&&typeof remote==='object'&&remote.bbva!==undefined){
     ST={...ST_DEFAULT,...remote};
     if(!ST.msiCompras)ST.msiCompras=[];
+    if(!ST.amigos)ST.amigos=[];
+    if(ST.efectivo===undefined)ST.efectivo=0;
   } else {
-    try{const s=localStorage.getItem('fin_v5');if(s){const p=JSON.parse(s);if(p&&p.bbva!==undefined){ST={...ST_DEFAULT,...p};if(!ST.msiCompras)ST.msiCompras=[];}}}catch(e){}
+    try{const s=localStorage.getItem('fin_v5');if(s){const p=JSON.parse(s);if(p&&p.bbva!==undefined){ST={...ST_DEFAULT,...p};if(!ST.msiCompras)ST.msiCompras=[];if(!ST.amigos)ST.amigos=[];if(ST.efectivo===undefined)ST.efectivo=0;}}}catch(e){}
   }
   updateHome();
 }
@@ -555,23 +756,109 @@ function go(name){
   if(name==='dashboard')renderDash();
   if(name==='home')updateHome();
   if(name==='msi')renderMsi();
+  if(name==='amigos')renderAmigos();
 }
 
+// ─── FECHA RÁPIDA ─────────────────────────────────────────────
+function selFecha(tipo){
+  ST.selFecha=tipo;
+  ['hoy','ayer','custom'].forEach(t=>{
+    const b=document.getElementById('fb-'+t);
+    if(b)b.classList.toggle('active',t===tipo);
+  });
+  const wrap=document.getElementById('fecha-custom-wrap');
+  if(tipo==='custom'){wrap.classList.add('show');}
+  else{wrap.classList.remove('show');}
+}
+function getFechaSeleccionada(){
+  if(ST.selFecha==='hoy')return new Date().toISOString().split('T')[0];
+  if(ST.selFecha==='ayer'){const y=new Date();y.setDate(y.getDate()-1);return y.toISOString().split('T')[0];}
+  return document.getElementById('r-fecha').value||new Date().toISOString().split('T')[0];
+}
+
+// ─── SELECTS ─────────────────────────────────────────────────
 function selCat(c){ST.selCat=c;document.querySelectorAll('[data-c]').forEach(b=>b.classList.toggle('on-cat',b.dataset.c===c));}
-function presetCat(c){selCat(c);}
+function presetCat(c){go('register');setTimeout(()=>selCat(c),50);}
 function presetOrigen(o){selOrigen(o);}
-function selOrigen(o){ST.selOrigen=o;['bbva','credito'].forEach(x=>{const el=document.getElementById('ob-'+x);if(el)el.className='sel-btn'+(o===x?' on-'+x:'');});}
-function selTipo(t){ST.selTipo=t;document.getElementById('tb-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');document.getElementById('tb-ingreso').className='sel-btn'+(t==='ingreso'?' on-abono':'');}
+function selOrigen(o){
+  ST.selOrigen=o;
+  ['bbva','credito','efectivo'].forEach(x=>{
+    const el=document.getElementById('ob-'+x);
+    if(el)el.className='sel-btn'+(o===x?' on-'+x:'');
+  });
+  // Si selecciona efectivo, auto-seleccionar gasto
+  if(o==='efectivo'&&ST.selTipo!=='gasto')selTipo('gasto');
+}
+function selTipo(t){
+  ST.selTipo=t;
+  document.getElementById('tb-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');
+  document.getElementById('tb-ingreso').className='sel-btn'+(t==='ingreso'?' on-abono':'');
+  document.getElementById('tb-prestamo-rec').className='sel-btn'+(t==='prestamo_rec'?' on-abono':'');
+  // Ingresos/préstamos por defecto van a BBVA
+  if(t==='ingreso'){selOrigen('bbva');selCat('nomina');}
+  if(t==='prestamo_rec'){selCat('prestamo_rec');}
+}
 function selModalTipo(t){ST.modalTipo=t;document.getElementById('mt-abono').className='sel-btn'+(t==='abono'?' on-abono':'');document.getElementById('mt-gasto').className='sel-btn'+(t==='gasto'?' on-gasto':'');}
 function selMsiMeses(m){
   ST.msiMesesSel=m;
   document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on-cat',parseInt(b.dataset.m)===m));
+  updateMsiPreview();
+}
+function updateMsiPreview(){
   const total=parseFloat(document.getElementById('msi-total').value)||0;
-  if(total>0){const mens=Math.ceil(total/m);document.getElementById('msi-prev-mens').textContent='$'+mens.toLocaleString('es-MX');document.getElementById('msi-prev-sem').textContent='$'+Math.ceil(mens/4).toLocaleString('es-MX');document.getElementById('msi-preview').style.display='block';}
+  const m=ST.msiMesesSel;
+  if(total>0&&m){
+    const mens=Math.ceil(total/m);
+    document.getElementById('msi-prev-mens').textContent='$'+mens.toLocaleString('es-MX');
+    document.getElementById('msi-prev-sem').textContent='$'+Math.ceil(mens/4).toLocaleString('es-MX');
+    // Detectar ciclo inteligente
+    const hoy=new Date();
+    const corte=new Date(ST.cicloCorte+'T12:00:00');
+    const info=hoy<=corte?'✅ Se cargará al ciclo actual ('+MONTHS[corte.getMonth()]+')':'📅 Entrará al siguiente ciclo';
+    document.getElementById('msi-ciclo-info').textContent=info;
+    document.getElementById('msi-preview').style.display='block';
+  }
+}
+
+// ─── AMIGOS ──────────────────────────────────────────────────
+function selAmigoMovTipo(t){
+  ST.amigoMovTipo=t;
+  document.getElementById('amov-yo').className='sel-btn'+(t==='yo'?' on-abono':'');
+  document.getElementById('amov-el').className='sel-btn'+(t==='ellos'?' on-gasto':'');
+}
+function selAmigoOrigen(o){
+  ST.amigoOrigen=o;
+  ['bbva','cred','ef'].forEach(x=>{
+    const map={bbva:'bbva',cred:'credito',ef:'efectivo'};
+    const el=document.getElementById('amov-'+x);
+    if(el)el.className='sel-btn'+(map[x]===o?' on-'+map[x]:'');
+  });
+}
+function selSaldarOrigen(o){
+  ST.amigoSaldarOrigen=o;
+  ['bbva','cred','ef'].forEach(x=>{
+    const map={bbva:'bbva',cred:'credito',ef:'efectivo'};
+    const el=document.getElementById('asal-'+x);
+    if(el)el.className='sel-btn'+(map[x]===o?' on-'+map[x]:'');
+  });
+}
+function selEditOrigen(o){
+  ST.editOrigen=o;
+  ['bbva','credito','efectivo'].forEach(x=>{
+    const el=document.getElementById('eob-'+x);
+    if(el)el.className='sel-btn'+(o===x?' on-'+x:'');
+  });
 }
 
 function openModal(id,tipo){
-  if(id==='modal-mama'){ST.modalTipo=tipo;selModalTipo(tipo);document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];}
+  if(id==='modal-mama'){ST.modalTipo=tipo||'abono';selModalTipo(ST.modalTipo);document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];}
+  if(id==='modal-amigo-mov'){
+    document.getElementById('amigo-mov-fecha').value=new Date().toISOString().split('T')[0];
+    selAmigoMovTipo('yo');selAmigoOrigen('bbva');
+  }
+  if(id==='modal-amigo-saldar'){
+    selSaldarOrigen('bbva');
+  }
   document.getElementById(id).classList.add('open');
 }
 function closeModal(id){
@@ -579,8 +866,14 @@ function closeModal(id){
   if(id==='modal-mama'){document.getElementById('mama-amount').value='';document.getElementById('mama-nota').value='';}
   if(id==='modal-msi'){document.getElementById('msi-nombre').value='';document.getElementById('msi-total').value='';ST.msiMesesSel=null;document.querySelectorAll('[data-m]').forEach(b=>b.classList.remove('on-cat'));document.getElementById('msi-preview').style.display='none';}
   if(id==='modal-msi-abono'){document.getElementById('msi-abono-amt').value='';}
+  if(id==='modal-amigo'){document.getElementById('amigo-nombre').value='';}
+  if(id==='modal-amigo-mov'){document.getElementById('amigo-mov-amt').value='';document.getElementById('amigo-mov-nota').value='';}
+  if(id==='modal-amigo-saldar'){document.getElementById('amigo-saldar-amt').value='';}
+  if(id==='modal-efectivo'){document.getElementById('ef-amt').value='';document.getElementById('ef-nota').value='';}
+  if(id==='modal-confirm'){pendingTx=null;}
 }
 
+// ─── HELPERS ─────────────────────────────────────────────────
 function getWeekStart(){const d=new Date(),day=d.getDay();const mon=new Date(d);mon.setDate(d.getDate()-(day===0?6:day-1));mon.setHours(0,0,0,0);return mon;}
 function getWeeklySpent(){
   const ws=getWeekStart();
@@ -591,130 +884,26 @@ function calcFridaysLeftMonth(){const now=new Date(),last=new Date(now.getFullYe
 function calcSugMama(){return Math.ceil(ST.mamaDeuda/calcFridaysLeftMonth());}
 function calcFridaysToFrozen(){if(!ST.congeladaPagoDate)return 1;const now=new Date(),pay=new Date(ST.congeladaPagoDate+'T12:00:00');let f=0;const d=new Date(now);while(d<=pay){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}return Math.max(1,f);}
 function calcSugFrozen(){return Math.ceil(ST.deudaCongelada/calcFridaysToFrozen());}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}
+function isThisWeek(date){const ws=getWeekStart();const end=new Date(ws);end.setDate(ws.getDate()+7);return date>=ws&&date<end;}
+function isThisMonth(date){const now=new Date();return date.getFullYear()===now.getFullYear()&&date.getMonth()===now.getMonth();}
+function isThisCiclo(date){const s=new Date(ST.cicloInicio+'T00:00:00'),e=new Date(ST.cicloCorte+'T23:59:59');return date>=s&&date<=e;}
 
-async function cerrarCiclo(){
-  ST.pagoActual=ST.cicloActivo;ST.pagoActualOriginal=ST.cicloActivo;ST.pagoActualCorte=ST.cicloCorte;
-  const corte=new Date(ST.cicloCorte+'T12:00:00');
-  const pago=new Date(corte.getFullYear(),corte.getMonth()+1,11);
-  ST.pagoActualLimite=pago.toISOString().split('T')[0];ST.congeladaPagoDate=pago.toISOString().split('T')[0];
-  const nc=new Date(corte.getFullYear(),corte.getMonth()+1,21),np=new Date(corte.getFullYear(),corte.getMonth()+2,11);
-  ST.cicloInicio=ST.cicloCorte;ST.cicloCorte=nc.toISOString().split('T')[0];ST.cicloPago=np.toISOString().split('T')[0];ST.cicloActivo=0;
-  await saveST();showToast('✓ Ciclo cerrado');updateHome();
-}
-async function liquidarCongelado(){
-  if(ST.bbva<ST.deudaCongelada){showToast('BBVA insuficiente');return;}
-  ST.bbva-=ST.deudaCongelada;
-  ST.transactions.unshift({id:Date.now(),amount:ST.deudaCongelada,nota:'Liquidación deuda congelada',cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
-  ST.deudaCongelada=0;ST.congeladaPagoDate='';
-  await saveST();showToast('✓ Deuda liquidada');updateHome();
-}
-async function pagarSugFri(){
-  const sug=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
-  if(ST.bbva<sug){showToast('Saldo insuficiente');return;}
-  ST.bbva-=sug;
-  if(ST.pagoActual>0)ST.pagoActual=Math.max(0,ST.pagoActual-sug);
-  else if(ST.deudaCongelada>0)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-sug);
-  else ST.cicloActivo=Math.max(0,ST.cicloActivo-sug);
-  ST.transactions.unshift({id:Date.now(),amount:sug,nota:'Pago viernes sugerido',cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
-  await saveST();showToast('✓ Pago registrado');updateHome();document.getElementById('fri-banner').style.display='none';
-}
-
-async function saveMama(){
-  const amt=parseFloat(document.getElementById('mama-amount').value);
-  const nota=document.getElementById('mama-nota').value||'Sin concepto';
-  const fecha=document.getElementById('mama-fecha').value||new Date().toISOString().split('T')[0];
-  if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
-  if(ST.modalTipo==='abono'){ST.mamaDeuda=Math.max(0,ST.mamaDeuda-amt);ST.bbva=Math.max(0,ST.bbva-amt);ST.mamaTx.unshift({tipo:'abono',amt,nota,fecha});ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono mamá: '+nota,cat:'familia',origen:'bbva',tipo:'gasto',fecha});}
-  else{ST.mamaDeuda+=amt;ST.mamaTx.unshift({tipo:'gasto',amt,nota,fecha});}
-  await saveST();closeModal('modal-mama');showToast(ST.modalTipo==='abono'?'✓ Abono registrado':'✓ Gasto de mamá registrado');updateHome();
-}
-
-async function saveMsi(){
-  const nombre=document.getElementById('msi-nombre').value.trim();
-  const total=parseFloat(document.getElementById('msi-total').value);
-  const meses=ST.msiMesesSel;
-  const fecha=document.getElementById('msi-fecha').value||new Date().toISOString().split('T')[0];
-  if(!nombre){showToast('Ingresa el nombre del producto');return;}
-  if(!total||total<=0){showToast('Ingresa el monto total');return;}
-  if(!meses){showToast('Selecciona el número de meses');return;}
-  const mensualidad=Math.ceil(total/meses);
-  ST.msiCompras.push({id:Date.now(),nombre,total,meses,mensualidad,fechaInicio:fecha,mesesPagados:0,pagadoTotal:0,activo:true});
-  await saveST();closeModal('modal-msi');showToast('✓ MSI agregado');renderMsi();
-}
-
-async function aplicarMensualidad(id){
-  const msi=ST.msiCompras.find(m=>m.id===id);if(!msi||!msi.activo)return;
-  ST.pagoActual+=msi.mensualidad;
-  msi.mesesPagados+=1;msi.pagadoTotal+=msi.mensualidad;
-  if(msi.mesesPagados>=msi.meses)msi.activo=false;
-  await saveST();showToast('✓ Mensualidad aplicada');renderMsi();updateHome();
-}
-
-function openMsiAbono(id){
-  ST.msiAbonoId=id;
-  const msi=ST.msiCompras.find(m=>m.id===id);
-  document.getElementById('msi-abono-title').textContent='Abonar extra — '+msi.nombre;
-  document.getElementById('modal-msi-abono').classList.add('open');
-}
-
-async function saveMsiAbono(){
-  const amt=parseFloat(document.getElementById('msi-abono-amt').value);
-  if(!amt||amt<=0){showToast('Ingresa un monto');return;}
-  const msi=ST.msiCompras.find(m=>m.id===ST.msiAbonoId);if(!msi)return;
-  msi.pagadoTotal+=amt;ST.bbva=Math.max(0,ST.bbva-amt);
-  ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono extra MSI: '+msi.nombre,cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0]});
-  await saveST();closeModal('modal-msi-abono');showToast('✓ Abono registrado');renderMsi();
-}
-
-function renderMsi(){
-  const list=document.getElementById('msi-list');
-  const empty=document.getElementById('msi-empty');
-  const activos=ST.msiCompras.filter(m=>m.activo);
-  const inactivos=ST.msiCompras.filter(m=>!m.activo);
-  const todos=[...activos,...inactivos];
-  if(!todos.length){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  list.innerHTML=todos.map(m=>{
-    const deuda=Math.max(0,m.total-m.pagadoTotal);
-    const restantes=m.meses-m.mesesPagados;
-    const pct=Math.round((m.pagadoTotal/m.total)*100);
-    return `<div class="msi-item${m.activo?'':' msi-inactive'}">
-      <div class="msi-nombre">${m.nombre}</div>
-      <div class="msi-total">$${m.total.toLocaleString('es-MX')}</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Deuda restante: <span style="color:var(--lilac);font-weight:800;">$${deuda.toLocaleString('es-MX')}</span></div>
-      <div class="msi-progress"><div class="msi-progress-fill" style="width:${pct}%"></div></div>
-      <div class="v-box">
-        <div class="v-row"><span class="v-lbl">Mes actual</span><span class="v-val">${m.mesesPagados+1} de ${m.meses}</span></div>
-        <div class="v-row"><span class="v-lbl">Mensualidad</span><span class="v-val">$${m.mensualidad.toLocaleString('es-MX')}</span></div>
-        <div class="v-row"><span class="v-lbl">Equiv. semanal</span><span class="v-val">$${Math.ceil(m.mensualidad/4).toLocaleString('es-MX')}</span></div>
-        <div class="v-row"><span class="v-lbl">Meses restantes</span><span class="v-val">${restantes}</span></div>
-        <div class="v-row"><span class="v-lbl">Primer cobro</span><span class="v-val">${m.fechaInicio}</span></div>
-      </div>
-      ${m.activo?`<div class="msi-btns">
-        <button class="btn-lilac btn-sm" onclick="aplicarMensualidad(${m.id})">Aplicar mensualidad</button>
-        <button class="btn-gasto-m btn-sm" onclick="openMsiAbono(${m.id})">Abonar extra</button>
-      </div>`:'<div style="font-family:var(--fm);font-size:8px;color:var(--muted);margin-top:12px;letter-spacing:.04em;">COMPLETADO</div>'}
-    </div>`;
-  }).join('');
-}
-
+// ─── UPDATE HOME ─────────────────────────────────────────────
 function updateHome(){
   const now=new Date();
   const ws=getWeeklySpent();
-  const pct=Math.min(100,(ws/LIM_SEM)*100);
   const h=now.getHours();
   document.getElementById('welcome-title').textContent=h<12?'Buen día, Yamil ♡':h<19?'Buenas tardes, Yamil ♡':'Buenas noches, Yamil ♡';
   document.getElementById('hero-date').textContent=DAYS[now.getDay()]+' '+now.getDate()+' de '+MONTHS_FULL[now.getMonth()]+', '+now.getFullYear();
   document.getElementById('hero-bbva').textContent='$'+Math.round(ST.bbva).toLocaleString('es-MX');
+  document.getElementById('hero-efectivo').textContent='$'+Math.round(ST.efectivo||0).toLocaleString('es-MX');
   document.getElementById('hero-spent').textContent='$'+Math.round(ws).toLocaleString('es-MX');
   document.getElementById('sb-bbva').textContent='$'+Math.round(ST.bbva).toLocaleString('es-MX');
+  document.getElementById('sb-efectivo').textContent='$'+Math.round(ST.efectivo||0).toLocaleString('es-MX');
   document.getElementById('sb-ciclo').textContent='$'+ST.cicloActivo.toFixed(2);
   document.getElementById('sb-mama').textContent='$'+Math.round(ST.mamaDeuda).toLocaleString('es-MX');
-  const bar=document.getElementById('hero-wbar');
-  bar.style.width=pct+'%';bar.style.background=pct>=100?'var(--pink-strong)':pct>=70?'#F3B51B':'var(--blue)';
-  const wp=document.getElementById('week-status');
-  wp.textContent='$'+Math.round(ws).toLocaleString('es-MX')+' de $1,000';
-  wp.style.borderColor=pct>=100?'var(--pink-strong)':pct>=70?'#F3B51B':'var(--bd)';
+  document.getElementById('week-status').textContent='esta semana';
   const ci=new Date(ST.cicloInicio+'T12:00:00'),cc=new Date(ST.cicloCorte+'T12:00:00'),cp=new Date(ST.cicloPago+'T12:00:00');
   document.getElementById('ciclo-badge-txt').textContent='21 '+MONTHS[ci.getMonth()]+' → 21 '+MONTHS[cc.getMonth()];
   document.getElementById('ciclo-gastado').textContent='$'+ST.cicloActivo.toFixed(2);
@@ -745,149 +934,449 @@ function updateHome(){
   document.getElementById('mama-sug').textContent='$'+calcSugMama().toLocaleString('es-MX');
   const mtl=document.getElementById('mama-tx-list');
   mtl.innerHTML=ST.mamaTx.length?ST.mamaTx.slice(0,6).map(t=>`<div class="mama-tx-item"><span style="color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};font-weight:800;">${t.tipo==='abono'?'Abono':'Gasto'}</span><span style="color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${t.nota}</span><span style="font-family:var(--fm);font-size:9px;color:${t.tipo==='abono'?'var(--ng)':'var(--nr)'};">${t.tipo==='abono'?'-':'+'}$${t.amt.toLocaleString('es-MX')}</span></div>`).join(''):'<div style="font-size:12px;color:var(--muted);text-align:center;padding:10px;">Sin movimientos aún</div>';
+
+  // Banner viernes mejorado
   const isFri=now.getDay()===5;
   const friBanner=document.getElementById('fri-banner');
   if(isFri){
-    const sugF=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
-    document.getElementById('fri-text').innerHTML='Banamex: <b>$'+sugF.toLocaleString('es-MX')+'</b> · Mamá: <b>$'+calcSugMama().toLocaleString('es-MX')+'</b>';
+    const sugBanamex=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
+    const sugMama=calcSugMama();
+    document.getElementById('fri-text').innerHTML='Banamex: <b>$'+sugBanamex.toLocaleString('es-MX')+'</b> &nbsp;·&nbsp; Mamá: <b>$'+sugMama.toLocaleString('es-MX')+'</b>';
+    document.getElementById('fri-sub').textContent='Pagando esto hoy quedas al día con todo 💪';
     friBanner.style.display='flex';
   } else friBanner.style.display='none';
+
   const diasCorte=Math.ceil((cc-now)/86400000);
   const cb=document.getElementById('corte-banner');
   if(diasCorte<=3&&diasCorte>=0&&ST.cicloActivo>0){cb.style.display='block';document.getElementById('corte-amt').textContent='$'+ST.cicloActivo.toFixed(2);}
   else cb.style.display='none';
 }
 
-async function saveTx(){
+// El botón "Ir a pagar" del viernes abre el registro prellenado
+function abrirPagoViernes(){
+  const sugBanamex=ST.pagoActual>0?Math.ceil(ST.pagoActual/calcFridaysToFrozen()):(ST.deudaCongelada>0?calcSugFrozen():calcSugCiclo());
+  go('register');
+  setTimeout(()=>{
+    document.getElementById('r-amount').value=sugBanamex;
+    selCat('tarjeta');
+    selOrigen('bbva');
+    selFecha('hoy');
+    document.getElementById('r-nota').value='Pago Banamex viernes';
+    document.getElementById('fri-banner').style.display='none';
+  },60);
+}
+
+// ─── CERRAR CICLO / LIQUIDAR ─────────────────────────────────
+async function cerrarCiclo(){
+  ST.pagoActual=ST.cicloActivo;ST.pagoActualOriginal=ST.cicloActivo;ST.pagoActualCorte=ST.cicloCorte;
+  const corte=new Date(ST.cicloCorte+'T12:00:00');
+  const pago=new Date(corte.getFullYear(),corte.getMonth()+1,11);
+  ST.pagoActualLimite=pago.toISOString().split('T')[0];ST.congeladaPagoDate=pago.toISOString().split('T')[0];
+  const nc=new Date(corte.getFullYear(),corte.getMonth()+1,21),np=new Date(corte.getFullYear(),corte.getMonth()+2,11);
+  ST.cicloInicio=ST.cicloCorte;ST.cicloCorte=nc.toISOString().split('T')[0];ST.cicloPago=np.toISOString().split('T')[0];ST.cicloActivo=0;
+  await saveST();showToast('✓ Ciclo cerrado');updateHome();
+}
+async function liquidarCongelado(){
+  if(ST.bbva<ST.deudaCongelada){showToast('BBVA insuficiente');return;}
+  ST.bbva-=ST.deudaCongelada;
+  ST.transactions.unshift({id:Date.now(),amount:ST.deudaCongelada,nota:'Liquidación deuda congelada',cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0],impact:{bbva:-ST.deudaCongelada}});
+  ST.deudaCongelada=0;ST.congeladaPagoDate='';
+  await saveST();showToast('✓ Deuda liquidada');updateHome();
+}
+
+// ─── MAMÁ ────────────────────────────────────────────────────
+async function saveMama(){
+  const amt=parseFloat(document.getElementById('mama-amount').value);
+  const nota=document.getElementById('mama-nota').value||'Sin concepto';
+  const fecha=document.getElementById('mama-fecha').value||new Date().toISOString().split('T')[0];
+  if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
+  if(ST.modalTipo==='abono'){ST.mamaDeuda=Math.max(0,ST.mamaDeuda-amt);ST.bbva=Math.max(0,ST.bbva-amt);ST.mamaTx.unshift({tipo:'abono',amt,nota,fecha});ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono mamá: '+nota,cat:'familia',origen:'bbva',tipo:'gasto',fecha,impact:{bbva:-amt}});}
+  else{ST.mamaDeuda+=amt;ST.mamaTx.unshift({tipo:'gasto',amt,nota,fecha});}
+  await saveST();closeModal('modal-mama');showToast(ST.modalTipo==='abono'?'✓ Abono registrado':'✓ Gasto de mamá registrado');updateHome();
+}
+
+// ─── EFECTIVO MANUAL ─────────────────────────────────────────
+async function saveEfectivoManual(){
+  const amt=parseFloat(document.getElementById('ef-amt').value);
+  const nota=document.getElementById('ef-nota').value||'Efectivo recibido';
+  if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
+  ST.efectivo=(ST.efectivo||0)+amt;
+  ST.transactions.unshift({id:Date.now(),amount:amt,nota,cat:'otro',origen:'efectivo',tipo:'ingreso',fecha:new Date().toISOString().split('T')[0],impact:{efectivo:amt}});
+  await saveST();closeModal('modal-efectivo');showToast('✓ Efectivo agregado');updateHome();
+}
+
+// ─── CONFIRMACIÓN ANTES DE GUARDAR ───────────────────────────
+function pedirConfirm(){
   const amt=parseFloat(document.getElementById('r-amount').value);
   const nota=document.getElementById('r-nota').value;
-  const fecha=document.getElementById('r-fecha').value||new Date().toISOString().split('T')[0];
-  const cat=ST.selCat,origen=ST.selOrigen,tipo=ST.selTipo;
-
+  const cat=ST.selCat;
+  const origen=ST.selOrigen;
+  const tipo=ST.selTipo;
+  const fecha=getFechaSeleccionada();
   if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
   if(!cat){showToast('Selecciona una categoría');return;}
 
+  const tipoLabel=tipo==='gasto'?'Gasto':tipo==='ingreso'?'Ingreso / Nómina':'Préstamo recibido';
+  const fechaDisplay=tipo==='gasto'||tipo==='prestamo_rec'?fecha:(new Date().toISOString().split('T')[0]);
+  const origenLabel=ORIGEN_LABELS[origen]||origen;
+  const catIcon=CAT_ICONS[cat]||'';
+  const catLabel=CAT_NAMES[cat]||cat;
+  const sign=tipo==='gasto'?'-':'+';
+  const color=tipo==='gasto'?'var(--danger)':'var(--green-text)';
+
+  document.getElementById('confirm-amount').innerHTML=`<span style="color:${color}">${sign}$${amt.toLocaleString('es-MX')}</span>`;
+  document.getElementById('confirm-details').innerHTML=`
+    <div class="confirm-row"><span class="confirm-lbl">Categoría</span><span class="confirm-val">${catIcon} ${catLabel}</span></div>
+    <div class="confirm-row"><span class="confirm-lbl">Método</span><span class="confirm-val">${origenLabel}</span></div>
+    <div class="confirm-row"><span class="confirm-lbl">Tipo</span><span class="confirm-val">${tipoLabel}</span></div>
+    <div class="confirm-row"><span class="confirm-lbl">Fecha</span><span class="confirm-val">${fecha}</span></div>
+    ${nota?`<div class="confirm-row"><span class="confirm-lbl">Nota</span><span class="confirm-val">${nota}</span></div>`:''}
+  `;
+  pendingTx={amt,nota,cat,origen,tipo,fecha};
+  document.getElementById('modal-confirm').classList.add('open');
+}
+
+async function confirmSave(){
+  if(!pendingTx)return;
+  closeModal('modal-confirm');
+  await ejecutarSaveTx(pendingTx);
+  pendingTx=null;
+}
+
+async function ejecutarSaveTx({amt,nota,cat,origen,tipo,fecha}){
   const tx={id:Date.now(),amount:amt,nota,cat,origen,tipo,fecha,impact:{}};
 
   if(tipo==='gasto'){
     if(origen==='bbva'){
       ST.bbva=Math.max(0,ST.bbva-amt);
       tx.impact.bbva=-amt;
-
-      if(cat==='tarjeta'){
-        if(ST.pagoActual>0){
-          const applied=Math.min(ST.pagoActual,amt);
-          ST.pagoActual=Math.max(0,ST.pagoActual-applied);
-          tx.impact.pagoActual=-applied;
-        }else if(ST.deudaCongelada>0){
-          const applied=Math.min(ST.deudaCongelada,amt);
-          ST.deudaCongelada=Math.max(0,ST.deudaCongelada-applied);
-          tx.impact.deudaCongelada=-applied;
-        }else{
-          const applied=Math.min(ST.cicloActivo,amt);
-          ST.cicloActivo=Math.max(0,ST.cicloActivo-applied);
-          tx.impact.cicloActivo=-applied;
-        }
+      if(cat==='retiro'){
+        // Retiro ATM: resta BBVA, suma efectivo
+        ST.efectivo=(ST.efectivo||0)+amt;
+        tx.impact.efectivo=amt;
+      } else if(cat==='tarjeta'){
+        if(ST.pagoActual>0){const ap=Math.min(ST.pagoActual,amt);ST.pagoActual=Math.max(0,ST.pagoActual-ap);tx.impact.pagoActual=-ap;}
+        else if(ST.deudaCongelada>0){const ap=Math.min(ST.deudaCongelada,amt);ST.deudaCongelada=Math.max(0,ST.deudaCongelada-ap);tx.impact.deudaCongelada=-ap;}
+        else{const ap=Math.min(ST.cicloActivo,amt);ST.cicloActivo=Math.max(0,ST.cicloActivo-ap);tx.impact.cicloActivo=-ap;}
       }
-    }else if(origen==='credito'){
+    } else if(origen==='credito'){
       ST.cicloActivo+=amt;
       tx.impact.cicloActivo=amt;
+    } else if(origen==='efectivo'){
+      ST.efectivo=Math.max(0,(ST.efectivo||0)-amt);
+      tx.impact.efectivo=-amt;
     }
-  }else{
-    if(origen==='bbva'){
-      ST.bbva+=amt;
-      tx.impact.bbva=amt;
-    }
+  } else if(tipo==='ingreso'){
+    // Nómina / ingreso
+    if(origen==='bbva'){ST.bbva+=amt;tx.impact.bbva=amt;}
+    else if(origen==='efectivo'){ST.efectivo=(ST.efectivo||0)+amt;tx.impact.efectivo=amt;}
+  } else if(tipo==='prestamo_rec'){
+    // Préstamo recibido
+    if(origen==='bbva'){ST.bbva+=amt;tx.impact.bbva=amt;}
+    else if(origen==='efectivo'){ST.efectivo=(ST.efectivo||0)+amt;tx.impact.efectivo=amt;}
   }
 
   ST.transactions.unshift(tx);
-
   await saveST();
+
+  // Reset form
   document.getElementById('r-amount').value='';
   document.getElementById('r-nota').value='';
   ST.selCat=null;
   document.querySelectorAll('[data-c]').forEach(b=>b.classList.remove('on-cat'));
   selTipo('gasto');
   selOrigen('bbva');
+  selFecha('hoy');
   showToast('✓ Registrado');
   updateHome();
   setTimeout(()=>go('home'),700);
 }
 
-function setFilterCat(cat){
-  ST.filterCat=cat;
-  document.querySelectorAll('[data-fc]').forEach(b=>b.classList.toggle('active',b.dataset.fc===cat));
-  renderTxList();
+// ─── MSI ─────────────────────────────────────────────────────
+async function saveMsi(){
+  const nombre=document.getElementById('msi-nombre').value.trim();
+  const total=parseFloat(document.getElementById('msi-total').value);
+  const meses=ST.msiMesesSel;
+  if(!nombre){showToast('Ingresa el nombre del producto');return;}
+  if(!total||total<=0){showToast('Ingresa el monto total');return;}
+  if(!meses){showToast('Selecciona el número de meses');return;}
+  const mensualidad=Math.ceil(total/meses);
+  // Detectar ciclo automáticamente
+  const hoy=new Date();
+  const corte=new Date(ST.cicloCorte+'T12:00:00');
+  const esCicloActual=hoy<=corte;
+  if(esCicloActual){
+    ST.cicloActivo+=mensualidad;
+  }
+  // Guardar con flag de qué ciclo
+  ST.msiCompras.push({
+    id:Date.now(),nombre,total,meses,mensualidad,
+    fechaCompra:hoy.toISOString().split('T')[0],
+    cicloInicioPago:esCicloActual?ST.cicloInicio:ST.cicloCorte,
+    mesesPagados:esCicloActual?1:0,
+    pagadoTotal:esCicloActual?mensualidad:0,
+    activo:true
+  });
+  await saveST();
+  closeModal('modal-msi');
+  showToast(esCicloActual?'✓ MSI agregado · 1er pago al ciclo actual':'✓ MSI agregado · Inicia siguiente ciclo');
+  renderMsi();
+  updateHome();
 }
 
-function setFilterOrigen(o){
-  ST.filterOrigen=o;
-  document.querySelectorAll('[data-fo]').forEach(b=>b.classList.toggle('active',b.dataset.fo===o));
-  renderTxList();
+async function aplicarMensualidad(id){
+  const msi=ST.msiCompras.find(m=>m.id===id);if(!msi||!msi.activo)return;
+  ST.cicloActivo+=msi.mensualidad;
+  msi.mesesPagados+=1;msi.pagadoTotal+=msi.mensualidad;
+  if(msi.mesesPagados>=msi.meses)msi.activo=false;
+  await saveST();showToast('✓ Mensualidad aplicada al ciclo');renderMsi();updateHome();
 }
 
-function setFilterTime(time){
-  ST.filterTime=time;
-  document.querySelectorAll('[data-ft]').forEach(b=>b.classList.toggle('active',b.dataset.ft===time));
-  renderTxList();
+function openMsiAbono(id){
+  ST.msiAbonoId=id;
+  const msi=ST.msiCompras.find(m=>m.id===id);
+  document.getElementById('msi-abono-title').textContent='Abonar extra — '+msi.nombre;
+  document.getElementById('modal-msi-abono').classList.add('open');
 }
 
-function sameDay(a,b){
-  return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
+async function saveMsiAbono(){
+  const amt=parseFloat(document.getElementById('msi-abono-amt').value);
+  if(!amt||amt<=0){showToast('Ingresa un monto');return;}
+  const msi=ST.msiCompras.find(m=>m.id===ST.msiAbonoId);if(!msi)return;
+  msi.pagadoTotal+=amt;ST.bbva=Math.max(0,ST.bbva-amt);
+  ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Abono extra MSI: '+msi.nombre,cat:'tarjeta',origen:'bbva',tipo:'gasto',fecha:new Date().toISOString().split('T')[0],impact:{bbva:-amt}});
+  await saveST();closeModal('modal-msi-abono');showToast('✓ Abono registrado');renderMsi();
 }
 
-function isThisWeek(date){
-  const ws=getWeekStart();
-  const end=new Date(ws);
-  end.setDate(ws.getDate()+7);
-  return date>=ws&&date<end;
+function renderMsi(){
+  const list=document.getElementById('msi-list');
+  const empty=document.getElementById('msi-empty');
+  const activos=ST.msiCompras.filter(m=>m.activo);
+  const inactivos=ST.msiCompras.filter(m=>!m.activo);
+  const todos=[...activos,...inactivos];
+  // Banner resumen ciclo
+  const banner=document.getElementById('msi-ciclo-info-banner');
+  if(activos.length>0){
+    const totalMens=activos.reduce((s,m)=>s+m.mensualidad,0);
+    banner.style.display='block';
+    banner.innerHTML=`📅 Este ciclo tienes <b style="font-family:var(--fm);font-size:11px;">$${totalMens.toLocaleString('es-MX')}</b> en mensualidades MSI activas`;
+  } else banner.style.display='none';
+  if(!todos.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=todos.map(m=>{
+    const deuda=Math.max(0,m.total-m.pagadoTotal);
+    const restantes=m.meses-m.mesesPagados;
+    const pct=Math.round((m.pagadoTotal/m.total)*100);
+    return `<div class="msi-item${m.activo?'':' msi-inactive'}">
+      <div class="msi-nombre">${m.nombre}</div>
+      <div class="msi-total">$${m.total.toLocaleString('es-MX')}</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Deuda restante: <span style="color:var(--lilac);font-weight:800;">$${deuda.toLocaleString('es-MX')}</span></div>
+      <div class="msi-progress"><div class="msi-progress-fill" style="width:${pct}%"></div></div>
+      <div class="v-box">
+        <div class="v-row"><span class="v-lbl">Progreso</span><span class="v-val">${m.mesesPagados} de ${m.meses} meses</span></div>
+        <div class="v-row"><span class="v-lbl">Mensualidad</span><span class="v-val">$${m.mensualidad.toLocaleString('es-MX')}</span></div>
+        <div class="v-row"><span class="v-lbl">Equiv. semanal</span><span class="v-val">$${Math.ceil(m.mensualidad/4).toLocaleString('es-MX')}</span></div>
+        <div class="v-row"><span class="v-lbl">Meses restantes</span><span class="v-val">${restantes}</span></div>
+        <div class="v-row"><span class="v-lbl">Comprado</span><span class="v-val">${m.fechaCompra||'—'}</span></div>
+      </div>
+      ${m.activo?`<div class="msi-btns">
+        <button class="btn-lilac btn-sm" onclick="aplicarMensualidad(${m.id})">Siguiente mensualidad</button>
+        <button class="btn-gasto-m btn-sm" onclick="openMsiAbono(${m.id})">Abonar extra</button>
+      </div>`:'<div style="font-family:var(--fm);font-size:8px;color:var(--muted);margin-top:12px;letter-spacing:.04em;">COMPLETADO ✓</div>'}
+    </div>`;
+  }).join('');
 }
 
-function isThisMonth(date){
-  const now=new Date();
-  return date.getFullYear()===now.getFullYear()&&date.getMonth()===now.getMonth();
+// ─── AMIGOS ──────────────────────────────────────────────────
+async function saveAmigo(){
+  const nombre=document.getElementById('amigo-nombre').value.trim();
+  if(!nombre){showToast('Ingresa un nombre');return;}
+  if(ST.amigos.find(a=>a.nombre.toLowerCase()===nombre.toLowerCase())){showToast('Ya existe ese amigo');return;}
+  ST.amigos.push({id:Date.now(),nombre,saldo:0,movimientos:[]});
+  await saveST();closeModal('modal-amigo');showToast('✓ Amigo agregado');renderAmigos();
 }
 
+function openAmigoMov(id){
+  ST.amigoMovId=id;
+  const a=ST.amigos.find(x=>x.id===id);
+  document.getElementById('amigo-mov-title').textContent='Movimiento con '+a.nombre;
+  openModal('modal-amigo-mov');
+}
+
+async function saveAmigoMov(){
+  const amt=parseFloat(document.getElementById('amigo-mov-amt').value);
+  const nota=document.getElementById('amigo-mov-nota').value||'Sin concepto';
+  const fecha=document.getElementById('amigo-mov-fecha').value||new Date().toISOString().split('T')[0];
+  const tipo=ST.amigoMovTipo;
+  const origen=ST.amigoOrigen;
+  if(!amt||amt<=0){showToast('Ingresa un monto válido');return;}
+  const amigo=ST.amigos.find(x=>x.id===ST.amigoMovId);if(!amigo)return;
+
+  // saldo positivo = me deben, negativo = les debo
+  if(tipo==='yo'){
+    amigo.saldo+=amt;
+    // Restar del método usado
+    if(origen==='bbva'){ST.bbva=Math.max(0,ST.bbva-amt);}
+    else if(origen==='credito'){ST.cicloActivo+=amt;}
+    else if(origen==='efectivo'){ST.efectivo=Math.max(0,(ST.efectivo||0)-amt);}
+    // Registrar en historial general
+    ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Pagué por '+amigo.nombre+': '+nota,cat:'ocio',origen,tipo:'gasto',fecha,impact:origen==='bbva'?{bbva:-amt}:origen==='credito'?{cicloActivo:amt}:{efectivo:-amt}});
+  } else {
+    amigo.saldo-=amt;
+    // Si ellos pagaron por ti, no afecta tus saldos
+    ST.transactions.unshift({id:Date.now(),amount:amt,nota:amigo.nombre+' pagó por mí: '+nota,cat:'ocio',origen:'efectivo',tipo:'gasto',fecha,impact:{}});
+  }
+  amigo.movimientos.unshift({tipo,amt,nota,fecha,origen});
+  await saveST();closeModal('modal-amigo-mov');showToast('✓ Movimiento registrado');renderAmigos();updateHome();
+}
+
+function openAmigoSaldar(id){
+  ST.amigoSaldarId=id;
+  const a=ST.amigos.find(x=>x.id===id);
+  document.getElementById('amigo-saldar-title').textContent='Saldar con '+a.nombre;
+  document.getElementById('amigo-saldar-amt').value=Math.abs(a.saldo)||'';
+  openModal('modal-amigo-saldar');
+}
+
+async function saveSaldar(){
+  const amt=parseFloat(document.getElementById('amigo-saldar-amt').value);
+  const origen=ST.amigoSaldarOrigen;
+  if(!amt||amt<=0){showToast('Ingresa un monto');return;}
+  const amigo=ST.amigos.find(x=>x.id===ST.amigoSaldarId);if(!amigo)return;
+
+  const esFavorMio=amigo.saldo>0; // me deben → ellos me pagan
+  if(esFavorMio){
+    // Ellos me pagan: suma a mi método
+    if(origen==='bbva'){ST.bbva+=amt;}
+    else if(origen==='efectivo'){ST.efectivo=(ST.efectivo||0)+amt;}
+    ST.transactions.unshift({id:Date.now(),amount:amt,nota:amigo.nombre+' me pagó (saldo)',cat:'otro',origen,tipo:'ingreso',fecha:new Date().toISOString().split('T')[0],impact:origen==='bbva'?{bbva:amt}:{efectivo:amt}});
+  } else {
+    // Yo les pago
+    if(origen==='bbva'){ST.bbva=Math.max(0,ST.bbva-amt);}
+    else if(origen==='credito'){ST.cicloActivo+=amt;}
+    else if(origen==='efectivo'){ST.efectivo=Math.max(0,(ST.efectivo||0)-amt);}
+    ST.transactions.unshift({id:Date.now(),amount:amt,nota:'Pagué a '+amigo.nombre+' (saldo)',cat:'otro',origen,tipo:'gasto',fecha:new Date().toISOString().split('T')[0],impact:origen==='bbva'?{bbva:-amt}:origen==='credito'?{cicloActivo:amt}:{efectivo:-amt}});
+  }
+  amigo.saldo=esFavorMio?Math.max(0,amigo.saldo-amt):Math.min(0,amigo.saldo+amt);
+  amigo.movimientos.unshift({tipo:'saldo',amt,nota:'Saldo saldado',fecha:new Date().toISOString().split('T')[0],origen});
+  await saveST();closeModal('modal-amigo-saldar');showToast('✓ Saldo actualizado');renderAmigos();updateHome();
+}
+
+function renderAmigos(){
+  const list=document.getElementById('amigos-list');
+  const empty=document.getElementById('amigos-empty');
+  if(!ST.amigos||!ST.amigos.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=ST.amigos.map(a=>{
+    const bal=a.saldo||0;
+    const balClass=bal>0?'favor':bal<0?'contra':'cero';
+    const balLabel=bal>0?'Te deben':bal<0?'Les debes':'Al corriente';
+    const balColor=bal>0?'var(--green-text)':bal<0?'var(--danger)':'var(--muted)';
+    const movs=(a.movimientos||[]).slice(0,4).map(m=>`
+      <div class="friend-tx-item">
+        <span style="color:${m.tipo==='yo'?'var(--danger)':m.tipo==='saldo'?'var(--muted)':'var(--green-text)'};font-weight:800;font-size:11px;">${m.tipo==='yo'?'Pagué':m.tipo==='ellos'?'Ellos pag.':'Saldado'}</span>
+        <span style="color:var(--muted);flex:1;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${m.nota}</span>
+        <span style="font-family:var(--fm);font-size:9px;">$${m.amt.toLocaleString('es-MX')}</span>
+      </div>`).join('');
+    return `<div class="friend-item">
+      <div class="friend-name">${a.nombre.toUpperCase()}</div>
+      <div class="friend-bal ${balClass}">$${Math.abs(bal).toLocaleString('es-MX')}</div>
+      <div class="friend-status" style="color:${balColor}">${balLabel}</div>
+      ${movs?`<div class="friend-tx">${movs}</div>`:''}
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+        <button class="btn-lilac btn-sm" onclick="openAmigoMov(${a.id})">+ Movimiento</button>
+        ${Math.abs(bal)>0?`<button class="btn-green btn-sm" onclick="openAmigoSaldar(${a.id})">Saldar</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── EDITAR TX ───────────────────────────────────────────────
+function openEditTx(id){
+  const tx=ST.transactions.find(t=>t.id===id);if(!tx)return;
+  document.getElementById('edit-tx-id').value=id;
+  document.getElementById('edit-amt').value=tx.amount;
+  document.getElementById('edit-nota').value=tx.nota||'';
+  ST.editOrigen=tx.origen||'bbva';
+  // Render cat buttons
+  const catGrid=document.getElementById('edit-cat-grid');
+  catGrid.innerHTML=Object.entries(CAT_NAMES).map(([k,v])=>`<button class="sel-btn${tx.cat===k?' on-cat':''}" onclick="selEditCat('${k}')" data-ec="${k}">${(CAT_ICONS[k]||'')} ${v}</button>`).join('');
+  // Set origen buttons
+  ['bbva','credito','efectivo'].forEach(x=>{
+    const el=document.getElementById('eob-'+x);
+    if(el)el.className='sel-btn'+(ST.editOrigen===x?' on-'+x:'');
+  });
+  document.getElementById('modal-edit-tx').classList.add('open');
+}
+function selEditCat(c){
+  document.querySelectorAll('[data-ec]').forEach(b=>b.classList.toggle('on-cat',b.dataset.ec===c));
+}
+async function saveEditTx(){
+  const id=parseInt(document.getElementById('edit-tx-id').value);
+  const tx=ST.transactions.find(t=>t.id===id);if(!tx)return;
+  const newAmt=parseFloat(document.getElementById('edit-amt').value)||tx.amount;
+  const newNota=document.getElementById('edit-nota').value;
+  const newOrigen=ST.editOrigen;
+  const newCat=document.querySelector('[data-ec].on-cat')?.dataset.ec||tx.cat;
+
+  // Revertir impacto anterior
+  if(tx.impact){
+    if(tx.impact.bbva)ST.bbva-=tx.impact.bbva;
+    if(tx.impact.cicloActivo)ST.cicloActivo=Math.max(0,ST.cicloActivo-tx.impact.cicloActivo);
+    if(tx.impact.pagoActual)ST.pagoActual=Math.max(0,ST.pagoActual-tx.impact.pagoActual);
+    if(tx.impact.deudaCongelada)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-tx.impact.deudaCongelada);
+    if(tx.impact.efectivo)ST.efectivo=Math.max(0,(ST.efectivo||0)-tx.impact.efectivo);
+  }
+
+  // Aplicar nuevo impacto
+  const newImpact={};
+  if(tx.tipo==='gasto'){
+    if(newOrigen==='bbva'){ST.bbva=Math.max(0,ST.bbva-newAmt);newImpact.bbva=-newAmt;
+      if(newCat==='tarjeta'){ST.cicloActivo=Math.max(0,ST.cicloActivo-newAmt);newImpact.cicloActivo=-newAmt;}
+      if(newCat==='retiro'){ST.efectivo=(ST.efectivo||0)+newAmt;newImpact.efectivo=newAmt;}
+    } else if(newOrigen==='credito'){ST.cicloActivo+=newAmt;newImpact.cicloActivo=newAmt;}
+    else if(newOrigen==='efectivo'){ST.efectivo=Math.max(0,(ST.efectivo||0)-newAmt);newImpact.efectivo=-newAmt;}
+  } else if(tx.tipo==='ingreso'||tx.tipo==='prestamo_rec'){
+    if(newOrigen==='bbva'){ST.bbva+=newAmt;newImpact.bbva=newAmt;}
+    else if(newOrigen==='efectivo'){ST.efectivo=(ST.efectivo||0)+newAmt;newImpact.efectivo=newAmt;}
+  }
+
+  tx.amount=newAmt;tx.nota=newNota;tx.origen=newOrigen;tx.cat=newCat;tx.impact=newImpact;
+  await saveST();closeModal('modal-edit-tx');showToast('✓ Registro actualizado');updateHome();renderDash();
+}
+
+// ─── DELETE TX ───────────────────────────────────────────────
 async function deleteTx(id){
-  const tx=ST.transactions.find(t=>t.id===id);
-  if(!tx)return;
-
-  const ok=confirm('¿Cancelar este registro? Se revertirá del balance.');
-  if(!ok)return;
-
-  const amt=Number(tx.amount)||0;
-
+  const tx=ST.transactions.find(t=>t.id===id);if(!tx)return;
+  const ok=confirm('¿Cancelar este registro? Se revertirá del balance.');if(!ok)return;
   if(tx.impact&&typeof tx.impact==='object'){
-    if(tx.impact.bbva)ST.bbva=Math.max(0,ST.bbva-tx.impact.bbva);
+    if(tx.impact.bbva)ST.bbva-=tx.impact.bbva;
     if(tx.impact.cicloActivo)ST.cicloActivo=Math.max(0,ST.cicloActivo-tx.impact.cicloActivo);
     if(tx.impact.pagoActual)ST.pagoActual=Math.max(0,ST.pagoActual-tx.impact.pagoActual);
     if(tx.impact.deudaCongelada)ST.deudaCongelada=Math.max(0,ST.deudaCongelada-tx.impact.deudaCongelada);
     if(tx.impact.mamaDeuda)ST.mamaDeuda=Math.max(0,ST.mamaDeuda-tx.impact.mamaDeuda);
-  }else{
-    // Reverso de compatibilidad para movimientos antiguos sin "impact".
+    if(tx.impact.efectivo)ST.efectivo=Math.max(0,(ST.efectivo||0)-tx.impact.efectivo);
+  } else {
     if(tx.tipo==='gasto'){
-      if(tx.origen==='bbva')ST.bbva+=amt;
-      if(tx.origen==='credito')ST.cicloActivo=Math.max(0,ST.cicloActivo-amt);
+      if(tx.origen==='bbva')ST.bbva+=tx.amount;
+      if(tx.origen==='credito')ST.cicloActivo=Math.max(0,ST.cicloActivo-tx.amount);
+      if(tx.origen==='efectivo')ST.efectivo=(ST.efectivo||0)+tx.amount;
     }
-    if(tx.tipo==='ingreso'&&tx.origen==='bbva'){
-      ST.bbva=Math.max(0,ST.bbva-amt);
-    }
+    if(tx.tipo==='ingreso'&&tx.origen==='bbva')ST.bbva=Math.max(0,ST.bbva-tx.amount);
   }
-
   ST.transactions=ST.transactions.filter(t=>t.id!==id);
-
-  await saveST();
-  showToast('✓ Registro cancelado');
-  updateHome();
-  renderDash();
+  await saveST();showToast('✓ Registro cancelado');updateHome();renderDash();
 }
+
+// ─── ANÁLISIS ─────────────────────────────────────────────────
+function setFilterCat(cat){ST.filterCat=cat;document.querySelectorAll('[data-fc]').forEach(b=>b.classList.toggle('active',b.dataset.fc===cat));renderTxList();}
+function setFilterOrigen(o){ST.filterOrigen=o;document.querySelectorAll('[data-fo]').forEach(b=>b.classList.toggle('active',b.dataset.fo===o));renderTxList();}
+function setFilterTime(time){ST.filterTime=time;document.querySelectorAll('[data-ft]').forEach(b=>b.classList.toggle('active',b.dataset.ft===time));renderTxList();}
 
 function renderTxList(){
   let txs=[...ST.transactions];
-
   if(ST.filterCat&&ST.filterCat!=='todos')txs=txs.filter(t=>t.cat===ST.filterCat);
   if(ST.filterOrigen&&ST.filterOrigen!=='todos')txs=txs.filter(t=>t.origen===ST.filterOrigen);
-
   if(ST.filterTime&&ST.filterTime!=='todos'){
     const now=new Date();
     txs=txs.filter(t=>{
@@ -895,25 +1384,35 @@ function renderTxList(){
       if(ST.filterTime==='hoy')return sameDay(d,now);
       if(ST.filterTime==='semana')return isThisWeek(d);
       if(ST.filterTime==='mes')return isThisMonth(d);
+      if(ST.filterTime==='ciclo')return isThisCiclo(d);
       return true;
     });
   }
-
-  const oCol={bbva:'var(--ng)',credito:'var(--np)'};
-  const oLabel={bbva:'BBVA',credito:'Banamex'};
+  const oCol={bbva:'#1d4ed8',credito:'#7e22ce',efectivo:'#166534'};
+  const oEmoji={bbva:'💳',credito:'💜',efectivo:'💵'};
   const txList=document.getElementById('tx-list');
-
-  txList.innerHTML=txs.length?txs.slice(0,50).map(t=>`<div class="tx-item">
-    <div>
-      <div class="tx-cat">${CAT_NAMES[t.cat]||t.cat}${t.nota?' · <span style="color:var(--muted);font-weight:600;font-size:13px;">'+t.nota+'</span>':''}</div>
-      <div class="tx-meta">${t.fecha}</div>
-      <button onclick="deleteTx(${t.id})" class="btn-gasto-m btn-sm" style="margin-top:8px;padding:6px 10px;font-size:11px;">Cancelar</button>
-    </div>
-    <div class="tx-right">
-      <div class="tx-amt" style="color:${t.tipo==='ingreso'?'var(--ng)':'var(--nr)'}">${t.tipo==='ingreso'?'+':'-'}$${t.amount.toLocaleString('es-MX')}</div>
-      <div class="tx-origen-lbl" style="color:${oCol[t.origen]||'var(--muted)'}">${oLabel[t.origen]||''}</div>
-    </div>
-  </div>`).join(''):'<div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">Sin movimientos</div>';
+  txList.innerHTML=txs.length?txs.slice(0,60).map(t=>{
+    const catIcon=CAT_ICONS[t.cat]||'';
+    const catLabel=CAT_NAMES[t.cat]||t.cat;
+    const origenLabel=ORIGEN_LABELS[t.origen]||t.origen||'';
+    const origenClass=t.origen||'otro';
+    const sign=t.tipo==='ingreso'||t.tipo==='prestamo_rec'?'+':'-';
+    const amtColor=t.tipo==='ingreso'||t.tipo==='prestamo_rec'?'var(--green-text)':'var(--danger)';
+    return `<div class="tx-item">
+      <div style="flex:1">
+        <div class="tx-cat">${catIcon} ${catLabel}${t.nota?' · <span style="color:var(--muted);font-weight:600;font-size:13px;">'+t.nota+'</span>':''}</div>
+        <div class="tx-meta">${t.fecha}</div>
+        <div class="tx-actions">
+          <button onclick="openEditTx(${t.id})" class="btn-edit">✏️ Editar</button>
+          <button onclick="deleteTx(${t.id})" class="btn-del">🗑 Cancelar</button>
+        </div>
+      </div>
+      <div class="tx-right">
+        <div class="tx-amt" style="color:${amtColor}">${sign}$${t.amount.toLocaleString('es-MX')}</div>
+        <div class="tx-origen-badge ${origenClass}">${oEmoji[t.origen]||''} ${origenLabel}</div>
+      </div>
+    </div>`;
+  }).join(''):'<div style="font-size:14px;color:var(--muted);text-align:center;padding:24px;">Sin movimientos</div>';
 }
 
 function renderDash(){
@@ -929,7 +1428,6 @@ function renderDash(){
     <div class="stat-box"><div class="stat-label">PROMEDIO SEMANAL</div><div class="stat-val">$${promSem.toLocaleString('es-MX')}</div><div class="stat-sub">por semana</div></div>
     <div class="stat-box"><div class="stat-label">TICKET PROMEDIO</div><div class="stat-val">$${tix.toLocaleString('es-MX')}</div><div class="stat-sub">por transacción</div></div>`;
 
-  // Donut
   const bycat={};gastos.forEach(t=>{bycat[t.cat]=(bycat[t.cat]||0)+t.amount;});
   const totalCat=Object.values(bycat).reduce((s,v)=>s+v,0);
   const svg=document.getElementById('donut-svg');
@@ -953,15 +1451,13 @@ function renderDash(){
     });
   } else legend.innerHTML='<div style="font-size:13px;color:var(--muted)">Sin gastos</div>';
 
-  // Fijo vs Variable
-  const fijo=gastos.filter(t=>t.cat==='comida').reduce((s,t)=>s+t.amount,0);
-  const variable=gastos.filter(t=>t.cat!=='comida').reduce((s,t)=>s+t.amount,0);
+  const fijo=gastos.filter(t=>['comida','servicios'].includes(t.cat)).reduce((s,t)=>s+t.amount,0);
+  const variable=gastos.filter(t=>!['comida','servicios'].includes(t.cat)).reduce((s,t)=>s+t.amount,0);
   const maxFV=Math.max(fijo,variable,1);
   document.getElementById('fijo-var-chart').innerHTML=`
-    <div class="bar-item"><span class="bar-label">Fijo (comida)</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((fijo/maxFV)*100)}%;background:var(--pink);"></div></div><span class="bar-val">$${Math.round(fijo).toLocaleString('es-MX')}</span></div>
+    <div class="bar-item"><span class="bar-label">Fijo</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((fijo/maxFV)*100)}%;background:var(--pink);"></div></div><span class="bar-val">$${Math.round(fijo).toLocaleString('es-MX')}</span></div>
     <div class="bar-item"><span class="bar-label">Variable</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((variable/maxFV)*100)}%;background:var(--lilac);"></div></div><span class="bar-val">$${Math.round(variable).toLocaleString('es-MX')}</span></div>`;
 
-  // Gasto por día semana actual
   const dayTotals=[0,0,0,0,0,0,0];
   const wsDate=getWeekStart();
   ST.transactions.filter(t=>t.tipo==='gasto'&&t.cat!=='tarjeta'&&new Date(t.fecha+'T12:00:00')>=wsDate).forEach(t=>{
@@ -969,90 +1465,60 @@ function renderDash(){
   });
   const maxDay=Math.max(...dayTotals,1);
   const dayLabels=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+  const todayIdx=new Date().getDay()===0?6:new Date().getDay()-1;
   document.getElementById('day-chart').innerHTML=dayLabels.map((lbl,i)=>`
-    <div class="bar-item"><span class="bar-label">${lbl}</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((dayTotals[i]/maxDay)*100)}%;background:${i===new Date().getDay()-1||( new Date().getDay()===0&&i===6)?'var(--pink)':'var(--blue)'}"></div></div><span class="bar-val">${dayTotals[i]>0?'$'+Math.round(dayTotals[i]).toLocaleString('es-MX'):''}</span></div>`).join('');
+    <div class="bar-item"><span class="bar-label">${lbl}</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((dayTotals[i]/maxDay)*100)}%;background:${i===todayIdx?'var(--pink)':'var(--blue)'}"></div></div><span class="bar-val">${dayTotals[i]>0?'$'+Math.round(dayTotals[i]).toLocaleString('es-MX'):''}</span></div>`).join('');
 
-  // BBVA vs Crédito
-  const byO={bbva:0,credito:0};
-  ST.transactions.filter(t=>t.tipo==='gasto').forEach(t=>{byO[t.origen]=(byO[t.origen]||0)+t.amount;});
-  const totalO=byO.bbva+byO.credito;
+  // Por método de pago (incluyendo efectivo)
+  const byO={bbva:0,credito:0,efectivo:0};
+  ST.transactions.filter(t=>t.tipo==='gasto').forEach(t=>{if(byO[t.origen]!==undefined)byO[t.origen]+=t.amount;});
+  const totalO=byO.bbva+byO.credito+byO.efectivo;
   const ob=document.getElementById('origen-break');
   if(totalO>0){
-    const maxO=Math.max(byO.bbva,byO.credito,1);
+    const maxO=Math.max(byO.bbva,byO.credito,byO.efectivo,1);
     ob.innerHTML=`<div class="bar-chart">
-      <div class="bar-item"><span class="bar-label">BBVA Débito</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.bbva/maxO)*100)}%;background:var(--ng);"></div></div><span class="bar-val">$${Math.round(byO.bbva).toLocaleString('es-MX')}</span></div>
-      <div class="bar-item"><span class="bar-label">Banamex Cred.</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.credito/maxO)*100)}%;background:var(--np);"></div></div><span class="bar-val">$${Math.round(byO.credito).toLocaleString('es-MX')}</span></div>
+      <div class="bar-item"><span class="bar-label">💳 BBVA</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.bbva/maxO)*100)}%;background:#93C5FD;"></div></div><span class="bar-val">$${Math.round(byO.bbva).toLocaleString('es-MX')}</span></div>
+      <div class="bar-item"><span class="bar-label">💜 Banamex</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.credito/maxO)*100)}%;background:var(--np);"></div></div><span class="bar-val">$${Math.round(byO.credito).toLocaleString('es-MX')}</span></div>
+      <div class="bar-item"><span class="bar-label">💵 Efectivo</span><div class="bar-bg"><div class="bar-fill" style="width:${Math.round((byO.efectivo/maxO)*100)}%;background:#4ADE80;"></div></div><span class="bar-val">$${Math.round(byO.efectivo).toLocaleString('es-MX')}</span></div>
     </div>`;
   } else ob.innerHTML='<div style="font-size:13px;color:var(--muted)">Sin gastos</div>';
 
-  // Filtros de categoría
   const cats=['todos',...Object.keys(CAT_NAMES)];
-  document.getElementById('filter-cat-row').innerHTML=cats.map(c=>`<button class="filter-btn${ST.filterCat===c?' active':''}" onclick="setFilterCat('${c}')" data-fc="${c}">${c==='todos'?'Todos':CAT_NAMES[c]}</button>`).join('');
+  document.getElementById('filter-cat-row').innerHTML=cats.map(c=>`<button class="filter-btn${ST.filterCat===c?' active':''}" onclick="setFilterCat('${c}')" data-fc="${c}">${c==='todos'?'Todos':(CAT_ICONS[c]||'')+' '+(CAT_NAMES[c]||c)}</button>`).join('');
   document.querySelectorAll('[data-fo]').forEach(b=>b.classList.toggle('active',b.dataset.fo===(ST.filterOrigen||'todos')));
   document.querySelectorAll('[data-ft]').forEach(b=>b.classList.toggle('active',b.dataset.ft===(ST.filterTime||'todos')));
   renderTxList();
 }
 
+// ─── BACKUP ──────────────────────────────────────────────────
 function downloadBackup(){
   const data=JSON.stringify(ST,null,2);
   const blob=new Blob([data],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const today=new Date().toISOString().split('T')[0];
   const a=document.createElement('a');
-
-  a.href=url;
-  a.download=`backup-finanzas-yamil-${today}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  URL.revokeObjectURL(url);
-  showToast('✓ Backup descargado');
+  a.href=url;a.download=`backup-finanzas-yamil-${today}.json`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(url);showToast('✓ Backup descargado');
 }
-
-function triggerRestoreBackup(){
-  document.getElementById('backup-file').click();
-}
-
+function triggerRestoreBackup(){document.getElementById('backup-file').click();}
 async function restoreBackup(event){
-  const file=event.target.files[0];
-  if(!file)return;
-
+  const file=event.target.files[0];if(!file)return;
   try{
     const text=await file.text();
     const data=JSON.parse(text);
-
-    if(!data||typeof data!=='object'||data.bbva===undefined||!Array.isArray(data.transactions)){
-      showToast('Archivo no válido');
-      return;
-    }
-
-    const ok=confirm('¿Restaurar este backup? Esto reemplazará tus datos actuales.');
-    if(!ok)return;
-
+    if(!data||typeof data!=='object'||data.bbva===undefined||!Array.isArray(data.transactions)){showToast('Archivo no válido');return;}
+    const ok=confirm('¿Restaurar este backup? Esto reemplazará tus datos actuales.');if(!ok)return;
     ST={...ST_DEFAULT,...data};
-
-    if(!ST.transactions)ST.transactions=[];
-    if(!ST.mamaTx)ST.mamaTx=[];
-    if(!ST.msiCompras)ST.msiCompras=[];
-    if(!ST.filterCat)ST.filterCat='todos';
-    if(!ST.filterOrigen)ST.filterOrigen='todos';
-    if(!ST.filterTime)ST.filterTime='todos';
-
-    await saveST();
-
-    updateHome();
-    renderDash();
-    renderMsi();
-
-    showToast('✓ Backup restaurado');
-  }catch(e){
-    showToast('No se pudo leer el backup');
-  }
-
+    if(!ST.transactions)ST.transactions=[];if(!ST.mamaTx)ST.mamaTx=[];if(!ST.msiCompras)ST.msiCompras=[];
+    if(!ST.amigos)ST.amigos=[];if(ST.efectivo===undefined)ST.efectivo=0;
+    if(!ST.filterCat)ST.filterCat='todos';if(!ST.filterOrigen)ST.filterOrigen='todos';if(!ST.filterTime)ST.filterTime='todos';
+    await saveST();updateHome();renderDash();renderMsi();renderAmigos();showToast('✓ Backup restaurado');
+  }catch(e){showToast('No se pudo leer el backup');}
   event.target.value='';
 }
 
+// ─── CHAT IA ─────────────────────────────────────────────────
 async function sendChat(){
   const inp=document.getElementById('chat-inp');
   const msg=inp.value.trim();if(!msg)return;inp.value='';
@@ -1061,17 +1527,20 @@ async function sendChat(){
   typing.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   document.getElementById('chat-msgs').appendChild(typing);scrollChat();
   const ws=getWeeklySpent();
-  const msiActivos=ST.msiCompras.filter(m=>m.activo).map(m=>`${m.nombre} $${m.mensualidad}/mes (${m.mesesPagados+1}/${m.meses})`).join(', ')||'ninguno';
+  const msiActivos=ST.msiCompras.filter(m=>m.activo).map(m=>`${m.nombre} $${m.mensualidad}/mes (${m.mesesPagados}/${m.meses})`).join(', ')||'ninguno';
+  const amigosResumen=(ST.amigos||[]).map(a=>a.nombre+(a.saldo>0?' te debe $'+a.saldo:a.saldo<0?' le debes $'+Math.abs(a.saldo):' al corriente')).join(', ')||'ninguno';
   const ctx=`Eres el asistente financiero de Angel Yamil. Datos reales:
 - BBVA: $${ST.bbva.toFixed(2)}
+- Efectivo: $${(ST.efectivo||0).toFixed(2)}
 - Ciclo activo Banamex (${ST.cicloInicio} al ${ST.cicloCorte}): $${ST.cicloActivo.toFixed(2)} gastado · sugerencia ÷3: $${calcSugCiclo()}
 - Pago pendiente Banamex: $${(ST.pagoActual||0).toFixed(2)}
 - Deuda congelada: $${ST.deudaCongelada.toFixed(2)}
 - Deuda mamá: $${ST.mamaDeuda.toFixed(2)} · sugerido viernes: $${calcSugMama()}
 - Gastado esta semana: $${Math.round(ws)}
 - MSI activos: ${msiActivos}
+- Amigos: ${amigosResumen}
 - Cobro semanal: ~$2,005
-- Últimos gastos: ${ST.transactions.slice(0,5).map(t=>(CAT_NAMES[t.cat]||t.cat)+' $'+t.amount+' ('+t.origen+')').join(', ')||'ninguno'}
+- Últimos gastos: ${ST.transactions.slice(0,5).map(t=>(CAT_NAMES[t.cat]||t.cat)+' $'+t.amount+' ('+( t.origen||'')+')').join(', ')||'ninguno'}
 Responde en español, directo, máximo 3 oraciones. Usa los números reales.`;
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:ctx,messages:[...ST.chatHistory,{role:'user',content:msg}]})});
@@ -1087,8 +1556,9 @@ function addMsg(t,r){const d=document.createElement('div');d.className='msg '+r;
 function scrollChat(){const m=document.getElementById('chat-msgs');m.scrollTop=m.scrollHeight;}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
 
-document.getElementById('r-fecha').value=new Date().toISOString().split('T')[0];
+// ─── INIT ────────────────────────────────────────────────────
+selFecha('hoy');
 document.getElementById('mama-fecha').value=new Date().toISOString().split('T')[0];
-document.getElementById('msi-fecha').value=new Date().toISOString().split('T')[0];
+document.getElementById('r-fecha').value=new Date().toISOString().split('T')[0];
 loadST();
 </script>
