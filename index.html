@@ -505,31 +505,51 @@ body{
 
       <!-- Ciclo Banamex -->
       <div class="grid2">
+
+        <!-- CARD IZQUIERDA: ciclo acumulándose -->
         <div class="card">
-          <div class="card-tag">Ciclo activo Banamex</div>
+          <div class="card-tag">💜 Acumulado en Banamex</div>
           <div class="card-badge" id="ciclo-badge-txt">—</div>
           <div class="big-n" id="ciclo-gastado" style="color:var(--lilac)">$0</div>
-          <div class="small-txt">gastado en el ciclo</div>
-          <div style="height:6px;background:rgba(192,132,252,.2);border-radius:99px;overflow:hidden;margin-top:10px;"><div id="ciclo-bar" style="height:100%;border-radius:99px;background:var(--lilac);width:0%;transition:width .5s;"></div></div>
+          <div class="small-txt" id="ciclo-sub-txt">gastado este ciclo</div>
+          <!-- barra de progreso del límite -->
+          <div style="margin-top:12px;">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:700;margin-bottom:5px;">
+              <span>del límite de crédito</span>
+              <span id="ciclo-pct-txt">0%</span>
+            </div>
+            <div style="height:8px;background:rgba(192,132,252,.15);border-radius:99px;overflow:hidden;">
+              <div id="ciclo-bar" style="height:100%;border-radius:99px;background:var(--lilac);width:0%;transition:width .6s;"></div>
+            </div>
+          </div>
           <div class="v-box">
-            <div class="v-row"><span class="v-lbl">Sugerencia (÷3)</span><span class="v-val" id="ciclo-sug">$0</span></div>
-            <div class="v-row"><span class="v-lbl">MSI en este corte</span><span class="v-val" id="ciclo-msi-sum">$0</span></div>
-            <div class="v-row"><span class="v-lbl">Corte</span><span class="v-val" id="ciclo-corte-txt">—</span></div>
-            <div class="v-row"><span class="v-lbl">Pago siguiente</span><span class="v-val" id="ciclo-pago-txt">—</span></div>
+            <div class="v-row"><span class="v-lbl">Gastos normales</span><span class="v-val" id="ciclo-normal">$0</span></div>
+            <div class="v-row"><span class="v-lbl">+ MSI este corte</span><span class="v-val" id="ciclo-msi-sum" style="color:var(--lilac);">$0</span></div>
+            <div class="v-row" style="border-top:1px solid rgba(243,198,218,.5);margin-top:4px;padding-top:8px;">
+              <span class="v-lbl" style="font-weight:900;color:var(--text);">= Pagarás el</span>
+              <span class="v-val" id="ciclo-pago-txt" style="color:var(--pink-strong);">—</span>
+            </div>
           </div>
         </div>
+
+        <!-- CARD DERECHA: estado del pago vencido -->
         <div class="card payment-card">
-          <div class="card-tag">Pago actual Banamex</div>
-          <div class="card-badge" id="pago-badge">vence —</div>
-          <div class="big-n" id="pago-actual" style="color:var(--blue)">$0.00</div>
+          <div class="card-tag" id="pago-card-tag">📋 Pago anterior</div>
+          <div style="margin-bottom:10px;" id="pago-periodo-badge"></div>
+          <div class="big-n" id="pago-actual" style="color:var(--blue)">$0</div>
           <div class="small-txt" id="pago-sub">—</div>
-          <div id="pago-status" style="display:inline-flex;align-items:center;border-radius:999px;padding:7px 12px;font-weight:900;font-size:13px;margin-top:8px;background:rgba(251,207,232,.62);color:var(--pink-strong);">Al corriente</div>
+          <div id="pago-status" style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 14px;font-weight:900;font-size:13px;margin-top:10px;">Al corriente</div>
           <div class="v-box" style="margin-top:14px;">
-            <div class="v-row"><span class="v-lbl">Corte anterior</span><span class="v-val" id="pago-corte-txt">—</span></div>
+            <div class="v-row"><span class="v-lbl">Corte del período</span><span class="v-val" id="pago-corte-txt">—</span></div>
             <div class="v-row"><span class="v-lbl">Fecha límite</span><span class="v-val" id="pago-limite-txt">—</span></div>
-            <div class="v-row"><span class="v-lbl">Próximo pago</span><span class="v-val" id="next-pago">—</span></div>
+            <div class="v-row" id="pago-msi-row"><span class="v-lbl">MSI incluidos</span><span class="v-val" id="pago-msi-val">$0</span></div>
+          </div>
+          <!-- botón registrar pago si hay deuda -->
+          <div id="pago-action-wrap" style="display:none;margin-top:14px;">
+            <button onclick="go('register');selCat('tarjeta');selOrigen('bbva')" style="width:100%;background:linear-gradient(135deg,var(--blue),var(--lilac));color:#fff;border:none;border-radius:14px;padding:11px;font-family:var(--fd);font-size:14px;font-weight:900;cursor:pointer;">💳 Registrar pago</button>
           </div>
         </div>
+
       </div>
 
       <!-- Timeline home -->
@@ -1140,31 +1160,114 @@ function updateHome(){
   if(ws>COBRO_SEMANAL){wsPill.style.background='rgba(251,207,232,.8)';wsPill.style.color='var(--pink-strong)';wsPill.textContent='⚠ sobre presupuesto';}
   else{wsPill.style.background='rgba(220,252,231,.7)';wsPill.style.color='var(--green-text)';wsPill.textContent='✓ dentro del presupuesto';}
 
-  // Ciclo Banamex (calculado desde historial)
+  // ── CARD IZQUIERDA: ciclo acumulándose ──
   const cicloGastado=calcCicloGastado();
   const msiCorte=calcMsiEnCorte(ST.cicloCorte);
-  document.getElementById('ciclo-gastado').textContent=fmtMoney(cicloGastado);
-  document.getElementById('ciclo-sug').textContent=fmtMoney(Math.ceil(cicloGastado/3));
-  document.getElementById('ciclo-msi-sum').textContent=fmtMoney(msiCorte);
-  document.getElementById('ciclo-badge-txt').textContent=fmtDate(ST.cicloInicio)+' → '+fmtDate(ST.cicloCorte);
-  document.getElementById('ciclo-corte-txt').textContent=fmtDate(ST.cicloCorte);
-  document.getElementById('ciclo-pago-txt').textContent=fmtDate(ST.cicloPago);
-  const pct=Math.min(100,Math.round((cicloGastado/LIM_CRED)*100));
-  document.getElementById('ciclo-bar').style.width=pct+'%';
-  document.getElementById('ciclo-bar').style.background=pct>80?'var(--danger)':'var(--lilac)';
+  const totalProyectado=cicloGastado+msiCorte;
 
-  // Pago actual
-  document.getElementById('pago-actual').textContent='$'+(ST.pagoActual||0).toFixed(2);
-  document.getElementById('pago-badge').textContent='vence '+fmtDate(ST.pagoActualLimite);
-  document.getElementById('pago-corte-txt').textContent=fmtDate(ST.pagoActualCorte);
-  document.getElementById('pago-limite-txt').textContent=fmtDate(ST.pagoActualLimite);
-  document.getElementById('next-pago').textContent=fmtDate(ST.cicloPago);
+  document.getElementById('ciclo-gastado').textContent=fmtMoney(cicloGastado);
+  document.getElementById('ciclo-badge-txt').textContent=fmtDate(ST.cicloInicio)+' → '+fmtDate(ST.cicloCorte);
+  document.getElementById('ciclo-sub-txt').textContent='gastado del '+fmtDate(ST.cicloInicio)+' al '+fmtDate(ST.cicloCorte);
+  document.getElementById('ciclo-normal').textContent=fmtMoney(cicloGastado);
+  document.getElementById('ciclo-msi-sum').textContent=fmtMoney(msiCorte);
+  document.getElementById('ciclo-pago-txt').textContent=fmtMoney(totalProyectado)+' · '+fmtDate(ST.cicloPago);
+
+  const pct=Math.min(100,Math.round((cicloGastado/LIM_CRED)*100));
+  document.getElementById('ciclo-pct-txt').textContent=pct+'%';
+  document.getElementById('ciclo-bar').style.width=pct+'%';
+  document.getElementById('ciclo-bar').style.background=pct>80?'var(--danger)':pct>50?'var(--pink)':'var(--lilac)';
+
+  // ── CARD DERECHA: estado del pago según fecha ──
+  // Lógica de estados:
+  // ESTADO A: antes del corte anterior + antes del límite de pago
+  //   → muestra ST.pagoActual (lo que debes pagar antes del 11 mayo)
+  // ESTADO B: ya pasó el límite (11 mayo) pero no ha cerrado el siguiente ciclo
+  //   → congelado, muestra lo que quedó (pagado o con interés)
+  // ESTADO C: ya cerró el ciclo (pasó el 21 mayo)
+  //   → el acumulado del ciclo se convierte en el nuevo pago al 11 jun
+
+  const hoy=new Date();
+  hoy.setHours(0,0,0,0);
+  const limiteDate=new Date(ST.pagoActualLimite+'T00:00:00');
+  const corteDate=new Date(ST.cicloCorte+'T00:00:00');
+  const pagoActualAmt=ST.pagoActual||0;
+
+  const tagEl=document.getElementById('pago-card-tag');
+  const periodoEl=document.getElementById('pago-periodo-badge');
+  const montoEl=document.getElementById('pago-actual');
+  const subEl=document.getElementById('pago-sub');
   const statusEl=document.getElementById('pago-status');
-  if(ST.pagoActual<=0){statusEl.textContent='✓ Al corriente';statusEl.style.background='rgba(220,252,231,.7)';statusEl.style.color='var(--green-text)';}
-  else{statusEl.textContent='Pendiente '+fmtMoney(ST.pagoActual);statusEl.style.background='rgba(253,230,138,.35)';statusEl.style.color='var(--mustard-text)';}
-  const pagoSub=document.getElementById('pago-sub');
-  if(ST.pagoActualOriginal>0)pagoSub.textContent='Total del corte '+fmtDate(ST.pagoActualCorte)+': '+fmtMoney(ST.pagoActualOriginal);
-  else pagoSub.textContent='Sin pago pendiente registrado';
+  const corteEl=document.getElementById('pago-corte-txt');
+  const limiteEl=document.getElementById('pago-limite-txt');
+  const msiRowEl=document.getElementById('pago-msi-row');
+  const msiValEl=document.getElementById('pago-msi-val');
+  const actionEl=document.getElementById('pago-action-wrap');
+
+  if(hoy<=corteDate){
+    // ESTADO A o B: ciclo actual aún no ha cerrado
+    // La card derecha muestra el pago del período anterior
+
+    tagEl.textContent='📋 Pago período anterior';
+    periodoEl.innerHTML='<span style="font-size:12px;font-weight:800;color:var(--muted);">Corte '+fmtDate(ST.pagoActualCorte)+' · vence '+fmtDate(ST.pagoActualLimite)+'</span>';
+    corteEl.textContent=fmtDate(ST.pagoActualCorte);
+    limiteEl.textContent=fmtDate(ST.pagoActualLimite);
+    msiRowEl.style.display='none'; // el período anterior no tenía MSI del celular
+
+    if(hoy<=limiteDate){
+      // Antes del vencimiento: muestra deuda real
+      montoEl.textContent=fmtMoney(pagoActualAmt);
+      montoEl.style.color=pagoActualAmt<=0?'var(--green-text)':'var(--danger)';
+      if(pagoActualAmt<=0){
+        subEl.textContent='✓ Liquidado — sin intereses';
+        statusEl.textContent='✓ Pagado completo';
+        statusEl.style.background='rgba(220,252,231,.8)';
+        statusEl.style.color='var(--green-text)';
+        actionEl.style.display='none';
+      }else{
+        const diasRestantes=Math.ceil((limiteDate-hoy)/(1000*60*60*24));
+        subEl.textContent='Vence en '+diasRestantes+' día'+(diasRestantes===1?'':'s');
+        statusEl.textContent='⚠ Pendiente de pago';
+        statusEl.style.background='rgba(253,230,138,.4)';
+        statusEl.style.color='var(--mustard-text)';
+        actionEl.style.display='block';
+      }
+    }else{
+      // Pasó el límite: congelado
+      montoEl.textContent=fmtMoney(pagoActualAmt);
+      montoEl.style.color=pagoActualAmt<=0?'var(--green-text)':'var(--danger)';
+      if(pagoActualAmt<=0){
+        subEl.textContent='Pagado antes del '+fmtDate(ST.pagoActualLimite);
+        statusEl.textContent='✓ Sin intereses generados';
+        statusEl.style.background='rgba(220,252,231,.8)';
+        statusEl.style.color='var(--green-text)';
+      }else{
+        subEl.textContent='Venció el '+fmtDate(ST.pagoActualLimite);
+        statusEl.textContent='⚠ Puede haber generado interés';
+        statusEl.style.background='rgba(251,207,232,.6)';
+        statusEl.style.color='var(--danger)';
+      }
+      actionEl.style.display='none';
+    }
+
+  }else{
+    // ESTADO C: el ciclo ya cerró (pasó el 21 mayo)
+    // La card derecha muestra el NUEVO estado de cuenta: lo acumulado se convierte en deuda
+
+    tagEl.textContent='💳 Estado de cuenta actual';
+    periodoEl.innerHTML='<span style="font-size:12px;font-weight:800;color:var(--lilac);">Corte '+fmtDate(ST.cicloCorte)+' · vence '+fmtDate(ST.cicloPago)+'</span>';
+    montoEl.textContent=fmtMoney(totalProyectado);
+    montoEl.style.color=totalProyectado<=0?'var(--green-text)':'var(--blue)';
+    subEl.innerHTML='Gastos <b style="color:var(--lilac)">'+fmtMoney(cicloGastado)+'</b> + MSI <b style="color:var(--pink-strong)">'+fmtMoney(msiCorte)+'</b>';
+    corteEl.textContent=fmtDate(ST.cicloCorte);
+    limiteEl.textContent=fmtDate(ST.cicloPago);
+    msiValEl.textContent=fmtMoney(msiCorte);
+    msiRowEl.style.display='flex';
+    const diasPago=Math.ceil((new Date(ST.cicloPago+'T00:00:00')-hoy)/(1000*60*60*24));
+    statusEl.textContent='Vence en '+diasPago+' días';
+    statusEl.style.background='rgba(219,234,254,.7)';
+    statusEl.style.color='#1d4ed8';
+    actionEl.style.display=totalProyectado>0?'block':'none';
+  }
 
   // Banner corte próximo (si faltan ≤5 días)
   const corteBanner=document.getElementById('corte-banner');
@@ -1215,7 +1318,7 @@ function renderTimeline(elId){
   // Corte actual
   eventos.push({fecha:corteDate,emoji:'📋',titulo:'Corte Banamex',monto:fmtMoney(calcCicloGastado()),tipo:'corte'});
   // Pago
-  eventos.push({fecha:pagoDate,emoji:'💳',titulo:'Pago Banamex',monto:ST.pagoActual>0?fmtMoney(ST.pagoActual):'Sin cargo pendiente',tipo:'pago'});
+  eventos.push({fecha:pagoDate,emoji:'💳',titulo:'Pago Banamex',monto:fmtMoney(calcCicloGastado()+calcMsiEnCorte(ST.cicloCorte)),tipo:'pago'});
   // Mamá viernes
   const mamaFri=proximoViernes(now);
   eventos.push({fecha:mamaFri,emoji:'👩',titulo:'Viernes — Abono mamá',monto:'Sugerido: '+fmtMoney(calcSugMama()),tipo:'mama'});
@@ -1907,8 +2010,6 @@ function renderDash(){
   const totalIngresos=ingresos.reduce((s,t)=>s+t.amount,0);
   const cicloGastado=calcCicloGastado();
   const msiCorte=calcMsiEnCorte(ST.cicloCorte);
-
-  // ── 1. Corte actual ──
   const normalEnCorte=ST.transactions
     .filter(t=>t.tipo==='gasto'&&t.origen==='credito'&&t.cat!=='tarjeta')
     .filter(t=>{const d=new Date(t.fecha+'T12:00:00');return d>=new Date(ST.cicloInicio+'T00:00:00')&&d<=new Date(ST.cicloCorte+'T23:59:59');})
@@ -1931,8 +2032,9 @@ function renderDash(){
     <div class="stat-box"><div class="stat-label">TICKET PROMEDIO</div><div class="stat-val">${fmtMoney(tix)}</div><div class="stat-sub">por transacción</div></div>`;
 
   // ── 3. Disponible real ──
+  const pagoTotal=cicloGastado+msiCorte;
   const deudaAmigos=Math.abs((ST.amigos||[]).filter(a=>a.saldo<0).reduce((s,a)=>s+a.saldo,0));
-  const disponible=ST.bbva+(ST.efectivo||0)-ST.mamaDeuda-deudaAmigos-(ST.pagoActual||0);
+  const disponible=ST.bbva+(ST.efectivo||0)-ST.mamaDeuda-deudaAmigos-pagoTotal;
   document.getElementById('disponible-real-wrap').innerHTML=`
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
       <div style="text-align:center;flex:1;min-width:120px;padding:14px;background:rgba(220,252,231,.4);border-radius:16px;">
@@ -1941,14 +2043,14 @@ function renderDash(){
       </div>
       <div style="text-align:center;flex:1;min-width:120px;padding:14px;background:rgba(251,207,232,.3);border-radius:16px;">
         <div style="font-family:var(--fm);font-size:7px;color:var(--muted);margin-bottom:6px;">COMPROMISOS</div>
-        <div style="font-family:var(--fm);font-size:14px;color:var(--danger);">-${fmtMoney(ST.mamaDeuda+deudaAmigos+(ST.pagoActual||0))}</div>
+        <div style="font-family:var(--fm);font-size:14px;color:var(--danger);">-${fmtMoney(ST.mamaDeuda+deudaAmigos+pagoTotal)}</div>
       </div>
       <div style="text-align:center;flex:1;min-width:120px;padding:14px;background:${disponible>=0?'rgba(219,234,254,.4)':'rgba(251,207,232,.4)'};border-radius:16px;border:2px solid ${disponible>=0?'var(--blue)':'var(--danger)'};">
         <div style="font-family:var(--fm);font-size:7px;color:var(--muted);margin-bottom:6px;">DISPONIBLE REAL</div>
         <div style="font-family:var(--fm);font-size:14px;color:${disponible>=0?'#1d4ed8':'var(--danger)'};">${fmtMoney(disponible)}</div>
       </div>
     </div>
-    <div style="font-size:12px;color:var(--muted);margin-top:10px;font-weight:700;">Saldos líquidos menos: deuda mamá (${fmtMoney(ST.mamaDeuda)}) + amigos (${fmtMoney(deudaAmigos)}) + pago Banamex (${fmtMoney(ST.pagoActual||0)})</div>`;
+    <div style="font-size:12px;color:var(--muted);margin-top:10px;font-weight:700;">Saldos líquidos menos: deuda mamá (${fmtMoney(ST.mamaDeuda)}) + amigos (${fmtMoney(deudaAmigos)}) + Banamex este corte (${fmtMoney(pagoTotal)})</div>`;
 
   // ── 4. Deuda MSI total vs pago corte ──
   const deudaMsiTotal=(ST.msiCompras||[]).filter(m=>m.estado!=='cancelado').reduce((s,m)=>{
