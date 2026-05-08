@@ -1069,6 +1069,7 @@ function calcPagosRealizados(){
     .reduce((s,t)=>s+t.amount,0);
 }
 
+function calcMsiPorCortes(mesesFuturos=6){
   // Devuelve mapa corteStr → total MSI
   const mapa={};
   (ST.msiCompras||[]).forEach(m=>{
@@ -1135,7 +1136,7 @@ function abrirPagoBanamex(monto){
     document.getElementById('r-nota').value='Pago Banamex';
   },80);
 }
-
+function calcFridaysLeftMonth(){
   const now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0);
   let f=0;const d=new Date(now);
   while(d<=last){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}
@@ -1568,7 +1569,7 @@ async function confirmSave(){
     ST.bbva=Math.max(0,ST.bbva-amount);
     tx.cat='tarjeta';
     tx.origen='bbva';
-  }
+  }else if(tipo==='pago_amigo'){
     // Pago real a amigo: sí afecta cuenta
     if(origen==='bbva')ST.bbva=Math.max(0,ST.bbva-amount);
     else if(origen==='efectivo')ST.efectivo=Math.max(0,(ST.efectivo||0)-amount);
