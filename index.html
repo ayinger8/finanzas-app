@@ -512,21 +512,23 @@ body{
           <div class="card-badge" id="ciclo-badge-txt">—</div>
           <div class="big-n" id="ciclo-gastado" style="color:var(--lilac)">$0</div>
           <div class="small-txt" id="ciclo-sub-txt">gastado este ciclo</div>
-          <!-- barra de progreso del límite -->
+          <!-- barra de progreso contra límite de $18K -->
           <div style="margin-top:12px;">
             <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:700;margin-bottom:5px;">
-              <span>del límite de crédito</span>
+              <span id="ciclo-lim-lbl">de $18,000 límite</span>
               <span id="ciclo-pct-txt">0%</span>
             </div>
             <div style="height:8px;background:rgba(192,132,252,.15);border-radius:99px;overflow:hidden;">
               <div id="ciclo-bar" style="height:100%;border-radius:99px;background:var(--lilac);width:0%;transition:width .6s;"></div>
             </div>
+            <div style="font-size:11px;color:var(--muted);font-weight:700;margin-top:5px;" id="ciclo-disponible-lbl"></div>
           </div>
           <div class="v-box">
             <div class="v-row"><span class="v-lbl">Gastos normales</span><span class="v-val" id="ciclo-normal">$0</span></div>
             <div class="v-row"><span class="v-lbl">+ MSI este corte</span><span class="v-val" id="ciclo-msi-sum" style="color:var(--lilac);">$0</span></div>
+            <div class="v-row"><span class="v-lbl">- Pagos realizados</span><span class="v-val" id="ciclo-pagos-hechos" style="color:var(--green-text);">$0</span></div>
             <div class="v-row" style="border-top:1px solid rgba(243,198,218,.5);margin-top:4px;padding-top:8px;">
-              <span class="v-lbl" style="font-weight:900;color:var(--text);">= Pagarás el</span>
+              <span class="v-lbl" style="font-weight:900;color:var(--text);">= Deberás el</span>
               <span class="v-val" id="ciclo-pago-txt" style="color:var(--pink-strong);">—</span>
             </div>
           </div>
@@ -594,6 +596,7 @@ body{
             <button class="sel-btn" id="tb-ingreso" onclick="selTipo('ingreso')">💰 Ingreso / Nómina</button>
             <button class="sel-btn" id="tb-prestamo-rec" onclick="selTipo('prestamo_rec')">🤝 Préstamo recibido</button>
             <button class="sel-btn" id="tb-pago-amigo" onclick="selTipo('pago_amigo')">👥 Pagar a amigo</button>
+            <button class="sel-btn" id="tb-pago-banamex" onclick="selTipo('pago_banamex')" style="border-color:var(--lilac);color:var(--lilac);">💜 Pagar Banamex</button>
           </div>
         </div>
         <div class="form-block" id="r-origen-wrap">
@@ -829,7 +832,7 @@ const MONTHS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov',
 const MONTHS_FULL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const COBRO_SEMANAL=2005;
-const LIM_CRED=13000;
+const LIM_CRED=18000;
 
 // ═══════════════════════════════════════════════════════
 // FUNCIÓN GENERAR MENSUALIDADES (standalone, usada antes de ST)
@@ -1056,7 +1059,16 @@ function calcMsiEnCorte(cicloCorteStr){
   return sum;
 }
 
-function calcMsiPorCortes(mesesFuturos=6){
+function calcPagosRealizados(){
+  // Suma pagos a Banamex registrados dentro del ciclo activo
+  const ini=new Date(ST.cicloInicio+'T00:00:00');
+  const fin=new Date(ST.cicloCorte+'T23:59:59');
+  return ST.transactions
+    .filter(t=>t.tipo==='pago_banamex')
+    .filter(t=>{const d=new Date(t.fecha+'T12:00:00');return d>=ini&&d<=fin;})
+    .reduce((s,t)=>s+t.amount,0);
+}
+
   // Devuelve mapa corteStr → total MSI
   const mapa={};
   (ST.msiCompras||[]).forEach(m=>{
@@ -1108,7 +1120,22 @@ function getWeeklySpent(){
     .filter(t=>t.tipo==='gasto'&&t.cat!=='tarjeta'&&new Date(t.fecha+'T12:00:00')>=ws)
     .reduce((s,t)=>s+t.amount,0);
 }
-function calcFridaysLeftMonth(){
+function contarViernesHasta(desde,hasta){
+  let count=0;const d=new Date(desde);
+  // contar el viernes de hoy también
+  while(d<=hasta){if(d.getDay()===5)count++;d.setDate(d.getDate()+1);}
+  return Math.max(1,count);
+}
+function abrirPagoBanamex(monto){
+  go('register');
+  setTimeout(()=>{
+    selTipo('pago_banamex');
+    const inp=document.getElementById('r-amount');
+    if(inp&&monto>0)inp.value=monto;
+    document.getElementById('r-nota').value='Pago Banamex';
+  },80);
+}
+
   const now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0);
   let f=0;const d=new Date(now);
   while(d<=last){if(d.getDay()===5)f++;d.setDate(d.getDate()+1);}
@@ -1163,16 +1190,21 @@ function updateHome(){
   // ── CARD IZQUIERDA: ciclo acumulándose ──
   const cicloGastado=calcCicloGastado();
   const msiCorte=calcMsiEnCorte(ST.cicloCorte);
-  const totalProyectado=cicloGastado+msiCorte;
+  const pagosRealizados=calcPagosRealizados();
+  const saldoADeber=Math.max(0,cicloGastado+msiCorte-pagosRealizados);
+  const totalBarra=cicloGastado+msiCorte; // barra muestra total bruto
+  const disponibleCredito=Math.max(0,LIM_CRED-totalBarra);
 
-  document.getElementById('ciclo-gastado').textContent=fmtMoney(cicloGastado);
+  document.getElementById('ciclo-gastado').textContent=fmtMoney(saldoADeber);
   document.getElementById('ciclo-badge-txt').textContent=fmtDate(ST.cicloInicio)+' → '+fmtDate(ST.cicloCorte);
-  document.getElementById('ciclo-sub-txt').textContent='gastado del '+fmtDate(ST.cicloInicio)+' al '+fmtDate(ST.cicloCorte);
+  document.getElementById('ciclo-sub-txt').textContent='por pagar el '+fmtDate(ST.cicloPago);
   document.getElementById('ciclo-normal').textContent=fmtMoney(cicloGastado);
   document.getElementById('ciclo-msi-sum').textContent=fmtMoney(msiCorte);
-  document.getElementById('ciclo-pago-txt').textContent=fmtMoney(totalProyectado)+' · '+fmtDate(ST.cicloPago);
+  document.getElementById('ciclo-pagos-hechos').textContent=pagosRealizados>0?'-'+fmtMoney(pagosRealizados):'$0';
+  document.getElementById('ciclo-pago-txt').textContent=fmtMoney(saldoADeber)+' · '+fmtDate(ST.cicloPago);
+  document.getElementById('ciclo-disponible-lbl').textContent='Disponible en crédito: '+fmtMoney(disponibleCredito);
 
-  const pct=Math.min(100,Math.round((cicloGastado/LIM_CRED)*100));
+  const pct=Math.min(100,Math.round((totalBarra/LIM_CRED)*100));
   document.getElementById('ciclo-pct-txt').textContent=pct+'%';
   document.getElementById('ciclo-bar').style.width=pct+'%';
   document.getElementById('ciclo-bar').style.background=pct>80?'var(--danger)':pct>50?'var(--pink)':'var(--lilac)';
@@ -1278,12 +1310,51 @@ function updateHome(){
     corteBanner.style.display='block';
   }else corteBanner.style.display='none';
 
-  // Banner viernes
+  // Banner viernes — mamá + Banamex
   const friBanner=document.getElementById('fri-banner');
   if(now.getDay()===5){
-    const sug=calcSugMama();
-    document.getElementById('fri-text').textContent='Abona aprox. '+fmtMoney(sug)+' a mamá hoy';
-    document.getElementById('fri-sub').textContent='Para liquidar la deuda de '+fmtMoney(ST.mamaDeuda)+' este mes';
+    const sugMama=calcSugMama();
+    // Calcular sugerencia Banamex
+    const pagoLimiteD=new Date(ST.cicloPago+'T00:00:00');
+    const viernesRestantes=contarViernesHasta(now,pagoLimiteD);
+    const diasRestantesP=Math.ceil((pagoLimiteD-now)/(1000*60*60*24));
+    let sugBanamex=0,urgencia='normal';
+    if(saldoADeber>0){
+      sugBanamex=viernesRestantes>0?Math.ceil(saldoADeber/viernesRestantes):saldoADeber;
+      if(diasRestantesP<=7)urgencia='urgente';
+      else if(viernesRestantes<=2)urgencia='alto';
+    }
+    let bannerHTML='';
+    // Banamex si hay saldo
+    if(saldoADeber>0){
+      const emoji=urgencia==='urgente'?'🚨':urgencia==='alto'?'⚠️':'💜';
+      const titulo=urgencia==='urgente'?'¡Paga Banamex HOY, vence en '+diasRestantesP+' días!':urgencia==='alto'?'Quedan pocos viernes — paga Banamex hoy':'Viernes de cobro — abona a Banamex';
+      const sub=urgencia==='urgente'?'Debes '+fmtMoney(saldoADeber)+' total. Paga ya para no generar interés.':`Pagarías ${fmtMoney(sugBanamex)} hoy y dividirías en ${viernesRestantes} viernes. Debes ${fmtMoney(saldoADeber)} total.`;
+      bannerHTML+=`<div style="flex:1;min-width:220px;">
+        <div class="fri-tag-txt" style="color:${urgencia==='urgente'?'var(--danger)':'var(--lilac)'};">${emoji} ${titulo}</div>
+        <div class="fri-text" id="fri-text-banamex">${fmtMoney(sugBanamex)} sugeridos hoy</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;font-weight:700;">${sub}</div>
+      </div>
+      <div class="fri-btns" style="flex-direction:column;gap:8px;">
+        <button class="btn-pg" onclick="abrirPagoBanamex(${sugBanamex})">💜 Pagar Banamex</button>
+      </div>`;
+    }
+    // Mamá siempre los viernes
+    if(ST.mamaDeuda>0){
+      bannerHTML+=`<div style="flex:1;min-width:220px;border-left:${saldoADeber>0?'1px solid rgba(243,198,218,.5)':'none'};padding-left:${saldoADeber>0?'16px':'0'};">
+        <div class="fri-tag-txt">🎉 ¡Viernes de cobro!</div>
+        <div class="fri-text" id="fri-text">Abona aprox. ${fmtMoney(sugMama)} a mamá</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;font-weight:700;" id="fri-sub">Deuda total: ${fmtMoney(ST.mamaDeuda)}</div>
+      </div>
+      <div class="fri-btns">
+        <button class="btn-pg" onclick="openModal('modal-mama');selModalTipo('abono')">💛 Abonar mamá</button>
+        <button class="btn-sk" onclick="document.getElementById('fri-banner').style.display='none'">Ahora no</button>
+      </div>`;
+    } else if(saldoADeber<=0){
+      bannerHTML=`<div><div class="fri-tag-txt">🎉 ¡Viernes de cobro, Yamil!</div><div class="fri-text">Todo al corriente — buen trabajo 💚</div></div>
+      <div class="fri-btns"><button class="btn-sk" onclick="document.getElementById('fri-banner').style.display='none'">Ok</button></div>`;
+    }
+    friBanner.innerHTML=bannerHTML;
     friBanner.style.display='flex';
   }else friBanner.style.display='none';
 
@@ -1379,14 +1450,13 @@ function selOrigen(o){
 }
 function selTipo(t){
   ST.selTipo=t;
-  ['gasto','ingreso','prestamo-rec','pago-amigo'].forEach(x=>{
+  ['gasto','ingreso','prestamo-rec','pago-amigo','pago-banamex'].forEach(x=>{
     const el=document.getElementById('tb-'+x);
     if(el)el.className='sel-btn';
   });
-  const activeEl=document.getElementById('tb-'+t.replace('_','-'));
-  if(activeEl)activeEl.className='sel-btn '+(t==='gasto'?'on-gasto':'on-abono');
+  const activeEl=document.getElementById('tb-'+t.replace(/_/g,'-'));
+  if(activeEl)activeEl.className='sel-btn '+(t==='gasto'?'on-gasto':t==='pago_banamex'?'on-credito':'on-abono');
 
-  // Mostrar/ocultar sección amigo
   const amigoWrap=document.getElementById('r-amigo-wrap');
   const catWrap=document.getElementById('r-cat-wrap');
   const origenWrap=document.getElementById('r-origen-wrap');
@@ -1396,14 +1466,30 @@ function selTipo(t){
     catWrap.style.display='none';
     origenWrap.style.display='block';
     refreshAmigoSelect();
+  }else if(t==='pago_banamex'){
+    amigoWrap.style.display='none';
+    catWrap.style.display='none';
+    // origen fijo BBVA, mostramos el wrap pero solo BBVA seleccionado
+    origenWrap.style.display='block';
+    selOrigen('bbva');
+    document.getElementById('ob-credito').style.opacity='0.3';
+    document.getElementById('ob-credito').style.pointerEvents='none';
+    document.getElementById('ob-efectivo').style.opacity='0.3';
+    document.getElementById('ob-efectivo').style.pointerEvents='none';
   }else{
     amigoWrap.style.display='none';
     catWrap.style.display='block';
     origenWrap.style.display='block';
+    // restaurar botones origen
+    document.getElementById('ob-credito').style.opacity='1';
+    document.getElementById('ob-credito').style.pointerEvents='auto';
+    document.getElementById('ob-efectivo').style.opacity='1';
+    document.getElementById('ob-efectivo').style.pointerEvents='auto';
   }
   if(t==='ingreso'){selOrigen('bbva');selCat('nomina');}
   if(t==='prestamo_rec'){selCat('prestamo_rec');}
   if(t==='pago_amigo'){selOrigen('bbva');}
+  if(t==='pago_banamex'){selOrigen('bbva');}
 }
 function selCat(c){
   ST.selCat=c;
@@ -1448,9 +1534,9 @@ function pedirConfirm(){
   document.getElementById('confirm-amount').textContent=fmtMoney(amount);
   const sign=tipo==='ingreso'||tipo==='prestamo_rec'?'+':'-';
   document.getElementById('confirm-details').innerHTML=`
-    <div class="confirm-row"><span class="confirm-lbl">Tipo</span><span class="confirm-val">${tipo==='gasto'?'Gasto':tipo==='ingreso'?'Ingreso':tipo==='prestamo_rec'?'Préstamo recibido':'Pago a amigo'}</span></div>
-    <div class="confirm-row"><span class="confirm-lbl">Cuenta</span><span class="confirm-val">${ORIGEN_LABELS[origen]||origen}</span></div>
-    ${tipo==='pago_amigo'?`<div class="confirm-row"><span class="confirm-lbl">Amigo</span><span class="confirm-val">${amigoNombre}</span></div>`:`<div class="confirm-row"><span class="confirm-lbl">Categoría</span><span class="confirm-val">${(CAT_ICONS[cat]||'')} ${CAT_NAMES[cat]||cat}</span></div>`}
+    <div class="confirm-row"><span class="confirm-lbl">Tipo</span><span class="confirm-val">${tipo==='gasto'?'Gasto':tipo==='ingreso'?'Ingreso':tipo==='prestamo_rec'?'Préstamo recibido':tipo==='pago_amigo'?'Pago a amigo':'💜 Pago Banamex'}</span></div>
+    <div class="confirm-row"><span class="confirm-lbl">Cuenta</span><span class="confirm-val">${tipo==='pago_banamex'?'Sale de BBVA → reduce deuda Banamex':ORIGEN_LABELS[origen]||origen}</span></div>
+    ${tipo==='pago_amigo'?`<div class="confirm-row"><span class="confirm-lbl">Amigo</span><span class="confirm-val">${amigoNombre}</span></div>`:(tipo==='pago_banamex'?'':`<div class="confirm-row"><span class="confirm-lbl">Categoría</span><span class="confirm-val">${(CAT_ICONS[cat]||'')} ${CAT_NAMES[cat]||cat}</span></div>`)}
     ${nota?`<div class="confirm-row"><span class="confirm-lbl">Nota</span><span class="confirm-val">${nota}</span></div>`:''}
     <div class="confirm-row"><span class="confirm-lbl">Fecha</span><span class="confirm-val">${fecha}</span></div>`;
   openModal('modal-confirm');
@@ -1477,7 +1563,12 @@ async function confirmSave(){
   }else if(tipo==='ingreso'||tipo==='prestamo_rec'){
     if(origen==='bbva')ST.bbva+=amount;
     else if(origen==='efectivo')ST.efectivo=(ST.efectivo||0)+amount;
-  }else if(tipo==='pago_amigo'){
+  }else if(tipo==='pago_banamex'){
+    // Sale de BBVA, se registra en historial como pago a tarjeta
+    ST.bbva=Math.max(0,ST.bbva-amount);
+    tx.cat='tarjeta';
+    tx.origen='bbva';
+  }
     // Pago real a amigo: sí afecta cuenta
     if(origen==='bbva')ST.bbva=Math.max(0,ST.bbva-amount);
     else if(origen==='efectivo')ST.efectivo=Math.max(0,(ST.efectivo||0)-amount);
